@@ -4,7 +4,7 @@
  * Usage:
  *   REGISTER_PRIVATE_KEY=0x... FEE_ADDRESS=0x... npm run register
  *
- * Requires: YAML hosted at https://arcadian.vercel.app/telegraph-risk.yaml
+ * Requires: YAML hosted at https://arcadian-gamma.vercel.app/telegraph-risk.yaml
  * Contract: MinerRegistryFacet on Base Sepolia — 0x122396E8602BEed349434AA6E83123E7dD97F5A0
  */
 
@@ -16,14 +16,16 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 const REGISTRY = "0x122396E8602BEed349434AA6E83123E7dD97F5A0" as const;
-const YAML_URL = "https://arcadian.vercel.app/telegraph-risk.yaml";
+const YAML_URL = "https://arcadian-gamma.vercel.app/telegraph-risk.yaml";
 const MIN_PRICE_USDC = 10_000n; // $0.01 in 6-decimal USDC units
 
 const ABI = parseAbi([
   "function registerMiner(string yamlUrl, bytes32 yamlHash, address feeAddress, uint256 minPriceUsdc, string[] supportedIntents) external returns (uint256 registrationId)",
 ]);
 
-const SUPPORTED_INTENTS = ["fact_check", "web_search", "language_generation"];
+// Confirm these enum values with Telegraph docs/Discord before registering.
+// Likely correct for a financial risk data feed — update if the protocol uses different slugs.
+const SUPPORTED_INTENTS = ["financial_data", "on_chain_analytics"];
 
 async function main() {
   const privateKey = process.env.REGISTER_PRIVATE_KEY;

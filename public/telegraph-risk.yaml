@@ -127,9 +127,8 @@ semantics:
     label_field: verdict
     reason_field: explanation
   supported_intents:
-    - fact_check
-    - web_search
-    - language_generation
+    - financial_data
+    - on_chain_analytics
 
 on_chain:
   description: "DeFi protocol risk score with APY and TVL as on-chain integers"

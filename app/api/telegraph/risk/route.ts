@@ -19,6 +19,10 @@ export const dynamic = "force-dynamic";
 //   → { mode: "single", risk_score, verdict, apy_bps, tvl_k, confidence,
 //       components, flags, explanation, protocol, chain, symbol, pool_id }
 //
+// Six scoring components: apy_credibility (0-20), liquidity_depth (0-20),
+// exploit_history (0-20), protocol_maturity (0-20), concentration (0-10),
+// reward_token (0-10). Total 100 — lower = safer.
+//
 // Telegraph on-chain integers (risk_score, apy_bps, tvl_k, confidence) are
 // present at the top level in both modes — in ranked mode they describe the
 // safest protocol, so on-chain consumers always read a usable score.
