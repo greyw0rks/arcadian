@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap");
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #EFEFE5;
+  --cream-2: #E6E6DA;
+  --ink: #0A0A0A;
+  --ink-2: #1B1B1B;
+  --orange: #FF7120;
+  --orange-dark: #C15727;
+  --grey: #9E9E9E;
+  --grey-2: #787878;
+  --line: #D6D6CC;
+  --line-strong: #C4C4B8;
+  --white: #FFFFFF;
+  --green: #2E7D32;
+  --amber: #B8860B;
+  --red: #C62828;
+}
+
+html, body { background: var(--cream); }
+
+body {
+  font-family: "Roboto Mono", monospace;
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.techno {
+  font-family: "Orbitron", "Roboto Mono", monospace;
+  letter-spacing: -0.02em;
+}
+
+.mono { font-family: "Roboto Mono", monospace; }
+
+input:focus {
+  outline: none;
+  border-color: var(--orange) !important;
+}
+
+button { font-family: "Roboto Mono", monospace; cursor: pointer; }
+
+::selection { background: var(--orange); color: #fff; }

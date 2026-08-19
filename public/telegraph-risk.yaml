@@ -1,0 +1,170 @@
+version: "1"
+kind: subnet
+id: 1001
+slug: arcadian-defi-risk
+protocol: generic
+name: Arcadian — DeFi Risk Score Miner
+description: >
+  Returns a 0-100 risk score for any DeFi protocol/pool combining six data sources:
+  DefiLlama Pools (APY credibility via sigma + outlier flag, liquidity depth, concentration risk),
+  DefiLlama Hacks (589 real exploits matched by protocol, recency-weighted),
+  DefiLlama Protocols (audit count, age, fork status),
+  CoinGecko (reward token market cap rank + 30d volatility).
+  Six components: apy_credibility (0-20), liquidity_depth (0-20), exploit_history (0-20),
+  protocol_maturity (0-20), concentration (0-10), reward_token (0-10).
+  Lower score = safer. All signals verifiable against public sources.
+base_url: https://arcadian-gamma.vercel.app
+
+auth:
+  type: none
+
+rate_limit_per_sec: 10
+cache_ttl_sec: 60
+circuit_threshold: 5
+circuit_cooldown_seconds: 30
+
+endpoints:
+  - path: /risk
+    external_path: /api/telegraph/risk
+    method: POST
+    description: Score a DeFi pool or protocol by risk (0-100, lower = safer)
+    content_type: application/json
+
+  - path: /risk/query
+    external_path: /api/telegraph/risk
+    method: GET
+    description: Score via query params (protocol, chain, asset, pool_id)
+    param_map:
+      protocol: protocol
+      chain: chain
+      asset: asset
+      pool_id: pool_id
+
+input_schema:
+  type: object
+  properties:
+    protocol:
+      type: string
+      description: "DefiLlama protocol slug, e.g. 'aave-v3', 'compound-v3', 'curve'"
+    chain:
+      type: string
+      description: "Chain name, e.g. 'Ethereum', 'Arbitrum', 'Base', 'Polygon'"
+    asset:
+      type: string
+      description: "Token symbol, e.g. 'USDC', 'WETH', 'DAI'"
+    pool_id:
+      type: string
+      description: "Exact DefiLlama pool UUID for a specific pool"
+
+output_schema:
+  type: object
+  required: [risk_score, verdict, apy_bps, tvl_k, confidence]
+  properties:
+    risk_score:
+      type: integer
+      minimum: 0
+      maximum: 100
+      description: Composite risk score — lower is safer
+    verdict:
+      type: string
+      enum: [LOW_RISK, MEDIUM_RISK, HIGH_RISK, VERY_HIGH_RISK]
+    apy_bps:
+      type: integer
+      description: APY in basis points (APY% × 100), e.g. 825 = 8.25%
+    tvl_k:
+      type: integer
+      description: TVL in thousands USD floored, e.g. 4500 = $4.5M
+    confidence:
+      type: integer
+      minimum: 0
+      maximum: 100
+    components:
+      type: object
+      properties:
+        apy_credibility:
+          type: integer
+          minimum: 0
+          maximum: 20
+        liquidity_depth:
+          type: integer
+          minimum: 0
+          maximum: 20
+        exploit_history:
+          type: integer
+          minimum: 0
+          maximum: 20
+        protocol_maturity:
+          type: integer
+          minimum: 0
+          maximum: 20
+        concentration:
+          type: integer
+          minimum: 0
+          maximum: 10
+        reward_token:
+          type: integer
+          minimum: 0
+          maximum: 10
+    flags:
+      type: array
+      items:
+        type: string
+    explanation:
+      type: string
+    protocol:
+      type: string
+    chain:
+      type: string
+    symbol:
+      type: string
+    pool_id:
+      type: string
+
+semantics:
+  signal_mapping:
+    type: task_completion
+    confidence_field: confidence
+    label_field: verdict
+    reason_field: explanation
+  supported_intents:
+    - fact_check
+    - web_search
+    - language_generation
+
+on_chain:
+  description: "DeFi protocol risk score with APY and TVL as on-chain integers"
+  transform: direct
+  min_price_usdc: 0.01
+  fields:
+    integers:
+      - index: 0
+        name: risk_score
+        description: "Composite risk score 0-100 (lower = safer)"
+        source_path: risk_score
+      - index: 1
+        name: apy_bps
+        description: "APY in basis points (APY% × 100)"
+        source_path: apy_bps
+      - index: 2
+        name: tvl_k
+        description: "TVL in thousands USD"
+        source_path: tvl_k
+      - index: 3
+        name: confidence
+        description: "Scoring confidence 0-100"
+        source_path: confidence
+    strings:
+      - index: 0
+        name: verdict
+        description: "Risk verdict: LOW_RISK | MEDIUM_RISK | HIGH_RISK | VERY_HIGH_RISK"
+      - index: 1
+        name: explanation
+        description: "Plain-english risk explanation"
+
+  request:
+    - endpoint: /risk
+      method: POST
+      body:
+        protocol: { source: strings.0 }
+        chain: { source: strings.1, optional: true }
+        asset: { source: strings.2, optional: true }
