@@ -23,9 +23,11 @@ const ABI = parseAbi([
   "function registerMiner(string yamlUrl, bytes32 yamlHash, address feeAddress, uint256 minPriceUsdc, string[] supportedIntents) external returns (uint256 registrationId)",
 ]);
 
-// Confirm these enum values with Telegraph docs/Discord before registering.
-// Likely correct for a financial risk data feed — update if the protocol uses different slugs.
-const SUPPORTED_INTENTS = ["financial_data", "on_chain_analytics"];
+// Arcadian serves three intents from the Telegraph H1 catalog:
+// - FINANCIAL_DATA: DeFi protocol risk scores, APY, TVL (Tier A, deterministic)
+// - TVL_LOOKUP: On-chain TVL analytics across protocols (Tier A)
+// - FRAUD_DETECTION: Exploit history risk scoring (Tier B, GT: TBD)
+const SUPPORTED_INTENTS = ["FINANCIAL_DATA", "TVL_LOOKUP", "FRAUD_DETECTION"];
 
 async function main() {
   const privateKey = process.env.REGISTER_PRIVATE_KEY;
