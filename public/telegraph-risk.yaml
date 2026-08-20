@@ -3,7 +3,7 @@ kind: subnet
 id: 1001
 slug: arcadian-defi-risk
 protocol: generic
-name: Arcadian — DeFi Risk Score Miner
+name: "Arcadian — DeFi Risk Score Miner"
 description: >
   Returns a 0-100 risk score for any DeFi protocol/pool combining six data sources:
   DefiLlama Pools (APY credibility via sigma + outlier flag, liquidity depth, concentration risk),
@@ -64,7 +64,7 @@ output_schema:
       type: integer
       minimum: 0
       maximum: 100
-      description: Composite risk score — lower is safer
+      description: "Composite risk score — lower is safer"
     verdict:
       type: string
       enum: [LOW_RISK, MEDIUM_RISK, HIGH_RISK, VERY_HIGH_RISK]
