@@ -70,10 +70,10 @@ output_schema:
       enum: [LOW_RISK, MEDIUM_RISK, HIGH_RISK, VERY_HIGH_RISK]
     apy_bps:
       type: integer
-      description: APY in basis points (APY% × 100), e.g. 825 = 8.25%
+      description: "APY in basis points (APY% × 100), e.g. 825 = 8.25%"
     tvl_k:
       type: integer
-      description: TVL in thousands USD floored, e.g. 4500 = $4.5M
+      description: "TVL in thousands USD floored, e.g. 4500 = $4.5M"
     confidence:
       type: integer
       minimum: 0
