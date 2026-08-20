@@ -1,18 +1,12 @@
 version: "1"
-kind: subnet
+kind: miner
 id: 1001
 slug: arcadian-defi-risk
 protocol: generic
 name: "Arcadian — DeFi Risk Score Miner"
 description: >
-  Returns a 0-100 risk score for any DeFi protocol/pool combining six data sources:
-  DefiLlama Pools (APY credibility via sigma + outlier flag, liquidity depth, concentration risk),
-  DefiLlama Hacks (589 real exploits matched by protocol, recency-weighted),
-  DefiLlama Protocols (audit count, age, fork status),
-  CoinGecko (reward token market cap rank + 30d volatility).
-  Six components: apy_credibility (0-20), liquidity_depth (0-20), exploit_history (0-20),
-  protocol_maturity (0-20), concentration (0-10), reward_token (0-10).
-  Lower score = safer. All signals verifiable against public sources.
+  Returns a 0-100 risk score for any DeFi protocol/pool combining six data sources: DefiLlama Pools (APY credibility via sigma + outlier flag, liquidity depth, concentration risk), DefiLlama Hacks (589 real exploits matched by protocol, recency-weighted), DefiLlama Protocols (audit count, age, fork status), CoinGecko (reward token market cap rank + 30d volatility). Six components: apy_credibility (0-20), liquidity_depth (0-20), exploit_history (0-20), protocol_maturity (0-20), concentration (0-10), reward_token (0-10). Lower score = safer. All signals verifiable against public sources.
+
 base_url: https://arcadian-gamma.vercel.app
 
 auth:
@@ -29,7 +23,6 @@ endpoints:
     method: POST
     description: Score a DeFi pool or protocol by risk (0-100, lower = safer)
     content_type: application/json
-
   - path: /risk/query
     external_path: /api/telegraph/risk
     method: GET
@@ -58,7 +51,12 @@ input_schema:
 
 output_schema:
   type: object
-  required: [risk_score, verdict, apy_bps, tvl_k, confidence]
+  required:
+    - risk_score
+    - verdict
+    - apy_bps
+    - tvl_k
+    - confidence
   properties:
     risk_score:
       type: integer
@@ -67,7 +65,11 @@ output_schema:
       description: "Composite risk score — lower is safer"
     verdict:
       type: string
-      enum: [LOW_RISK, MEDIUM_RISK, HIGH_RISK, VERY_HIGH_RISK]
+      enum:
+        - LOW_RISK
+        - MEDIUM_RISK
+        - HIGH_RISK
+        - VERY_HIGH_RISK
     apy_bps:
       type: integer
       description: "APY in basis points (APY% × 100), e.g. 825 = 8.25%"
@@ -160,11 +162,15 @@ on_chain:
       - index: 1
         name: explanation
         description: "Plain-english risk explanation"
-
   request:
     - endpoint: /risk
       method: POST
       body:
-        protocol: { source: strings.0 }
-        chain: { source: strings.1, optional: true }
-        asset: { source: strings.2, optional: true }
+        protocol:
+          source: strings.0
+        chain:
+          source: strings.1
+          optional: true
+        asset:
+          source: strings.2
+          optional: true
