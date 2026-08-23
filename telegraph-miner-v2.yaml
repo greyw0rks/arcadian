@@ -1,6 +1,6 @@
 version: "1"
 kind: miner
-id: 1001
+id: 2847
 slug: arcadian-defi-risk
 protocol: generic
 name: "Arcadian — DeFi Risk Score Miner"
@@ -96,9 +96,7 @@ semantics:
     label_field: verdict
     reason_field: explanation
   supported_intents:
-    - FINANCIAL_DATA
-    - TVL_LOOKUP
-    - FRAUD_DETECTION
+    - TASK_COMPLETION
 on_chain:
   description: "DeFi protocol risk score with APY and TVL as on-chain integers"
   transform: direct
