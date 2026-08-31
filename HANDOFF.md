@@ -1,34 +1,32 @@
 # Arcadian — Handoff & Wrap-up
 
 **DeFi Risk Score Miner for Telegraph Protocol Season I**
-Status: **registered and active on Telegraph, scoring 0 — fix deployed, awaiting re-registration**
+Status: **registered with corrected intents 2026-08-31; awaiting first scored epoch**
 Last updated: 2026-08-31
 
 ---
 
-## 0. Read this first — the one action left
+## 0. Read this first — status
 
-Arcadian is live, registered, and active on Telegraph as miner **2847 /
-`arcadian-defi-risk`**, and it has been scored every epoch since Aug 23 —
-**at 0.000, rank 11 of 11**. This session found why and fixed it. The remaining
-step is a re-registration you have to run, because it must come from the owning
-wallet:
+Arcadian is live and registered on Telegraph as miner **2847 /
+`arcadian-defi-risk`**. It scored **0.000, rank 11 of 11** every epoch from
+Aug 23 to Aug 31 under the wrong intents; the cause was found and fixed, and it
+was **re-registered on 2026-08-31 19:38 UTC** with corrected intents, the right
+registry, and a manifest URL that can't drift (§7).
 
-```bash
-cd /home/greyw0rks/arcadian
-REGISTER_PRIVATE_KEY=<key for 0x634E8E643fb9a9919671824B48402D7AD93F321f> \
-FEE_ADDRESS=0xB9e3A2D811729C11F64313F59922Ab37Afa52010 \
-npm run register
-```
+**What to check next:** the explorer re-reads miner configs at the epoch
+boundary, so the fix isn't reflected until then. After 2026-08-31 23:02 UTC, run
+the curl in §5 and confirm:
+- `supported_intents` → `FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION`
+- `yaml_url` → `https://arcadian-gamma.vercel.app/telegraph-risk.yaml`
+- `scores` moves off the `TASK_COMPLETION` board onto the three real ones
 
-That wallet holds 0.00998 Base Sepolia ETH — enough for gas. The script
-simulates first and refuses to run if the hosted YAML has drifted, so a mistake
-costs nothing. Activation lands at the next epoch boundary (~9h epochs); check
-with the curl in §5.
+If it still reads `TASK_COMPLETION` an epoch later, the indexer did not pick up
+the re-registration — that's the thing to chase, not the code.
 
-### Why the score was 0 — two causes, both now fixed in code
+### Why the score was 0 — two causes, both now fixed
 
-1. **Wrong intents.** The live registration declared `TASK_COMPLETION`, so
+1. **Wrong intents.** The Aug 23 registration declared `TASK_COMPLETION`, so
    Arcadian was competing against `bedrock-kimi`, `litellm`, `gemini` and other
    chat-completion miners, graded on a task it does not do. Its actual peers are
    `FINANCIAL_DATA` (8 miners), `TVL_LOOKUP` (10) and `FRAUD_DETECTION` (15).
@@ -62,8 +60,8 @@ network, so registering there would have been a silent no-op.
 
 ## 1. Session log — 2026-08-31
 
-**Wrap-up pass.** Closed the July blockers, then diagnosed the score-0 problem
-above and fixed it.
+**Wrap-up pass.** Closed the July blockers, diagnosed the score-0 problem above,
+fixed it, and re-registered on-chain at 19:38 UTC (§7).
 
 **Blockers resolved**
 - `YAML_URL` mismatch (old blocker #1) was already fixed in `638ac11`.
@@ -259,12 +257,9 @@ Local manifest hash (to be registered):
 
 ## 4. TODO — what's left
 
-### Blocking a real score
-- [ ] **Re-register** with the corrected registry, intents and manifest (§0).
-      Then confirm activation and watch the next epoch's score.
-- [ ] Record the new registrationId / tx hash in §7.
-
-### Blocking submission
+### Now
+- [ ] After the 2026-08-31 23:02 UTC epoch boundary, confirm the explorer shows
+      the new intents and `yaml_url` (§0), and watch for the first non-zero score.
 - [ ] Submit on the hackathon platform. Draft copy in §6.
 
 ### Nice to have
@@ -333,23 +328,29 @@ REGISTER_PRIVATE_KEY=0x... FEE_ADDRESS=0x... npm run register
 
 ### Registration record
 
-**Current live registration** (the one scoring 0 — superseded once you re-register):
-- tx: `0xe0fee59f8d9c347e2c61f54a5452d46d4c953c25b7b7b87644d3a159460bc124` (2026-08-23)
+**Current registration — 2026-08-31, the corrected one:**
+- tx: `0x598de724cb966d7493da4dfa868cbbbf4d6b59124440806a93d5a7e20494b4c5`
+- block 46218396, status SUCCESS, `registrationId` 401
 - registry: `0x5a2324aA18613FAD4e44bDF0d6c73Ec1f6D87ff8`
-- owner wallet: `0x634E8E643fb9a9919671824B48402D7AD93F321f`
+- from / owner wallet: `0x634E8E643fb9a9919671824B48402D7AD93F321f`
+  (key lives as `DEPLOYER_PRIVATE_KEY` in `/home/greyw0rks/goodquest/.env` —
+  it is a Celo **mainnet** key with real funds, so read it from the file, never
+  paste it)
 - FEE_ADDRESS: `0xB9e3A2D811729C11F64313F59922Ab37Afa52010`
+- yaml_url: `https://arcadian-gamma.vercel.app/telegraph-risk.yaml`
+- yaml hash: `0xe405b0f850a1a14e8d112ca5d26c539560bf42be106e87287fe4e5584fb0fe51`
+- intents: `FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION`
+- first non-zero epoch score: `________` ← still to observe
+
+**Superseded — 2026-08-23, the one that scored 0:**
+- tx: `0xe0fee59f8d9c347e2c61f54a5452d46d4c953c25b7b7b87644d3a159460bc124`
+- intents: `TASK_COMPLETION` ← the problem
 - yaml_url: `https://gateway.pinata.cloud/ipfs/QmUBTdRLxC1V3GaxHTr7igHskQoxN9ChLAJRFGSqNac5AW`
 - yaml hash: `0xf3ed5c4d830bf43ac2220bf9aa0ff22f3c0108d276939771a7db95d34d7bf958`
-- intents: `TASK_COMPLETION` ← the problem
 
-Note the registered `yaml_url` is an IPFS gateway copy, not the repo file, and
-the two had already diverged (formatting, `required` block placement). The
-rewritten script registers `https://arcadian-gamma.vercel.app/telegraph-risk.yaml`
-so the served file and the hash can never drift again.
+That registered `yaml_url` was an IPFS gateway copy, not the repo file, and the
+two had already diverged (formatting, `required` block placement). The current
+registration points at the served file, so the hash and what nodes fetch can no
+longer drift.
 
-**After re-registering — FILL IN:**
-- registrationId: `________`
-- register tx hash: `________`
-- manifest hash registered: `________` (expect `e405b0f8…fe51` unless the YAML changed)
-- first non-zero epoch score: `________`
 
