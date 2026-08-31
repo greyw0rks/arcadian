@@ -26,7 +26,7 @@ Telegraph agents and consumers can query the `/api/telegraph/risk` endpoint dire
 |---|-----------|---------|-------------|
 | 1 | APY credibility | 20 | DefiLlama Pools (sigma, outlier detection, 30d trend, reward ratio) |
 | 2 | Liquidity depth | 20 | DefiLlama Pools + History (TVL tiers, 30d drawdown) |
-| 3 | Exploit history | 20 | DefiLlama Hacks (589 real incidents, recency-weighted) |
+| 3 | Exploit history | 20 | DefiLlama Hacks (1,246 real incidents, recency-weighted, brand-token matched) |
 | 4 | Protocol maturity | 20 | DefiLlama Protocols (age, audits, fork status) |
 | 5 | Concentration / IL | 10 | DefiLlama Pools (LP vs single-sided, stable vs volatile) |
 | 6 | Reward token risk | 10 | CoinGecko (market cap rank + 30d volatility) |
@@ -123,7 +123,8 @@ app/
 lib/
   defillama.ts    fetchPools, fetchHistory, findPools
   discover.ts     listChains, listAssets, discoverProtocols
-  sources.ts      fetchHacks, fetchProtocols, fetchTokenRisk
+  sources.ts      fetchHacks, fetchProtocols, fetchTokenRisk, matchHacks
+  sources.test.ts unit tests for hack→protocol attribution
   scorer.ts       6-component scorer, verdictFromScore
   ai.ts           explainRisk (Qwen) + fallback
 public/
@@ -142,6 +143,7 @@ cp .env.local.example .env.local
 
 npm install
 npm run dev        # http://localhost:3000
+npm test           # unit tests (node:test via tsx)
 npm run build      # production build check
 ```
 
@@ -151,7 +153,15 @@ npm run build      # production build check
 REGISTER_PRIVATE_KEY=0x... FEE_ADDRESS=0x... npm run register
 ```
 
+The script SHA-256s the local `public/telegraph-risk.yaml` and commits that hash
+on-chain, so **deploy before registering** — the hosted file must byte-match the
+local one, and `SUPPORTED_INTENTS` in the script must match the YAML's
+`semantics.supported_intents`.
+
 **MinerRegistry (Base Sepolia):** `0x122396E8602BEed349434AA6E83123E7dD97F5A0`
+**Registered intent:** `TASK_COMPLETION` — Telegraph's on-chain intent registry
+does not yet carry the hackathon's `FINANCIAL_DATA` / `TVL_LOOKUP` /
+`FRAUD_DETECTION` catalog.
 
 ---
 

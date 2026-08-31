@@ -315,21 +315,36 @@ export async function scoreMany(pools: LlamaPool[]): Promise<RiskResult> {
 
   const results = await Promise.all(pools.map(scorePool));
   const totalTvl = results.reduce((s, r) => s + r.tvl_usd, 0);
+  const weightOf = (r: RiskResult) =>
+    totalTvl > 0 ? r.tvl_usd / totalTvl : 1 / results.length;
 
-  let weightedScore = 0;
-  for (const r of results) {
-    const w = totalTvl > 0 ? r.tvl_usd / totalTvl : 1 / results.length;
-    weightedScore += r.risk_score * w;
-  }
+  const weightedScore = results.reduce((s, r) => s + r.risk_score * weightOf(r), 0);
 
   const rounded = Math.round(weightedScore);
   const rep = results[0]; // highest TVL pool is representative
-  const allFlags = Array.from(new Set(results.flatMap((r) => r.flags)));
   const allSources = Array.from(new Set(results.flatMap((r) => r.sources)));
   const avgConf = Math.round(results.reduce((s, r) => s + r.confidence, 0) / results.length);
 
-  const avg = (key: keyof RiskComponents) =>
-    Math.round(results.reduce((s, r) => s + r.components[key], 0) / results.length);
+  // Components use the same TVL weighting as risk_score. Averaging them instead
+  // let dust pools' penalties show as protocol-level components that didn't add
+  // up to the headline score — a $57M protocol read liquidity 9/20 but score 1.
+  const weighted = (key: keyof RiskComponents) =>
+    Math.round(results.reduce((s, r) => s + r.components[key] * weightOf(r), 0));
+
+  // Same reasoning for flags: a pool holding <5% of the protocol's TVL barely
+  // moves the score, so its pool-level warnings ("TVL <$1M") must not be
+  // presented as protocol-level. Flags true of every pool are always kept —
+  // that covers protocol-wide signals like exploit history and maturity.
+  const MATERIAL_TVL_SHARE = 0.05;
+  const allFlags = Array.from(
+    new Set(
+      results.flatMap((r) =>
+        weightOf(r) >= MATERIAL_TVL_SHARE
+          ? r.flags
+          : r.flags.filter((f) => results.every((o) => o.flags.includes(f))),
+      ),
+    ),
+  );
 
   return {
     ...rep,
@@ -339,12 +354,12 @@ export async function scoreMany(pools: LlamaPool[]): Promise<RiskResult> {
     sources: allSources,
     confidence: avgConf,
     components: {
-      apy_credibility: avg("apy_credibility"),
-      liquidity_depth: avg("liquidity_depth"),
-      exploit_history: avg("exploit_history"),
-      protocol_maturity: avg("protocol_maturity"),
-      concentration: avg("concentration"),
-      reward_token: avg("reward_token"),
+      apy_credibility: weighted("apy_credibility"),
+      liquidity_depth: weighted("liquidity_depth"),
+      exploit_history: weighted("exploit_history"),
+      protocol_maturity: weighted("protocol_maturity"),
+      concentration: weighted("concentration"),
+      reward_token: weighted("reward_token"),
     },
   };
 }

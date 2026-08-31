@@ -1,58 +1,73 @@
-# Arcadian — Handoff & TODO
+# Arcadian — Handoff & Wrap-up
 
-**DeFi Risk Score Miner for Telegraph Protocol Hackathon Season I**
-Last updated: 2026-07-31
+**DeFi Risk Score Miner for Telegraph Protocol Season I**
+Status: **feature-complete, deployed, manifest synced on-chain-ready**
+Last updated: 2026-08-31
 
-## Session log — 2026-07-31
+---
 
-**Protocol auto-discovery shipped and DEPLOYED.** Users no longer pick a protocol slug —
-they pick a chain and an asset, and Arcadian finds every protocol offering it, scores
-each, and ranks them safest-first.
+## Session log — 2026-08-31 (wrap-up)
 
-- Live and verified at **https://arcadian-gamma.vercel.app** (latest deployment
-  `arcadian-k4awvv8lq`, project `arcadian` / `prj_AlrlTbCo0yomYywyMVAzBCnjReSa`).
-- **Asset is free text, not a fixed list.** The dropdown was replaced with a typed
-  input backed by a `<datalist>` of the top 150 assets on the selected chain — the
-  suggestions are a convenience, not a constraint, so any of the ~15k pools' tokens
-  can be reached. Changing chain no longer overwrites what the user typed.
-- Matching is exact-token first (`USDC` in `USDC-WETH`), then a substring fallback
-  (`USDCC` → still resolves). Input is upper-cased and trimmed, so `  cbBTC  ` works.
-- A miss returns HTTP 404 **with a `suggestions[]` array** of real assets on that
-  chain, rendered as clickable chips instead of a dead end.
-- Added `lib/discover.ts` and `GET /api/telegraph/universe`. Chain and asset dropdowns
-  are now populated from the live DefiLlama pool set, so no option can be picked that
-  has nothing to score.
-- `POST /api/telegraph/risk` gained a `mode:"ranked"` discovery path. Direct mode
-  (`protocol` / `pool_id`) is unchanged, so existing agent/Telegraph callers still work.
-- Migrated AI off DashScope/`qwen-plus` to `qwen3.7-max` via the Anthropic-compatible
-  endpoint (see Tech stack). `QWEN_API_KEY` / `QWEN_BASE_URL` / `QWEN_MODEL` are set in
-  Vercel Production; the stale `DASHSCOPE_API_KEY` was removed (no code reads it).
-- Verified in production: universe endpoint (24 chains / 40 Base assets), ranked
-  Base·USDC query returning a real Qwen explanation, and the new UI in the served HTML.
-- Verified locally: Ethereum·USDC, Solana·USDC (non-EVM works), direct mode, plus the
-  400 and 404 error paths. `tsc --noEmit` and `next build` both green.
+Closed out every open blocker from the July handoff and fixed two scoring bugs
+found while verifying production.
 
-**Bug found and fixed in the same session:** reported APY was TVL-weighted across a
-protocol's *entire* pool list while only the top 5 were actually scored, so long-tail
-dust pools dominated the number. `aerodrome-slipstream` displayed **7752% APY**. TVL and
-APY are now computed over exactly the scored pools (105% for the same protocol), and the
-table shows `pools_scored/pools_available` so the sampling is visible rather than implied.
+**Blockers resolved**
+- `YAML_URL` mismatch (old blocker #1) was already fixed in `638ac11`; the
+  register script and the live `base_url` both point at `arcadian-gamma.vercel.app`.
+- **Served manifest was stale.** `public/telegraph-risk.yaml` in the repo said
+  `id: 2847` / `TASK_COMPLETION`, but the file actually being served was still
+  `id: 1001` / `FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION` — commit `cccd545`
+  changed the repo without a production deploy. Deployed; the hosted file now
+  byte-matches the repo (`sha256 502daa0c…01215`).
+- `SUPPORTED_INTENTS` in `scripts/register-miner.ts` still held the three
+  undeployed catalog intents while the YAML declared `TASK_COMPLETION`. The
+  script would have registered intents that disagree with the hashed manifest;
+  now both say `TASK_COMPLETION` (old blocker #3).
+- Stale 4-component doc comment in `route.ts` (old blocker #4) was already
+  corrected — it documents the six real components.
+- Deleted the four unused `public/arcadian-*.png` mockups (nothing referenced them).
 
-**Second bug, found while testing free-text assets:** DefiLlama symbols like `O-USDC`
-and `WETH-11-11` produce 1–2 char fragments. Because `"ZZZZNOTREAL".includes("O")` is
-true, a garbage query suggested the junk ticker `O`. Suggestion lists now require ≥3
-chars, and the substring fallback is skipped for 1-char queries. Such fragments remain
-matchable if typed exactly — they're only excluded from *suggestions*.
+**Bug 1 — exploits attributed to the wrong protocols.** `matchHacks` split a
+slug on `-` and substring-matched any token over 3 chars against hack names, so
+`centrifuge-protocol` matched all 47 DefiLlama hacks named "<something>
+Protocol" — Zunami, Origin, Maya — and took the maximum 20/20 exploit penalty
+for other projects' incidents. `"aave"` also matched "Aavegotchi". Fixed with a
+generic-token stoplist (`protocol`, `finance`, `network`, …), version-suffix
+stripping, and word-boundary matching; slugs made *only* of generic words
+(`yield-protocol`) fall back to a whole-phrase match so they still resolve.
+Centrifuge now scores exploit_history 0 and 1/100 overall instead of 21.
+
+**Bug 2 — components didn't add up to the score they explained.** `scoreMany`
+TVL-weighted `risk_score` but plain-averaged the six components and unioned all
+pool flags. A $57M protocol therefore reported `liquidity_depth: 9` and "TVL
+<$1M — low liquidity" beside a headline score of 1, and the AI explanation
+dutifully described capital flight that the score didn't reflect. Components are
+now weighted with the same TVL weights, and pool-level flags from pools holding
+<5% of protocol TVL are dropped unless every pool shares them (so protocol-wide
+signals like exploit history and maturity always survive). Verified in
+production: components now sum to the reported score (±1 rounding).
+
+**Added a test suite.** `lib/sources.test.ts` (`npm test`, node:test via tsx) —
+6 tests pinning the hack-attribution behaviour, including regression tests for
+both the "<x> Protocol" sweep and the Aavegotchi substring collision.
+
+**Verified in production** at https://arcadian-gamma.vercel.app —
+health 200, manifest byte-identical to repo, ranked Base·USDC and Base·WETH,
+direct mode (`aave-v3`/Ethereum), `universe?chain=Base`, plus the 404
+(with suggestions) and 400 error paths. `tsc --noEmit`, `npm test`, and
+`next build` all green.
 
 ---
 
 ## 1. What Arcadian is
 
-A standalone Telegraph **Track 1 Miner** that returns a verifiable **0–100 DeFi risk score**
-for any protocol/pool. Lower = safer. Every score is reproducible against public data.
+A standalone Telegraph **Track 1 Miner** returning a verifiable **0–100 DeFi risk
+score** for any protocol/pool. Lower = safer. Every score is reproducible against
+public data.
 
-- **Live:** https://arcadian-gamma.vercel.app (running the auto-discovery flow as of 2026-07-31)
-- **Repo/dir:** `/home/greyw0rks/arcadian/`
+- **Live:** https://arcadian-gamma.vercel.app
+- **Repo:** `/home/greyw0rks/arcadian/` · github.com/greyw0rks/arcadian
+- **Vercel:** project `arcadian` / `prj_AlrlTbCo0yomYywyMVAzBCnjReSa`
 - **Hackathon window:** Aug 17 – Sep 7, 2026 · $15K USDC prize pool
 - **Chain:** Base Sepolia (Telegraph MinerRegistry)
 - **Separate from** YieldScout and Treasury Agent (different hackathons).
@@ -62,25 +77,30 @@ for any protocol/pool. Lower = safer. Every score is reproducible against public
 |---|-----------|-----|--------|
 | 1 | APY credibility   | 20 | DefiLlama Pools (sigma, outlier, apyPct30D, reward ratio) |
 | 2 | Liquidity depth   | 20 | DefiLlama Pools + History (TVL tiers, 30d drawdown) |
-| 3 | Exploit history   | 20 | DefiLlama Hacks (589 real hacks, recency-weighted) |
+| 3 | Exploit history   | 20 | DefiLlama Hacks (1,246 real hacks, recency-weighted) |
 | 4 | Protocol maturity | 20 | DefiLlama Protocols (age, audits, fork status) |
 | 5 | Concentration/IL  | 10 | DefiLlama Pools (LP vs single, stable vs volatile) |
 | 6 | Reward token      | 10 | CoinGecko (mcap rank + 30d volatility) |
 
 Verdict bands: ≤20 LOW · ≤45 MEDIUM · ≤70 HIGH · >70 VERY_HIGH.
 
+Per protocol only the top 5 pools by TVL are scored; `tvl_usd`/`apy`/components
+describe exactly those pools, TVL-weighted, and `pools_scored`/`pools_available`
+exposes the sampling. (Averaging APY across a protocol's full long tail once made
+aerodrome-slipstream read 7752%.)
+
 ---
 
 ## 2. Tech stack
 
-- **Next.js 14** (App Router) + **TypeScript**, deployed on **Vercel** (serverless).
+- **Next.js 14** (App Router) + **TypeScript** on **Vercel** (serverless).
 - **Data:** DefiLlama (pools/hacks/protocols) + CoinGecko free API.
 - **AI explanations:** Qwen `qwen3.7-max` via the Anthropic-compatible endpoint
-  (`QWEN_API_KEY` / `QWEN_BASE_URL` / `QWEN_MODEL`, using `@anthropic-ai/sdk`).
-  Graceful fallback if unset. Migrated off the old `DASHSCOPE_API_KEY` + `qwen-plus`
-  OpenAI-style call on 2026-07-31.
+  (`QWEN_API_KEY` / `QWEN_BASE_URL` / `QWEN_MODEL`, `@anthropic-ai/sdk`).
+  Graceful fallback if unset. Set in Vercel Production and in `.env.local`.
 - **On-chain registration:** `viem` → Base Sepolia MinerRegistry.
-- **UI:** ChainGPT Labs style — cream `#EFEFE5`, orange `#FF7120`, Orbitron + Roboto Mono, blueprint grid, corner-bracket frames, segmented risk bars.
+- **UI:** ChainGPT Labs style — cream `#EFEFE5`, orange `#FF7120`, Orbitron +
+  Roboto Mono, blueprint grid, corner-bracket frames, segmented risk bars.
 
 ### File map
 ```
@@ -89,17 +109,17 @@ app/
   globals.css                  design tokens + fonts
   layout.tsx                   metadata
   api/health/route.ts          GET → {status:"ok", miner:"arcadian"}
-  api/telegraph/risk/route.ts  GET+POST → ranked or single risk JSON (NO payment logic — by design)
+  api/telegraph/risk/route.ts  GET+POST → ranked or single risk JSON (no payment logic — by design)
   api/telegraph/universe/route.ts  GET → live chain + asset lists backing the pickers
 lib/
-  defillama.ts                 fetchPools/History, findPools, LlamaPool interface
+  defillama.ts                 fetchPools/History, findPools, LlamaPool
   discover.ts                  assetTokens, listChains, listAssets, discoverProtocols
   sources.ts                   fetchHacks, matchHacks, fetchProtocols, findProtocol, fetchTokenRisk
+  sources.test.ts              hack→protocol attribution tests
   scorer.ts                    6-component scorer, scorePool/scoreMany, verdictFromScore
-  ai.ts                        explainRisk (Qwen, Anthropic-compatible) + fallback
+  ai.ts                        explainRisk (Qwen) + fallback
 public/
-  telegraph-risk.yaml          Telegraph miner config (base_url, on_chain fields, x402 price)
-  arcadian-{1..4}.png          old UI mockups (unused now — can delete)
+  telegraph-risk.yaml          Telegraph miner manifest — SINGLE source of truth
 scripts/
   register-miner.ts            viem registration to Base Sepolia (npm run register)
 ```
@@ -114,122 +134,105 @@ POST /api/telegraph/risk
     risk_score, verdict, apy_bps, tvl_k, confidence, components, flags, explanation }
 → 404 { error, suggestions:[...] }          // real assets on that chain
 ```
-Arcadian resolves chain+asset → every protocol offering it, scores each, and returns
-them sorted safest-first. Top-level on-chain integers mirror the **safest** protocol,
-so Telegraph consumers always read a usable score. Asset matching is exact-token first,
-then substring; input is trimmed and upper-cased.
+Top-level on-chain integers mirror the **safest** protocol, so Telegraph
+consumers always read a usable score. Asset matching is exact-token first, then
+substring (skipped for 1-char queries); input is trimmed and upper-cased.
 
-**Direct mode — pin one protocol (unchanged, for agent callers).**
+**Direct mode — pin one protocol (for agent callers).**
 ```
 POST /api/telegraph/risk  { "protocol": "aave-v3", "chain": "Ethereum" }
 POST /api/telegraph/risk  { "pool_id": "<DefiLlama uuid>" }
 → { mode:"single", risk_score, verdict, apy_bps, tvl_k, ... }
 ```
 
-**Picker data.**
-```
-GET /api/telegraph/universe?chain=Base → { chains[], assets[] }
-```
-On-chain integers: `risk_score`, `apy_bps` (APY×100), `tvl_k` (TVL/1000), `confidence`.
+**Picker data.** `GET /api/telegraph/universe?chain=Base → { chains[], assets[] }`
 
-Per protocol only the top 5 pools by TVL are scored, and the reported `tvl_usd`/`apy`
-describe exactly those 5 (`pools_scored`/`pools_available` expose the split). Averaging
-APY across a protocol's full long tail let dust pools produce absurd figures —
-aerodrome-slipstream read 7752% before this was fixed.
+On-chain integers: `risk_score`, `apy_bps` (APY×100), `tvl_k` (TVL/1000), `confidence`.
 
 ### x402 payments (how it actually works)
 Arcadian does **not** implement x402 in-app. It sets a price floor
-(`min_price_usdc: 0.01` in the YAML; `10_000n` 6-dec units in register script) and
-**Telegraph's gateway** enforces the 402 → USDC payment → proxies the paid request to
-our endpoint, settling USDC to `FEE_ADDRESS`. Our route stays a plain JSON API.
+(`min_price_usdc: 0.01` in the YAML; `10_000n` 6-dec units in the register
+script) and **Telegraph's gateway** enforces the 402 → USDC payment → proxies the
+paid request to our endpoint, settling USDC to `FEE_ADDRESS`. Our route stays a
+plain JSON API. If a judge asks for payment enforcement at the app layer, that's
+the one deliberate gap — see TODO.
 
 ---
 
-## 3. ⚠️ Blockers / bugs to fix BEFORE registering
+## 3. Registration invariants (read before touching the manifest)
 
-1. **YAML URL mismatch (must fix).**
-   - `scripts/register-miner.ts:19` → `YAML_URL = "https://arcadian.vercel.app/telegraph-risk.yaml"`
-   - Actual live base_url is `https://arcadian-gamma.vercel.app`
-   - The registered YAML_URL must resolve or Telegraph nodes can't fetch/verify the config.
-   - **Fix:** change line 19 to `https://arcadian-gamma.vercel.app/telegraph-risk.yaml`
-     (or set up the `arcadian.vercel.app` alias in Vercel and point base_url there too).
+1. **`public/telegraph-risk.yaml` is hashed on-chain.** `register-miner.ts`
+   SHA-256s the *local* file and commits that hash. So: edit YAML → `vercel
+   --prod` → *then* register. Editing the YAML after registering without
+   re-registering breaks verification.
+2. **Deploy is not automatic on commit.** Commit `cccd545` changed the manifest
+   in git and the served file stayed stale for 8 days. Always `curl
+   https://arcadian-gamma.vercel.app/telegraph-risk.yaml` and diff it against
+   `public/telegraph-risk.yaml` after a manifest change.
+3. **`SUPPORTED_INTENTS` in the script must equal `semantics.supported_intents`
+   in the YAML.** Both are `["TASK_COMPLETION"]`. Telegraph's on-chain intent
+   registry only recognizes canonical underscore intents; the hackathon's
+   40-intent catalog (`FINANCIAL_DATA`, `TVL_LOOKUP`, `FRAUD_DETECTION`) is not
+   deployed on-chain yet. Switch both together if/when it lands.
+4. **Manifest id `2847`** — avoids the collision with the existing miner
+   `veridex-contract-risk-miner` at 1001.
 
-2. **YAML hash is committed on-chain.** After ANY edit to `public/telegraph-risk.yaml`,
-   you must redeploy so the hosted file matches, then register (the script SHA-256s the
-   local file). Don't edit the YAML after registering without re-registering.
-
-3. **supported_intents are placeholders.** Currently `fact_check, web_search,
-   language_generation` (both in YAML and register script). Confirm these are the correct
-   Telegraph intent enums for a financial/risk data feed — may need updating once the
-   hackathon docs/Discord clarify the taxonomy.
-
-4. **`components` doc comment in route.ts is stale** (`route.ts:21` still lists the old
-   4-component names `apy_risk, liquidity_risk...`). Cosmetic only — actual code returns
-   the 6 correct components. Worth cleaning up.
+Current manifest hash: `502daa0c4c265fa6ea2eaef95252e59036d96793f3201d088574848aaaa01215`
 
 ---
 
-## 4. TODO — ordered
+## 4. TODO — what's left
 
-### Now (pre-registration prep)
-- [ ] Fix `YAML_URL` mismatch in `scripts/register-miner.ts:19` (blocker #1).
-- [x] `.env.local` created with `QWEN_API_KEY` / `QWEN_BASE_URL` / `QWEN_MODEL`
-      (copied from `/home/greyw0rks/yieldscout/.env.local`). Verified live — real AI
-      explanations returning from `qwen3.7-max`.
-- [x] Added `QWEN_API_KEY`, `QWEN_BASE_URL`, `QWEN_MODEL` to the **Vercel** project env
-      (Production) and removed the obsolete `DASHSCOPE_API_KEY`. Verified in production —
-      real Qwen explanations returning from the deployed site.
-- [ ] Prepare a funded Base Sepolia wallet for `REGISTER_PRIVATE_KEY` (needs testnet ETH
-      for gas) and decide the `FEE_ADDRESS` (where USDC earnings settle).
-- [ ] Confirm `supported_intents` enum values with Telegraph docs (blocker #3).
-- [ ] Optional cleanup: delete unused `public/arcadian-{1..4}.png` mockups; fix stale
-      comment in `route.ts:21`.
+### Blocking submission
+- [ ] Record the on-chain registration below (registrationId / tx hash /
+      FEE_ADDRESS). If not yet registered: fund a Base Sepolia wallet with
+      testnet ETH, then `REGISTER_PRIVATE_KEY=0x... FEE_ADDRESS=0x... npm run register`.
+- [ ] Submit on the hackathon platform. Draft copy in §5.
 
-### Aug 17 (registration day)
-- [ ] Register on the Telegraph hackathon site (early access + private Discord).
-- [ ] Final deploy: `vercel --prod` (ensure YAML is live at the registered URL).
-- [ ] Sanity-check: `curl https://arcadian-gamma.vercel.app/telegraph-risk.yaml` returns 200
-      and `curl .../api/health` returns ok.
-- [ ] Register the miner on-chain:
-      `REGISTER_PRIVATE_KEY=0x... FEE_ADDRESS=0x... npm run register`
-- [ ] Save the returned `registrationId` + tx hash (add to this file).
-
-### Post-registration (demo & marketing)
-- [ ] X posts with live scorer demos showing contrasting scores:
-      Aave v3 (LOW) vs Curve (HIGH, July 2023 $70M hack) vs unknown fork (VERY_HIGH).
-- [ ] Submit project on hackathon platform. Draft copy already written:
-      - **Description:** "Arcadian is a DeFi Risk Score Miner for Telegraph — wraps live
-        DefiLlama (pools, hacks, protocols) and CoinGecko into a verifiable 0–100 risk
-        score, six auditable components. Agents query it for ground-truth risk before
-        acting; every score reproducible against public data. Deployed on Vercel,
-        registered on Telegraph's Base Sepolia MinerRegistry."
-      - **Checkboxes:** Financial Data + On-chain Analytics (+ optionally AI/LLM Inference).
-- [ ] (Optional) Implement a real in-app x402 handler (return 402 + verify payment) if you
-      want the payment claim true at the app layer instead of relying on Telegraph's gateway.
+### Nice to have
+- [ ] X posts with contrasting live demos: Aave v3 Ethereum (12/100 LOW) vs
+      aerodrome-slipstream Base·WETH (39) vs an unaudited fork (VERY_HIGH).
+- [ ] Optional: real in-app x402 handler (return 402 + verify payment) so the
+      payment claim is true at the app layer, not only via Telegraph's gateway.
+- [ ] Optional: extend `sources.test.ts` coverage to `scoreMany` weighting.
 
 ---
 
-## 5. Quick reference
+## 5. Submission copy (ready to paste)
+
+**Description:** "Arcadian is a DeFi Risk Score Miner for Telegraph — it wraps
+live DefiLlama (pools, hacks, protocols) and CoinGecko into a verifiable 0–100
+risk score across six auditable components. You pick a chain and an asset;
+Arcadian finds every protocol offering it, scores each, and ranks them
+safest-first with an AI explanation. Agents query it for ground-truth risk
+before acting, and every score is reproducible against public data. Deployed on
+Vercel, registered on Telegraph's Base Sepolia MinerRegistry."
+
+**Track checkboxes:** Financial Data + On-chain Analytics (optionally AI/LLM Inference).
+
+---
+
+## 6. Quick reference
 
 ```bash
-# Local dev
 cd /home/greyw0rks/arcadian
 npm run dev            # http://localhost:3000
+npm test               # unit tests
 npm run build          # production build check
-vercel --prod          # deploy (alias: arcadian-gamma.vercel.app)
+vercel --prod --yes    # deploy (serves arcadian-gamma.vercel.app)
 
-# Register on Telegraph (Base Sepolia)
 REGISTER_PRIVATE_KEY=0x... FEE_ADDRESS=0x... npm run register
 ```
 
 - **MinerRegistry (Base Sepolia):** `0x122396E8602BEed349434AA6E83123E7dD97F5A0`
 - **Min price:** $0.01 USDC / query (`10_000` 6-dec units)
 - **Qwen endpoint:** `https://token-plan.ap-southeast-1.maas.aliyuncs.com/apps/anthropic`
-  · model `qwen3.7-max` · Anthropic-compatible, called via `@anthropic-ai/sdk`.
-  Key/URL/model live in `.env.local` (gitignored), sourced from
+  · model `qwen3.7-max` · Anthropic-compatible via `@anthropic-ai/sdk`.
+  Key/URL/model in `.env.local` (gitignored), sourced from
   `/home/greyw0rks/yieldscout/.env.local`.
 
-### Fill in after registration
+### Registration record — FILL IN
 - registrationId: `________`
 - register tx hash: `________`
 - FEE_ADDRESS used: `________`
+- manifest hash registered: `________` (must match §3)

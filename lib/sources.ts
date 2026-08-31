@@ -30,15 +30,39 @@ export async function fetchHacks(): Promise<HackRecord[]> {
   }
 }
 
-// Match hacks to a protocol slug (fuzzy name match + defillamaId).
+// Generic tokens that appear in hundreds of unrelated protocol names. Matching on
+// them attributes other projects' exploits to ours — "centrifuge-protocol" once
+// picked up all 47 hacks named "<something> Protocol", scoring 20/20 wrongly.
+const GENERIC_SLUG_TOKENS = new Set([
+  "protocol", "finance", "network", "exchange", "capital", "labs", "swap",
+  "money", "token", "chain", "bridge", "vault", "vaults", "pool", "pools",
+  "lend", "lending", "stake", "staking", "yield", "dex", "defi", "dao",
+]);
+
+// The brand tokens of a slug: drop version suffixes (v3, 2) and generic words.
+function brandTokens(protocol: string): string[] {
+  return protocol
+    .toLowerCase()
+    .split(/[-_\s]+/)
+    .filter((p) => p.length > 3 && !/^v?\d+$/.test(p) && !GENERIC_SLUG_TOKENS.has(p));
+}
+
+// Match hacks to a protocol slug (brand-token name match + defillamaId).
+// defillamaId is the authoritative link; the name match is a word-boundary
+// fallback for hacks DefiLlama never linked to a protocol id.
 export function matchHacks(hacks: HackRecord[], protocol: string, defillamaId?: string): HackRecord[] {
-  const slug = protocol.toLowerCase().replace(/-/g, " ");
+  const tokens = brandTokens(protocol);
+  // Some protocols are named entirely from generic words ("yield-protocol").
+  // For those, match the whole slug as a phrase rather than giving up.
+  const phrase = tokens.length === 0
+    ? protocol.toLowerCase().replace(/[-_]+/g, " ").trim()
+    : null;
   return hacks.filter((h) => {
     if (defillamaId && h.defillamaId === defillamaId) return true;
     const name = (h.name ?? "").toLowerCase();
-    // "aave-v3" matches "aave v3", "aave" etc.
-    const parts = slug.split(" ").filter((p) => p.length > 3);
-    return parts.some((p) => name.includes(p));
+    if (phrase !== null) return phrase.length > 3 && name.includes(phrase);
+    // Word-boundary so "aave" hits "Aave v3" but not "Aavegotchi".
+    return tokens.some((p) => new RegExp(`\\b${p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(name));
   });
 }
 

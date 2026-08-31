@@ -23,11 +23,12 @@ const ABI = parseAbi([
   "function registerMiner(string yamlUrl, bytes32 yamlHash, address feeAddress, uint256 minPriceUsdc, string[] supportedIntents) external returns (uint256 registrationId)",
 ]);
 
-// Arcadian serves three intents from the Telegraph H1 catalog:
-// - FINANCIAL_DATA: DeFi protocol risk scores, APY, TVL (Tier A, deterministic)
-// - TVL_LOOKUP: On-chain TVL analytics across protocols (Tier A)
-// - FRAUD_DETECTION: Exploit history risk scoring (Tier B, GT: TBD)
-const SUPPORTED_INTENTS = ["FINANCIAL_DATA", "TVL_LOOKUP", "FRAUD_DETECTION"];
+// Telegraph's on-chain intent registry only recognizes the canonical
+// underscore intents (WEB_SEARCH, CHAT_COMPLETION, TASK_COMPLETION, ...). The
+// hackathon's 40-intent catalog (FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION)
+// is not deployed on-chain yet, so we register under TASK_COMPLETION. Must stay
+// identical to `semantics.supported_intents` in public/telegraph-risk.yaml.
+const SUPPORTED_INTENTS = ["TASK_COMPLETION"];
 
 async function main() {
   const privateKey = process.env.REGISTER_PRIVATE_KEY;
