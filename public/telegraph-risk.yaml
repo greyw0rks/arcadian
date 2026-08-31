@@ -5,9 +5,16 @@ slug: arcadian-defi-risk
 protocol: generic
 name: "Arcadian — DeFi Risk Score Miner"
 description: >
-  Returns a 0-100 risk score for any DeFi protocol/pool combining six data sources: DefiLlama Pools (APY credibility via sigma + outlier flag, liquidity depth, concentration risk), DefiLlama Hacks (589 real exploits matched by protocol, recency-weighted), DefiLlama Protocols (audit count, age, fork status), CoinGecko (reward token market cap rank + 30d volatility). Six components: apy_credibility (0-20), liquidity_depth (0-20), exploit_history (0-20), protocol_maturity (0-20), concentration (0-10), reward_token (0-10). Lower score = safer. All signals verifiable against public sources.
+  Answers DeFi risk, yield and TVL questions with a verifiable 0-100 risk score (lower = safer) for any protocol, chain and asset. Every answer leads with a number-first sentence and names its sources. Six auditable components, each reproducible against public data: apy_credibility (0-20, DefiLlama sigma + outlier flag + 30d trend + reward ratio), liquidity_depth (0-20, TVL tiers + 30d drawdown), exploit_history (0-20, 1246 real DefiLlama hack records matched to the protocol and weighted by recency and net loss), protocol_maturity (0-20, audit count, listing age, fork status), concentration (0-10, LP vs single-sided, stable vs volatile), reward_token (0-10, CoinGecko market cap rank + 30d volatility). Accepts a plain-language question or explicit parameters; when no protocol is named it discovers every protocol offering the asset on that chain and ranks them safest-first.
 
 base_url: https://arcadian-gamma.vercel.app
+
+docs:
+  website: https://arcadian-gamma.vercel.app
+  repository: https://github.com/greyw0rks/arcadian
+
+limitations: >
+  Scores describe the top 5 pools by TVL per protocol, not every pool; pools_scored and pools_available report the split. Data is only as current as the DefiLlama and CoinGecko free endpoints, cached for up to 60s. Exploit matching is by protocol brand name and DefiLlama id, so an unlinked incident recorded under a different brand can be missed. A low score is a data-derived risk signal, not investment advice.
 
 auth:
   type: none
@@ -18,16 +25,26 @@ circuit_threshold: 5
 circuit_cooldown_seconds: 30
 
 endpoints:
+  - path: /ask
+    external_path: /api/telegraph/risk
+    method: POST
+    description: >
+      Answer a plain-language DeFi risk, yield or TVL question. Chain, asset and protocol are extracted from the question, so no parameters are required.
+    content_type: application/json
+    intents: [FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION]
   - path: /risk
     external_path: /api/telegraph/risk
     method: POST
-    description: Score a DeFi pool or protocol by risk (0-100, lower = safer)
+    description: Score a DeFi pool or protocol by risk (0-100, lower = safer).
     content_type: application/json
+    intents: [FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION]
   - path: /risk/query
     external_path: /api/telegraph/risk
     method: GET
-    description: Score via query params (protocol, chain, asset, pool_id)
+    description: Score via query params, or a free-text question in `query`.
+    intents: [FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION]
     param_map:
+      query: query
       protocol: protocol
       chain: chain
       asset: asset
@@ -36,6 +53,9 @@ endpoints:
 input_schema:
   type: object
   properties:
+    query:
+      type: string
+      description: "Plain-language question, e.g. 'Is Aave on Base safe for USDC?' or 'What is the TVL of Curve on Ethereum?'. Chain, asset and protocol are extracted from it."
     protocol:
       type: string
       description: "DefiLlama protocol slug, e.g. 'aave-v3', 'compound-v3', 'curve'"
@@ -52,12 +72,16 @@ input_schema:
 output_schema:
   type: object
   required:
+    - signal
     - risk_score
     - verdict
     - apy_bps
     - tvl_k
     - confidence
   properties:
+    signal:
+      type: string
+      description: "Number-first plain-english answer, e.g. 'aave-v3 on Base scores 12/100 (LOW_RISK, lower is safer) for USDC.'"
     risk_score:
       type: integer
       minimum: 0
@@ -80,6 +104,12 @@ output_schema:
       type: integer
       minimum: 0
       maximum: 100
+    intent:
+      type: string
+      description: "Which intent the question was classified as"
+    resolved_via:
+      type: string
+      description: "'question' when extracted from free text, 'params' when named explicitly"
     components:
       type: object
       properties:
@@ -121,15 +151,20 @@ output_schema:
       type: string
     pool_id:
       type: string
+    data_sources:
+      type: array
+      items:
+        type: string
 
 semantics:
   signal_mapping:
-    type: task_completion
+    label_field: signal
     confidence_field: confidence
-    label_field: verdict
     reason_field: explanation
   supported_intents:
-    - TASK_COMPLETION
+    - FINANCIAL_DATA
+    - TVL_LOOKUP
+    - FRAUD_DETECTION
 
 on_chain:
   description: "DeFi protocol risk score with APY and TVL as on-chain integers"
@@ -158,17 +193,11 @@ on_chain:
         name: verdict
         description: "Risk verdict: LOW_RISK | MEDIUM_RISK | HIGH_RISK | VERY_HIGH_RISK"
       - index: 1
-        name: explanation
-        description: "Plain-english risk explanation"
+        name: signal
+        description: "Number-first plain-english answer"
   request:
-    - endpoint: /risk
+    - endpoint: /ask
       method: POST
       body:
-        protocol:
+        query:
           source: strings.0
-        chain:
-          source: strings.1
-          optional: true
-        asset:
-          source: strings.2
-          optional: true
