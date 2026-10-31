@@ -1,0 +1,107 @@
+{
+  "completedAt": "2026-10-30T14:29:07.621318+00:00",
+  "checkout": "/home/greyw0rks/arcadian",
+  "bundle": "/home/greyw0rks/arcadian-delivery-2026-10-30",
+  "bundleChecksumsVerified": true,
+  "archivedSourceFilesVerified": 130,
+  "baselineMatchedChangesRestored": 68,
+  "backup": "/home/greyw0rks/arcadian-backup-20261030T140620Z",
+  "authoritativeJournal": ".data/delivery-2026-10-30/reviews.db",
+  "journalLogicalSha256": "4b146278742f0ec3de4a4e32d13a2877d270d9e1999fe2839b9c0825247237ee",
+  "legacyJournal": ".data/reviews.db (historical copy; do not use for purchases)",
+  "paymentNetwork": "telegraph-sepolia",
+  "originalPayerAndOperatorTokenPreserved": true,
+  "checks": [
+    {
+      "command": "npm ci --no-audit --no-fund",
+      "exitCode": 0
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "passed": 87,
+      "failed": 0
+    },
+    {
+      "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run check:evaluation",
+      "exitCode": 0,
+      "rows": 56,
+      "calculatedCases": 43
+    },
+    {
+      "command": "npm run test:evaluation",
+      "exitCode": 0
+    },
+    {
+      "artifact": "liquidity-impact-restored-oct30.json",
+      "passed": 7,
+      "total": 7,
+      "scope": "synthetic"
+    },
+    {
+      "artifact": "production-smoke-restored-oct30.json",
+      "passed": 7,
+      "total": 7,
+      "scope": "payment credentials disabled"
+    },
+    {
+      "artifact": "operator-restored-oct30.json",
+      "exitCode": 0,
+      "walletUnlocked": true,
+      "testUsdcBalance": "0.17"
+    },
+    {
+      "artifact": "verification-restored-oct30.json",
+      "exitCode": 2,
+      "expectedHeldDecision": "NO_DATA",
+      "signatureVerified": true,
+      "totalUsdc": "0.03",
+      "settledTxCount": 3,
+      "verifiedReceiptCount": 2
+    },
+    {
+      "artifact": "evaluator-rows-restored-oct30.json",
+      "eligible": 56
+    },
+    {
+      "artifact": "evalpool-restored-oct30.json",
+      "contributors": 1,
+      "requiredContributors": 5
+    }
+  ],
+  "sourceEditsAfterRestore": [
+    {
+      "path": "HANDOFF.md",
+      "bundleSha256": "0ba09cecf17502c05e8c64a2cecc5af24aa81fe85475d92a17fcd182dfa9a078",
+      "restoredSha256": "7e1495a60319f0d3615cb11cc9b37d6bc4e4a425dc6d0a1809233f01293e25b2"
+    },
+    {
+      "path": "docs/season-ii/OPERATIONS.md",
+      "bundleSha256": "a4698555eb116dc7d7e1b509bbb9858f95811aeb2cc25d5bee624e984bce68d5",
+      "restoredSha256": "3ef9b3a28986a40b3801ff3848c3e128e380d1578c2961a6691b13c0deaf6b6c"
+    },
+    {
+      "path": "docs/season-ii/SUBMISSION.md",
+      "bundleSha256": "b070b76e21d0381d19021f0a03c03f408f46a7b3d77e6a52e4b4668bf05c3d95",
+      "restoredSha256": "ec3c2e1c1067294bffa2464f2d7c845c1164ae08791e970c7fece70fa7a5624f"
+    }
+  ],
+  "newPaymentsSent": false,
+  "gitPushed": false,
+  "deployed": false,
+  "upstreamReportSent": false,
+  "limitations": [
+    "Provider routing errors, irrelevant answers and schema gaps still prevent a useful complete trade review.",
+    "H2 transaction evidence must be collected during November 1 through December 1; October activity is preparation.",
+    "Evaluator material has no independent human review, unseen accuracy or demonstrated ranking improvement.",
+    "Existing hosted preview predates this delivery; paid hosting requires shared remote libSQL storage."
+  ]
+}

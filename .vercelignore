@@ -1,0 +1,9 @@
+.env*
+.data/
+.evidence/
+.impeccable/
+.atlas/
+.git/
+.next/
+node_modules/
+*.tsbuildinfo

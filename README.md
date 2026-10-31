@@ -1,232 +1,98 @@
 # Arcadian
 
-**DeFi Risk Score Miner for the Telegraph Protocol**
+[Remaining human steps](docs/season-ii/YOUR_NEXT_STEPS.md) · [App submission draft](docs/season-ii/SUBMISSION.md) · [Evaluator review packet](docs/reviewer-packet/README.md)
 
-Arcadian is a Track 1 miner that returns a verifiable **0–100 risk score** for any DeFi protocol or pool. Lower score = safer. Every score is reproducible against public on-chain and off-chain data — no black boxes.
+Arcadian is a **DeFi pre-trade evidence gate** for Telegraph Season II, Mission 14. It takes a token contract, trading chain and USD notional, purchases four kinds of intelligence through Telegraph, and returns a signed policy decision with evidence and measured spend.
 
-Live at **[arcadian-gamma.vercel.app](https://arcadian-gamma.vercel.app)**
+The repository also includes the original DeFi pool research UI and a miner providing deterministic TVL and yield measurements. The current hosted Season I site is [arcadian-gamma.vercel.app](https://arcadian-gamma.vercel.app); the new desk is under development.
 
----
+## Run locally
 
-## What it does
-
-Ask it a question, or name a chain and an asset.
+Requires Node.js 22 and npm.
 
 ```bash
-curl -s https://arcadian-gamma.vercel.app/api/telegraph/risk \
-  -H 'content-type: application/json' \
-  -d '{"query":"Is Aave safe for USDC on Base?"}' | jq -r .signal
-# aave-v3 on Base scores 14/100 (LOW_RISK, lower is safer) for USDC — 3.39% APY on $25,708,706 TVL.
+npm install
+npm run setup:operator
+npm run dev
 ```
 
-Given a chain + asset with no protocol, Arcadian:
+Open `http://localhost:3000/desk` and select **Preview request plan**. Preview validates the input without calling providers or authorizing payment.
 
-1. Queries DefiLlama for every protocol offering that asset on that chain
-2. Scores each one across six components (see below)
-3. Returns them ranked safest-first with APY, TVL, and an AI-generated explanation
+Setup creates `.env.local` with a dedicated testnet payer, random operator access token and durable local SQLite file. It preserves any existing environment file. Keys and tokens stay on the server; the operator token is entered into the desk's access field for a paid review.
 
-The top-level integers always reflect the safest available protocol, so callers
-always get a usable score.
+```bash
+npm run check:operator   # reads configuration, storage, USDC balance and a v2 challenge
+npm test                # policy, payment, receipts, settlement, recovery and measurements
+npm run build
+```
 
----
+The current Engine uses **Telegraph's test USDC on Ethereum Sepolia**, token `0xcc194e1a843B658526D0D5C431f670028582Ae17`, chain 11155111. Set `TELEGRAPH_NETWORK=telegraph-sepolia`; existing `.env.local` files are preserved by setup and must be updated explicitly. This token differs from Circle faucet USDC and from the old Base Sepolia token. The default maximum is **0.05 test USDC** across four checks, with a **0.25** per-review cap and configurable **1** daily limit. Run the operator check before funding or purchasing; see [the current handoff](HANDOFF.md) for actual live results.
 
-## Scoring — 6 components, 100 points
+## Gate behavior
 
-| # | Component | Max pts | Data source |
-|---|-----------|---------|-------------|
-| 1 | APY credibility | 20 | DefiLlama Pools (sigma, outlier detection, 30d trend, reward ratio) |
-| 2 | Liquidity depth | 20 | DefiLlama Pools + History (TVL tiers, 30d drawdown) |
-| 3 | Exploit history | 20 | DefiLlama Hacks (1,246 real incidents, recency-weighted, brand-token matched) |
-| 4 | Protocol maturity | 20 | DefiLlama Protocols (age, audits, fork status) |
-| 5 | Concentration / IL | 10 | DefiLlama Pools (LP vs single-sided, stable vs volatile) |
-| 6 | Reward token risk | 10 | CoinGecko (market cap rank + 30d volatility) |
+| Check | Telegraph Intent |
+|---|---|
+| Contract security | `SMART_CONTRACT_AUDIT` |
+| Trading integrity | `WASH_TRADING_DETECTION` |
+| Token contract state | `ONCHAIN_METRIC_VERIFY` |
+| Executable liquidity | `LIQUIDITY_DEPTH_VERIFY` |
 
-**Verdict bands:** ≤20 LOW · ≤45 MEDIUM · ≤70 HIGH · >70 VERY_HIGH
+The Engine owns routing. On the current deployment the four policy families map to their exact `_GENERAL` child Intents; requests, receipts and signal records must agree on that child. The official x402 v2 SDK permits only the configured payment chain/token and capped amount. Domain and timeout are checked before signing, and the authorization is stored before submission. Legacy Base Sepolia reviews retain their original payment network for recovery.
 
----
+`PROCEED` requires all four checks, matching token and chain, observations at most five minutes old, confidence at least 0.8, and required risk scores at most 20/100. Trade size must be at most 1% of reported executable USD depth. Missing or unsupported evidence returns `REVIEW` or `NO_DATA`; a current verified threat returns `BLOCK`. See [agent/policy.ts](agent/policy.ts) for the versioned policy.
+
+Confirmed spend requires a matching USDC authorization nonce and Transfer event. Consumption receipts and recorded signals are bound to the request and kept separately from the agent's signature. A signature proves memo authorship and integrity. Trade execution stays with the operator.
 
 ## API
 
-Every response leads with `signal` — a number-first sentence. Telegraph routes
-natural-language questions to miners and grades the prose answer, not the JSON,
-so that field is the product; the structured fields back it up.
+| Route | Purpose |
+|---|---|
+| `GET /api/desk` | Configuration state |
+| `POST /api/desk` | Preview or create an idempotent capped review |
+| `GET /api/desk?requestId=<uuid>` | Read a stored review with operator access |
+| `POST /api/desk/reconcile` | Verify existing authorizations and recover a review |
+| `POST /api/telegraph/measure` | Deterministic TVL or observed yield |
+| `GET` / `POST /api/telegraph/risk` | Original pool research score |
+| `GET /api/telegraph/universe` | Pool research chains and assets |
+| `GET /api/health` | Health |
 
-### Question mode (what Telegraph actually sends)
-
-Free text, no parameters. Chain, asset and protocol are extracted from the
-question against the live DefiLlama universe, and the question is classified into
-one of the three declared intents.
-
-```http
-POST /api/telegraph/risk
-Content-Type: application/json
-
-{ "query": "Is Aave safe for USDC on Base?" }
-```
+A paid review requires a UUID v4 `requestId` and `x-desk-token`. Retries with the same ID return the stored review; another request cannot spend from a wallet with unresolved authorizations. Recovery accepts an optional `transactions` map from check Intent to known settlement hash.
 
 ```json
 {
-  "signal": "aave-v3 on Base scores 14/100 (LOW_RISK, lower is safer) for USDC — 3.39% APY on $25,708,706 TVL.",
-  "intent": "FRAUD_DETECTION",
-  "resolved_via": "question",
-  "extracted": ["chain=Base", "protocol=aave-v3", "asset=USDC"],
-  "risk_score": 14,
-  "verdict": "LOW_RISK",
-  "...": "components, flags, explanation, apy_bps, tvl_k, confidence"
+  "preview": true,
+  "subject": {
+    "tokenAddress": "0x4200000000000000000000000000000000000006",
+    "chain": "Base",
+    "notionalUsd": 1000
+  },
+  "maximumSpendUsdc": "0.05"
 }
 ```
 
-An unanswerable question (`"What is the weather in Paris?"`) returns `400` with a
-`hint` and the deepest chains, rather than a confidently wrong default.
+The token being researched is on Base **mainnet** in this example; intelligence is purchased with Telegraph's Ethereum Sepolia **test** USDC. These networks are configured separately.
 
-### Discovery mode
+## Evaluation material
 
-No protocol slug required — just chain + asset.
+[56 synthetic liquidity preference pairs](evaluation/liquidity-depth/README.md) were submitted under `LIQUIDITY_DEPTH_VERIFY_GENERAL` and all are **eligible** as of the saved October 30 snapshot. The pool has one of five required contributors for question use. The pinned official data gate passes; 43 cases have arithmetic references and seven synthetic Mission 14 integration checks pass. Independent human review, unseen accuracy and live ranking improvement remain unverified. Run `npm run check:evaluation` to reproduce the artifact checks.
 
-```http
-POST /api/telegraph/risk
-Content-Type: application/json
+## Miner registration
 
-{ "chain": "Base", "asset": "USDC" }
-```
+The manifest advertises **`TVL_LOOKUP` and `CRYPTO_YIELD_RATE`**. TVL uses complete DefiLlama protocol or protocol-chain totals, or exact pool TVL. Yield uses exact pool APY or a disclosed TVL-weighted sample of at most five pools. Pool TVL is not executable trade depth.
 
-```json
-{
-  "mode": "ranked",
-  "signal": "centrifuge-protocol is the safest of 6 protocol(s) offering USDC on Base, scoring 1/100 ...",
-  "safest": "centrifuge-protocol",
-  "ranked": [...],
-  "protocols_scanned": 6,
-  "pools_scanned": 47,
-  "risk_score": 1,
-  "apy_bps": 499,
-  "tvl_k": 57952,
-  "confidence": 85,
-  "components": { ... },
-  "flags": [],
-  "explanation": "..."
-}
-```
-
-Returns `404` with a `suggestions[]` array of real assets on that chain if nothing matches.
-
-### Direct mode
-
-Pin a specific protocol or pool.
-
-```http
-POST /api/telegraph/risk
-{ "protocol": "aave-v3", "chain": "Ethereum" }
-POST /api/telegraph/risk
-{ "pool_id": "<DefiLlama uuid>" }
-```
-
-All three modes work over `GET` too: `?query=`, `?chain=&asset=`, `?protocol=`.
-
-### Picker data
-
-```http
-GET /api/telegraph/universe?chain=Base
-→ { chains: [...], assets: [...] }
-```
-
-### Health check
-
-```http
-GET /api/health
-→ { status: "ok", miner: "arcadian" }
-```
-
-On-chain integers: `risk_score`, `apy_bps` (APY × 100), `tvl_k` (TVL / 1000), `confidence`.
-On-chain strings: `verdict`, `signal`.
-
----
-
-## Payments (x402)
-
-Arcadian sets a `$0.01 USDC` price floor per query. The Telegraph gateway enforces the 402 payment flow and proxies paid requests to this endpoint — Arcadian's route stays a plain JSON API. Earnings settle to `FEE_ADDRESS` on Base Sepolia.
-
----
-
-## Tech stack
-
-- **Next.js 14** (App Router) + TypeScript, deployed on Vercel (serverless)
-- **Data:** DefiLlama (pools, hacks, protocols) + CoinGecko free API
-- **AI explanations:** Qwen `qwen3.7-max` via Anthropic-compatible endpoint (`@anthropic-ai/sdk`), graceful fallback if unset
-- **On-chain registration:** `viem` → Base Sepolia MinerRegistry
-
----
-
-## Project structure
-
-```
-app/
-  page.tsx                         UI — chain + asset pickers, ranked protocol table
-  globals.css                      design tokens + fonts
-  api/health/route.ts              GET → {status:"ok"}
-  api/telegraph/risk/route.ts      GET+POST → ranked or single risk JSON
-  api/telegraph/universe/route.ts  GET → live chain + asset lists
-lib/
-  defillama.ts    fetchPools, fetchHistory, findPools
-  discover.ts     listChains, listAssets, discoverProtocols
-  nlq.ts          parseQuestion — free-text → chain/asset/protocol + intent
-  nlq.test.ts     extraction and intent-classification tests
-  sources.ts      fetchHacks, fetchProtocols, fetchTokenRisk, matchHacks
-  sources.test.ts unit tests for hack→protocol attribution
-  scorer.ts       6-component scorer, verdictFromScore
-  ai.ts           explainRisk (Qwen) + fallback
-public/
-  telegraph-risk.yaml   Telegraph miner config (base_url, x402 price, on-chain fields)
-scripts/
-  register-miner.ts     viem registration to Base Sepolia MinerRegistry
-```
-
----
-
-## Local development
+Registration 401 was rejected for a string `limitations` field. Activation is event-driven; waiting for an epoch will not repair it. The local manifest fixes the shape, but the stable hosted file still needs updating. See [the postmortem](docs/season-ii/POSTMORTEM.md).
 
 ```bash
-cp .env.local.example .env.local
-# fill in QWEN_API_KEY, QWEN_BASE_URL, QWEN_MODEL
-
-npm install
-npm run dev        # http://localhost:3000
-npm test           # unit tests (node:test via tsx)
-npm run build      # production build check
+npm run check:telegraph
+# After publishing and configuring owner-wallet/console credentials:
+REGISTER_ID=401 npm run register                 # validate, compare bytes, simulate
+REGISTER_ID=401 npm run register -- --broadcast  # send the reviewed update
 ```
 
-### Register on Telegraph (Base Sepolia)
+The script requires official validation, hosted bytes matching the local manifest, a successful real measurement request and canonical Intents. It reads the confirmed new registration ID from `MinerRegistered`. `check:telegraph` requires active node status, matching hash, URL and exact Intents.
 
-```bash
-REGISTER_PRIVATE_KEY=0x... FEE_ADDRESS=0x... npm run register
-```
+## Deploy and reproduce
 
-The script SHA-256s the local `public/telegraph-risk.yaml` and commits that hash
-on-chain, so **deploy before registering**. It refuses to run if the hosted file
-does not byte-match the local one, and simulates the call first (the registry
-reverts on unknown intents). Re-registering the same `slug` replaces the config,
-so this is also the update path — it must be sent from the wallet that owns the
-slug.
+The app uses Next.js 15, React 18, TypeScript, viem, official x402 v2 packages and libSQL. A Vercel paid deployment requires a shared remote libSQL/Turso database; ephemeral local storage is refused. See [the operator guide](docs/season-ii/OPERATIONS.md), [build plan](docs/season-ii/BUILD.md) and [current handoff](HANDOFF.md).
 
-**MinerRegistry (Base Sepolia):** `0x5a2324aA18613FAD4e44bDF0d6c73Ec1f6D87ff8`
-— the registry the explorer reads. `0x122396E8…` is an older deployment that
-still accepts registrations but is not indexed.
-
-**Registered intents:** `FINANCIAL_DATA`, `TVL_LOOKUP`, `FRAUD_DETECTION`. These
-are validated on-chain: unknown values and lowercase both revert, and they must
-match `semantics.supported_intents` in the YAML.
-
-Activation happens at the next epoch boundary (~9h epochs). Verify with:
-
-```bash
-curl -s https://explorer.telegraphprotocol.com/api/integrations \
-  | grep -o '"slug":"arcadian-defi-risk"[^}]*'
-```
-
----
-
-## Hackathon
-
-Telegraph Protocol — Season I · Aug 17 – Sep 7 2026 · $15K USDC prize pool
-
-Track: **Track 1 — Financial Data + On-chain Analytics**
+The official H2 deadline is **December 1, 2026, 23:59 UTC** (December 2, 00:59 Lagos). October preparation and testnet activity are separate from H2-period evidence. See [the score plan](docs/season-ii/SCORE_PLAN.md).

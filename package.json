@@ -2,25 +2,44 @@
   "name": "arcadian",
   "version": "1.0.0",
   "private": true,
+  "overrides": {
+    "postcss": "^8.5.23",
+    "nanoid": "^3.3.18",
+    "source-map-js": "^1.2.2"
+  },
   "scripts": {
+    "check:coverage": "node scripts/check-provider-coverage.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "tsx --test lib/*.test.ts",
-    "register": "tsx scripts/register-miner.ts"
+    "test": "tsx --test lib/*.test.ts agent/*.test.ts",
+    "register": "node --env-file-if-exists=.env.local --import tsx scripts/register-miner.ts",
+    "setup:operator": "node scripts/setup-operator.mjs",
+    "check:operator": "node --env-file-if-exists=.env.local --import tsx scripts/check-operator.ts",
+    "review:trade": "node --env-file-if-exists=.env.local --import tsx scripts/review-trade.ts",
+    "recover:review": "node --env-file-if-exists=.env.local --import tsx scripts/recover-review.ts",
+    "verify:memo": "node --env-file-if-exists=.env.local --import tsx scripts/verify-memo.ts",
+    "check:telegraph": "node --env-file-if-exists=.env.local scripts/check-telegraph.mjs",
+    "check:evaluation": "node scripts/check-evaluation.mjs",
+    "test:evaluation": "node --test evaluation/liquidity-depth/*.test.mjs",
+    "check:liquidity-impact": "node --import tsx scripts/check-liquidity-impact.ts --out evaluation/liquidity-depth/mission-impact.json"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",
-    "next": "14.2.5",
+    "@libsql/client": "^0.18.0",
+    "@x402/core": "^2.28.0",
+    "@x402/evm": "^2.28.0",
+    "next": "^15.5.28",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "viem": "^2",
+    "yaml": "^2.9.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "tsx": "^4",
-    "typescript": "^5",
-    "viem": "^2"
+    "typescript": "^5"
   }
 }

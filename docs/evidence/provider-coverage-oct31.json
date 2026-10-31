@@ -1,0 +1,2311 @@
+{
+  "checkedAt": "2026-10-31T20:21:26.672Z",
+  "paymentSigned": false,
+  "paymentSent": false,
+  "scope": "Public catalogue and ranking metadata; no provider result or useful paid workflow is verified.",
+  "sources": {
+    "integrations": {
+      "url": "https://explorer.telegraphprotocol.com/api/integrations",
+      "sha256": "ffe160a14a739eb80a7a972f97fc70126359e05f391ad8f489f90ae6e3ecba86"
+    },
+    "leaderboard": {
+      "url": "https://explorer.telegraphprotocol.com/api/leaderboard/miners",
+      "sha256": "e0fb0e61cd096e893dcd5fd2c14ad7bbe0b56a575c9fd9c8243b41112734a3b4"
+    },
+    "evaluatorPool": {
+      "url": "https://devnode.telegraphprotocol.com/api/evalpool/status?intent_id=LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "sha256": "261859f6b4ed3df3aa69ec69fcb42b441d0a5e18e6e49c3fdb6721f4ec89c238"
+    }
+  },
+  "leaderboardEpoch": 1947,
+  "checks": [
+    {
+      "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+      "activeListedProviders": 12,
+      "rankedProviders": [],
+      "providers": [
+        {
+          "id": "200001",
+          "slug": "goplus-security",
+          "description": "Token and contract security risk analysis (honeypot, taxes, ownership, proxy and mint flags) for EVM tokens via the GoPlus Security API.",
+          "yamlUrl": "https://www.dropbox.com/scl/fi/qyr12r6fe8v42v1z7yor4/goplus-security.yaml?rlkey=7gaof8qt2tcgo1s4sko8jd0g2&st=ndilhxo0&dl=1",
+          "inputSchema": null,
+          "outputSchema": null
+        },
+        {
+          "id": "151001",
+          "slug": "sca-4byte",
+          "description": "4byte directory function signatures. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/4kU0p",
+          "inputSchema": {
+            "properties": {
+              "hex_signature": {
+                "default": "0xa9059cbb",
+                "description": "Hex",
+                "type": "string"
+              }
+            },
+            "required": [
+              "hex_signature"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "151002",
+          "slug": "sca-4byte-own",
+          "description": "4byte ownable signature audit. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/kFFI4",
+          "inputSchema": {
+            "properties": {
+              "hex_signature": {
+                "default": "0x8da5cb5b",
+                "description": "Hex",
+                "type": "string"
+              }
+            },
+            "required": [
+              "hex_signature"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "151010",
+          "slug": "sca-court",
+          "description": "CourtListener contract audit cases. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/bsRe4",
+          "inputSchema": {
+            "properties": {
+              "format": {
+                "default": "json",
+                "description": "Format",
+                "type": "string"
+              },
+              "q": {
+                "default": "smart contract",
+                "description": "Query",
+                "type": "string"
+              },
+              "type": {
+                "default": "o",
+                "description": "Type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "q",
+              "type",
+              "format"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "151005",
+          "slug": "sca-crossref",
+          "description": "Crossref smart contract security works. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/qN7MS",
+          "inputSchema": {
+            "properties": {
+              "query": {
+                "default": "smart contract vulnerability",
+                "description": "Query",
+                "type": "string"
+              },
+              "rows": {
+                "default": "1",
+                "description": "Rows",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query",
+              "rows"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "151007",
+          "slug": "sca-ghsa",
+          "description": "GitHub security advisories audit. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/cfqmu",
+          "inputSchema": {
+            "properties": {
+              "per_page": {
+                "default": "1",
+                "description": "Per page",
+                "type": "string"
+              }
+            },
+            "required": [
+              "per_page"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "151008",
+          "slug": "sca-llama",
+          "description": "DefiLlama protocols audit context. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/mtZGV",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "151004",
+          "slug": "sca-openalex",
+          "description": "OpenAlex smart contract audit research. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/YWk5R",
+          "inputSchema": {
+            "properties": {
+              "per_page": {
+                "default": "1",
+                "description": "Per page",
+                "type": "string"
+              },
+              "search": {
+                "default": "smart contract audit",
+                "description": "Search",
+                "type": "string"
+              }
+            },
+            "required": [
+              "search",
+              "per_page"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "151003",
+          "slug": "sca-openchain",
+          "description": "OpenChain signature database lookup. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/AS1YF",
+          "inputSchema": {
+            "properties": {
+              "function": {
+                "default": "0xa9059cbb",
+                "description": "Function",
+                "type": "string"
+              }
+            },
+            "required": [
+              "function"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "151006",
+          "slug": "sca-osv",
+          "description": "OSV vulnerability audit context. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/7HKOG",
+          "inputSchema": {
+            "properties": {
+              "id": {
+                "default": "GHSA-c2qf-rxjj-qqgw",
+                "description": "ID",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "151009",
+          "slug": "sca-zenodo",
+          "description": "Zenodo smart contract audit records. Intent SMART_CONTRACT_AUDIT.\n",
+          "yamlUrl": "https://paste.rs/uvDnV",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "default": "smart contract audit",
+                "description": "Query",
+                "type": "string"
+              },
+              "size": {
+                "default": "1",
+                "description": "Size",
+                "type": "string"
+              }
+            },
+            "required": [
+              "q",
+              "size"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "200002",
+          "slug": "sourcify",
+          "description": "Verified source code, ABI, compiler settings and proxy resolution for smart contracts from the Sourcify repository, for source-level inspection.",
+          "yamlUrl": "https://www.dropbox.com/scl/fi/2yqyu5tx9jci6tdvyaqox/sourcify.yaml?rlkey=lbta3pjvt3m3kupjf3tvbms18&st=2s3rmml5&dl=1",
+          "inputSchema": null,
+          "outputSchema": null
+        }
+      ]
+    },
+    {
+      "intent": "WASH_TRADING_DETECTION_GENERAL",
+      "activeListedProviders": 12,
+      "rankedProviders": [],
+      "providers": [
+        {
+          "id": "7378",
+          "slug": "verifywire-wash-trading",
+          "description": "A heuristic read over a token's recent ERC-20 Transfer logs, scanned live over public RPC. It is a signal, not a proof of intent: it measures the patterns wash trading leaves behind. Reciprocal address pairs where value goes out and comes back, self-transfers, plus volume concentrated in a few senders all raise a bounded risk score the answer labels low, elevated or high. The block window is bounded and the node's log range is shrunk when it reports too many results, so a busy token can never exhaust the worker. Reads on Ethereum, Base, Arbitrum, Optimism and Polygon. Answers the WASH_TRADING_DETECTION intent. No API key, nothing cached that can go stale.\n",
+          "yamlUrl": "https://raw.githubusercontent.com/zkasuran/telegraph-catalog-miners/master/verifywire-wash-trading.yaml",
+          "inputSchema": {
+            "properties": {
+              "blocks": {
+                "description": "Scan window in blocks, defaults to 120, capped at 600.",
+                "type": "string"
+              },
+              "chain": {
+                "description": "Chain to read on, one of ethereum, base, arbitrum, optimism, polygon.",
+                "type": "string"
+              },
+              "question": {
+                "description": "The full natural-language question, verbatim, for example \"Does token 0xabc... show wash-trading patterns on Ethereum?\". The miner reads the token and the chain from it, so passing the whole question works as well as the fields.\n",
+                "type": "string"
+              },
+              "token": {
+                "description": "Token address or symbol whose Transfer logs to scan.",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "as_of": {
+                "description": "ISO 8601 timestamp of the read.",
+                "type": "string"
+              },
+              "chain": {
+                "description": "Chain the answer is for.",
+                "type": "string"
+              },
+              "chain_id": {
+                "description": "EVM chain id.",
+                "type": "integer"
+              },
+              "confidence": {
+                "description": "0.9 for a direct Transfer-log scan.",
+                "type": "number"
+              },
+              "contract_address": {
+                "description": "The token scanned.",
+                "type": "string"
+              },
+              "reciprocal_pairs": {
+                "description": "Address pairs that sent value both ways in the window.",
+                "type": "integer"
+              },
+              "risk_label": {
+                "description": "LOW, ELEVATED or HIGH.",
+                "type": "string"
+              },
+              "risk_score": {
+                "description": "A bounded 0 to 1 blend of the measured signals.",
+                "type": "number"
+              },
+              "summary": {
+                "description": "One sentence with the risk verdict and the key figures.",
+                "type": "string"
+              },
+              "symbol": {
+                "description": "The token symbol.",
+                "type": "string"
+              },
+              "transfers": {
+                "description": "How many Transfer logs were analyzed.",
+                "type": "integer"
+              },
+              "verified": {
+                "description": "True when the risk label is LOW.",
+                "type": "boolean"
+              },
+              "window_blocks": {
+                "description": "The block window actually scanned.",
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          }
+        },
+        {
+          "id": "80004",
+          "slug": "wash-dex-boost",
+          "description": "DexScreener top token boosts. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/UcGZg",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80010",
+          "slug": "wash-binance",
+          "description": "Binance 24h ticker volume/price change. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/ToPFg",
+          "inputSchema": {
+            "properties": {
+              "symbol": {
+                "default": "ETHUSDT",
+                "description": "Symbol",
+                "type": "string"
+              }
+            },
+            "required": [
+              "symbol"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80003",
+          "slug": "wash-dex-pair",
+          "description": "DexScreener single pair metrics. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/McgZY",
+          "inputSchema": {
+            "properties": {
+              "chain": {
+                "default": "ethereum",
+                "description": "Chain",
+                "type": "string"
+              },
+              "pair": {
+                "default": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                "description": "Pair address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "chain",
+              "pair"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80002",
+          "slug": "wash-dex-search",
+          "description": "DexScreener search pairs for wash signals. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/GMCDB",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "default": "WETH",
+                "description": "Query",
+                "type": "string"
+              }
+            },
+            "required": [
+              "q"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80001",
+          "slug": "wash-dex-token",
+          "description": "DexScreener pairs for token wash signals. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/HqCMv",
+          "inputSchema": {
+            "properties": {
+              "token": {
+                "default": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+                "description": "Token address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "token"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80021",
+          "slug": "wash-dex-volume",
+          "description": "DexScreener pair h24 volume → volume_h24_usd. Intent WASH_TRADING_DETECTION — Usman truth-spec miner.\n",
+          "yamlUrl": "https://paste.rs/r6j3g",
+          "inputSchema": {
+            "properties": {
+              "chainId": {
+                "default": "ethereum",
+                "description": "Chain id",
+                "type": "string"
+              },
+              "pairAddresses": {
+                "default": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                "description": "Pair address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "chainId",
+              "pairAddresses"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80006",
+          "slug": "wash-gecko-pool",
+          "description": "GeckoTerminal eth pool depth/volume. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/sa8Ti",
+          "inputSchema": {
+            "properties": {
+              "pool": {
+                "default": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                "description": "Pool address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "pool"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80005",
+          "slug": "wash-gecko-trend",
+          "description": "GeckoTerminal eth trending pools. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/DXKkN",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80007",
+          "slug": "wash-llama-dex",
+          "description": "DefiLlama DEX volume overview. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/mgaSe",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80009",
+          "slug": "wash-llama-fees",
+          "description": "DefiLlama protocol fees overview for wash context. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/ZBYGL",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "80008",
+          "slug": "wash-llama-uni",
+          "description": "DefiLlama Uniswap volume summary. Intent WASH_TRADING_DETECTION.\n",
+          "yamlUrl": "https://paste.rs/v5Jot",
+          "inputSchema": {
+            "properties": {
+              "protocol": {
+                "default": "uniswap",
+                "description": "Protocol",
+                "type": "string"
+              }
+            },
+            "required": [
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        }
+      ]
+    },
+    {
+      "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "activeListedProviders": 35,
+      "rankedProviders": [],
+      "providers": [
+        {
+          "id": "5530",
+          "slug": "telegraph-verity-intelligence",
+          "description": "Evidence-grounded intelligence provider for research, content verification, media authenticity, and cybersecurity analysis.\n",
+          "yamlUrl": "https://raw.githubusercontent.com/peterkehinde673/telegraph-verity-intelligence/verity/score-improvements-batch-1/miner-integrate-candidate.yaml",
+          "inputSchema": {
+            "properties": {
+              "input": {
+                "description": "Intent-specific structured input. For URL_SAFE, provide url; for THREAT_IP_REPUTATION, provide ip or ip_address; for THREAT_INTELLIGENCE, provide indicator and optional indicator_type; for PLAGIARISM_DETECTION, provide text and comparison_documents; for SECURITY_REVIEW, provide code or configuration; for REGRESSION_VERIFY, provide base_url and checks against an allowlisted HTTPS host; for CODE_PATCH_VERIFY, provide repository in owner/repo format and commit_sha; for VULNERABILITY_TRIAGE, provide findings with CVSS/severity, exploitation status, and asset context.",
+                "type": "object"
+              },
+              "intent": {
+                "enum": [
+                  "FACT_CHECK",
+                  "RESEARCH_QUERY",
+                  "RESEARCH_SYNTHESIS",
+                  "NEWS_HEADLINES",
+                  "NEWS_SEARCH",
+                  "WEB_SEARCH",
+                  "TWITTER_SEARCH",
+                  "SENTIMENT_ANALYSIS",
+                  "ONCHAIN_METRIC_VERIFY",
+                  "SLA_COMPLIANCE",
+                  "ACADEMIC_SEARCH",
+                  "CONTENT_EXTRACTION",
+                  "CONTENT_VERIFICATION",
+                  "TEXT_AUTHENTICITY_CHECK",
+                  "AI_TEXT_DETECTION",
+                  "DEEPFAKE_DETECTION",
+                  "MEDIA_AUTHENTICITY_CHECK",
+                  "IMAGE_VERIFICATION",
+                  "VIDEO_VERIFICATION",
+                  "CONTENT_MODERATION",
+                  "URL_SCAN",
+                  "EMAIL_SECURITY",
+                  "MALWARE_DETECTION",
+                  "CVE_LOOKUP",
+                  "SSL_VERIFICATION",
+                  "DNS_RECORD_LOOKUP",
+                  "CODE_REVIEW",
+                  "URL_SAFE",
+                  "THREAT_IP_REPUTATION",
+                  "THREAT_INTELLIGENCE",
+                  "PLAGIARISM_DETECTION",
+                  "SECURITY_REVIEW",
+                  "REGRESSION_VERIFY",
+                  "CODE_PATCH_VERIFY",
+                  "VULNERABILITY_TRIAGE"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "intent",
+              "input"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "answer": {
+                "description": "Intent-specific normalized answer payload.",
+                "type": [
+                  "object",
+                  "array",
+                  "string",
+                  "number",
+                  "boolean",
+                  "null"
+                ]
+              },
+              "confidence": {
+                "description": "Confidence score from 0 to 1.",
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              },
+              "evidence": {
+                "description": "Evidence supporting the response.",
+                "type": "array"
+              },
+              "intent": {
+                "description": "The canonical Telegraph Intent handled by the response.",
+                "type": "string"
+              },
+              "retrieved_at": {
+                "description": "Timestamp indicating when information was retrieved or generated.",
+                "type": "string"
+              },
+              "uncertainty": {
+                "description": "Known uncertainty or limitations associated with the response.",
+                "type": "array"
+              },
+              "verdict": {
+                "description": "Primary decision or classification produced by the handler.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "intent",
+              "verdict",
+              "confidence",
+              "answer",
+              "evidence",
+              "uncertainty",
+              "retrieved_at"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "id": "71008",
+          "slug": "ocm-blockchain-stats",
+          "description": "Blockchain.info network metrics. Intent ONCHAIN_METRIC_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/hAJ39",
+          "inputSchema": {
+            "properties": {
+              "format": {
+                "default": "json",
+                "description": "Format",
+                "type": "string"
+              }
+            },
+            "required": [
+              "format"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190027",
+          "slug": "ocm-blockcypher-eth",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-blockcypher-eth-13fc445b.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190028",
+          "slug": "ocm-blockscout-arbitrum",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-blockscout-arbitrum-7f96e443.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190029",
+          "slug": "ocm-blockscout-base",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-blockscout-base-40ff67e2.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190030",
+          "slug": "ocm-blockscout-eth",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-blockscout-eth-3666f308.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190031",
+          "slug": "ocm-blockscout-gnosis",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-blockscout-gnosis-c7267e09.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190032",
+          "slug": "ocm-blockscout-optimism",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-blockscout-optimism-59116b3b.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190033",
+          "slug": "ocm-blockscout-polygon",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-blockscout-polygon-83a82027.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190034",
+          "slug": "ocm-blockscout-scroll",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-blockscout-scroll-90e27a50.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190035",
+          "slug": "ocm-blockstream-btc",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-blockstream-btc-b62fe63e.yaml",
+          "inputSchema": {
+            "properties": {
+              "btc_address": {
+                "default": "bc1qgdjqv0av3q56jvd82tkdjpy7gdp9ut8tlqmgrpmv24sq90ecnvqqjwvw97",
+                "description": "btc_address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "btc_address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "71009",
+          "slug": "ocm-coingecko-global",
+          "description": "CoinGecko global on-market metrics. Intent ONCHAIN_METRIC_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/dxkOc",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190149",
+          "slug": "ocm-drpc-rpc",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must return the on-chain value asked (address balance / token balance / tx state).",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-drpc-rpc-7d75ade1.yaml",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "71021",
+          "slug": "ocm-eth-balance",
+          "description": "eth_getBalance at pinned address+block → value_gwei. Intent ONCHAIN_METRIC_VERIFY — Usman truth-spec miner.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag or hex/decimal height",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "91002",
+          "slug": "ocm-eth-balance-1rpc",
+          "description": "eth_getBalance pinned to 1rpc.io — same value_gwei quantity. Intent ONCHAIN_METRIC_VERIFY — peer for Usman ranking (≥2 miners).\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance-1rpc.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag",
+                "type": "string"
+              },
+              "rpc": {
+                "default": "1rpc",
+                "description": "Preferred RPC alias",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block",
+              "rpc"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "93107",
+          "slug": "ocm-eth-balance-blastapi",
+          "description": "eth_getBalance pinned to blastapi. Intent ONCHAIN_METRIC_VERIFY — scale peers for Usman ranking.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance-blastapi.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag",
+                "type": "string"
+              },
+              "rpc": {
+                "default": "blastapi",
+                "description": "Preferred RPC alias",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block",
+              "rpc"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "93101",
+          "slug": "ocm-eth-balance-drpc",
+          "description": "eth_getBalance pinned to drpc. Intent ONCHAIN_METRIC_VERIFY — scale peers for Usman ranking.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance-drpc.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag",
+                "type": "string"
+              },
+              "rpc": {
+                "default": "drpc",
+                "description": "Preferred RPC alias",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block",
+              "rpc"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "93103",
+          "slug": "ocm-eth-balance-flashbots",
+          "description": "eth_getBalance pinned to flashbots. Intent ONCHAIN_METRIC_VERIFY — scale peers for Usman ranking.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance-flashbots.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag",
+                "type": "string"
+              },
+              "rpc": {
+                "default": "flashbots",
+                "description": "Preferred RPC alias",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block",
+              "rpc"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "93105",
+          "slug": "ocm-eth-balance-merkle",
+          "description": "eth_getBalance pinned to merkle. Intent ONCHAIN_METRIC_VERIFY — scale peers for Usman ranking.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance-merkle.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag",
+                "type": "string"
+              },
+              "rpc": {
+                "default": "merkle",
+                "description": "Preferred RPC alias",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block",
+              "rpc"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "93106",
+          "slug": "ocm-eth-balance-mevblocker",
+          "description": "eth_getBalance pinned to mevblocker. Intent ONCHAIN_METRIC_VERIFY — scale peers for Usman ranking.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance-mevblocker.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag",
+                "type": "string"
+              },
+              "rpc": {
+                "default": "mevblocker",
+                "description": "Preferred RPC alias",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block",
+              "rpc"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "93104",
+          "slug": "ocm-eth-balance-mew",
+          "description": "eth_getBalance pinned to mew. Intent ONCHAIN_METRIC_VERIFY — scale peers for Usman ranking.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance-mew.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag",
+                "type": "string"
+              },
+              "rpc": {
+                "default": "mew",
+                "description": "Preferred RPC alias",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block",
+              "rpc"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "93108",
+          "slug": "ocm-eth-balance-pool-c",
+          "description": "eth_getBalance pinned to drpc. Intent ONCHAIN_METRIC_VERIFY — scale peers for Usman ranking.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance-pool-c.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag",
+                "type": "string"
+              },
+              "rpc": {
+                "default": "drpc",
+                "description": "Preferred RPC alias",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block",
+              "rpc"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "93102",
+          "slug": "ocm-eth-balance-publicnode",
+          "description": "eth_getBalance pinned to publicnode. Intent ONCHAIN_METRIC_VERIFY — scale peers for Usman ranking.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-eth-balance-publicnode.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "ETH address",
+                "type": "string"
+              },
+              "block": {
+                "default": "latest",
+                "description": "Block tag",
+                "type": "string"
+              },
+              "rpc": {
+                "default": "publicnode",
+                "description": "Preferred RPC alias",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "block",
+              "rpc"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190036",
+          "slug": "ocm-ethplorer-addr",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must convey the on-chain value asked (wallet/token balance or tx state) for the address given.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-ethplorer-addr-8281b1b5.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "address",
+                "type": "string"
+              },
+              "apiKey": {
+                "default": "freekey",
+                "description": "apiKey",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "apiKey"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "71002",
+          "slug": "ocm-llama-chains",
+          "description": "DefiLlama chains TVL metrics. Intent ONCHAIN_METRIC_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/nkhj2",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "71003",
+          "slug": "ocm-llama-dexs",
+          "description": "DefiLlama DEX volume metrics. Intent ONCHAIN_METRIC_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/eztCf",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "71004",
+          "slug": "ocm-llama-fees",
+          "description": "DefiLlama fees overview metrics. Intent ONCHAIN_METRIC_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/0Dlo5",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "71001",
+          "slug": "ocm-llama-protocols",
+          "description": "DefiLlama protocol metrics list. Intent ONCHAIN_METRIC_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/jCMbT",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "71010",
+          "slug": "ocm-mempool-difficulty",
+          "description": "BTC difficulty adjustment metrics. Intent ONCHAIN_METRIC_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/7IqgS",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "71006",
+          "slug": "ocm-mempool-fees",
+          "description": "BTC fee metrics for on-chain activity. Intent ONCHAIN_METRIC_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/EXZzj",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190150",
+          "slug": "ocm-publicnode-rpc",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must return the on-chain value asked (address balance / token balance / tx state).",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-publicnode-rpc-e6ac510f.yaml",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "71005",
+          "slug": "ocm-stablecoins",
+          "description": "DefiLlama stablecoin metrics. Intent ONCHAIN_METRIC_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/35fse",
+          "inputSchema": {
+            "properties": {
+              "includePrices": {
+                "default": "true",
+                "description": "Include prices",
+                "type": "string"
+              }
+            },
+            "required": [
+              "includePrices"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190151",
+          "slug": "ocm-trezor-blockbook",
+          "description": "Semantic V2 miner for ONCHAIN_METRIC_VERIFY. Validates smart contract event logs, gas consumption, token balances, and wallet transaction states directly on-chain. Capture pin answers: Must return the on-chain value asked (address balance / token balance / tx state).",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/ocm-trezor-blockbook-d3b770f3.yaml",
+          "inputSchema": {
+            "properties": {
+              "btc_address": {
+                "default": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+                "description": "btc_address",
+                "type": "string"
+              },
+              "details": {
+                "default": "basic",
+                "description": "details",
+                "type": "string"
+              }
+            },
+            "required": [
+              "btc_address",
+              "details"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "9602",
+          "slug": "onchain-metric-publicnode",
+          "description": "Reads the latest on-chain ETH balance of an Ethereum mainnet address from the Ethplorer API and returns a small JSON answer (under 1 KB) with ETH.balance in decimal ETH and ETH.rawBalance in wei. Serves ONCHAIN_METRIC_VERIFY questions anchored at \"latest\" about an address's native ETH balance. Current state only - Ethplorer has no historical-block parameter, so a block_number in the request is accepted but the value returned is always the latest balance.",
+          "yamlUrl": "https://raw.githubusercontent.com/MaahinVPanchal/telegraph-miner-yaml/main/onchain-metric-publicnode.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "description": "EVM address, 0x-prefixed 40 hex characters.",
+                "pattern": "^0x[0-9a-fA-F]{40}$",
+                "type": "string"
+              },
+              "apiKey": {
+                "default": "freekey",
+                "description": "Ethplorer API key. Always freekey.",
+                "type": "string"
+              },
+              "showETHTotals": {
+                "default": "false",
+                "description": "Constant. Always false.",
+                "type": "string"
+              },
+              "token": {
+                "default": "0x0000000000000000000000000000000000000000",
+                "description": "Constant token filter that suppresses the token list.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "apiKey",
+              "token",
+              "showETHTotals"
+            ],
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "ETH": {
+                "description": "balance (number, ETH units), rawBalance (string, wei) and price (USD market data, not the answer).",
+                "type": "object"
+              },
+              "address": {
+                "description": "Lower-cased echo of the queried address.",
+                "type": "string"
+              },
+              "contractInfo": {
+                "description": "Non-empty only when the address is a contract.",
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        {
+          "id": "7375",
+          "slug": "verifywire-onchain-metric",
+          "description": "A specific value read from a blockchain node at a stated block height or latest, which is what marks this intent apart from a plain lookup. Serves a raw contract view call, a storage slot, a token balance held by an address, plus a transaction's gas used with its first Transfer log amount, each anchored to the block it was read at. Read over public RPC on Ethereum, Base, Arbitrum, Optimism and Polygon. Answers the ONCHAIN_METRIC_VERIFY intent. No API key, nothing cached that can go stale.\n",
+          "yamlUrl": "https://raw.githubusercontent.com/zkasuran/telegraph-catalog-miners/master/verifywire-onchain-metric.yaml",
+          "inputSchema": {
+            "properties": {
+              "block": {
+                "description": "Block height or the word latest. Defaults to latest.",
+                "type": "string"
+              },
+              "chain": {
+                "description": "Chain to read on, one of ethereum, base, arbitrum, optimism, polygon.",
+                "type": "string"
+              },
+              "data": {
+                "description": "Calldata (0x...) for a view call.",
+                "type": "string"
+              },
+              "hash": {
+                "description": "Transaction hash for a gas-used and Transfer-log read.",
+                "type": "string"
+              },
+              "holder": {
+                "description": "Address whose token balance to read.",
+                "type": "string"
+              },
+              "question": {
+                "description": "The full natural-language question, verbatim, for example \"At block 21000000 on Ethereum, how much gas did tx 0xabc... use?\". The miner reads the metric and the block anchor from it, so passing the whole question works as well as the fields.\n",
+                "type": "string"
+              },
+              "slot": {
+                "description": "Storage slot for a storage read, with the contract in address.",
+                "type": "string"
+              },
+              "to": {
+                "description": "Contract address for a view call.",
+                "type": "string"
+              },
+              "token": {
+                "description": "Token address or symbol for a balance read.",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "as_of": {
+                "description": "ISO 8601 timestamp of the read.",
+                "type": "string"
+              },
+              "block": {
+                "description": "The block anchor the value was read at.",
+                "type": "string"
+              },
+              "chain": {
+                "description": "Chain the answer is for.",
+                "type": "string"
+              },
+              "chain_id": {
+                "description": "EVM chain id.",
+                "type": "integer"
+              },
+              "confidence": {
+                "description": "0.97 to 0.98 for a direct on-chain read.",
+                "type": "number"
+              },
+              "metric": {
+                "description": "Which metric was read, one of view_call, storage, token_balance, gas_used.",
+                "type": "string"
+              },
+              "summary": {
+                "description": "One sentence naming the value and the block it was read at.",
+                "type": "string"
+              },
+              "value": {
+                "description": "The raw value read, when the metric is a call or a storage slot.",
+                "type": "string"
+              },
+              "value_uint": {
+                "description": "The value decoded as an unsigned integer, when it is a 32-byte word.",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        }
+      ]
+    },
+    {
+      "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "activeListedProviders": 32,
+      "rankedProviders": [],
+      "providers": [
+        {
+          "id": "72021",
+          "slug": "liq-gecko-pool-cents",
+          "description": "GeckoTerminal pool reserve_in_usd → liquidity_usd_cents. Intent LIQUIDITY_DEPTH_VERIFY — Usman truth-spec miner.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-gecko-pool-cents.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                "description": "Pool address",
+                "type": "string"
+              },
+              "network": {
+                "default": "eth",
+                "description": "Network slug",
+                "type": "string"
+              }
+            },
+            "required": [
+              "network",
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190134",
+          "slug": "liq-binance-depth",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-binance-depth-24cdfcbe.yaml",
+          "inputSchema": {
+            "properties": {
+              "limit": {
+                "default": "50",
+                "description": "limit",
+                "type": "string"
+              },
+              "symbol": {
+                "default": "BTCUSDT",
+                "description": "symbol",
+                "type": "string"
+              }
+            },
+            "required": [
+              "symbol",
+              "limit"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190135",
+          "slug": "liq-bitfinex-book",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-bitfinex-book-c399bcf5.yaml",
+          "inputSchema": {
+            "properties": {
+              "len": {
+                "default": "25",
+                "description": "len",
+                "type": "string"
+              }
+            },
+            "required": [
+              "len"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190136",
+          "slug": "liq-bitget-book",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-bitget-book-41ca5f90.yaml",
+          "inputSchema": {
+            "properties": {
+              "limit": {
+                "default": "50",
+                "description": "limit",
+                "type": "string"
+              },
+              "symbol": {
+                "default": "BTCUSDT",
+                "description": "symbol",
+                "type": "string"
+              },
+              "type": {
+                "default": "step0",
+                "description": "type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "symbol",
+              "type",
+              "limit"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190137",
+          "slug": "liq-bitstamp-book",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-bitstamp-book-db4cfcf4.yaml",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190138",
+          "slug": "liq-bybit-book",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-bybit-book-9d04d65e.yaml",
+          "inputSchema": {
+            "properties": {
+              "category": {
+                "default": "spot",
+                "description": "category",
+                "type": "string"
+              },
+              "limit": {
+                "default": "50",
+                "description": "limit",
+                "type": "string"
+              },
+              "symbol": {
+                "default": "BTCUSDT",
+                "description": "symbol",
+                "type": "string"
+              }
+            },
+            "required": [
+              "category",
+              "symbol",
+              "limit"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190139",
+          "slug": "liq-coinbase-book",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-coinbase-book-c754113a.yaml",
+          "inputSchema": {
+            "properties": {
+              "level": {
+                "default": "2",
+                "description": "level",
+                "type": "string"
+              }
+            },
+            "required": [
+              "level"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190140",
+          "slug": "liq-cryptocom-book",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-cryptocom-book-80405936.yaml",
+          "inputSchema": {
+            "properties": {
+              "depth": {
+                "default": "50",
+                "description": "depth",
+                "type": "string"
+              },
+              "instrument_name": {
+                "default": "BTC_USDT",
+                "description": "instrument_name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "instrument_name",
+              "depth"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72003",
+          "slug": "liq-dex-boost",
+          "description": "DexScreener top token boosts. Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/gwcSo",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72001",
+          "slug": "liq-dex-pair",
+          "description": "DexScreener Uniswap USDC/ETH pair depth. Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/9BnbT",
+          "inputSchema": {
+            "properties": {
+              "chainId": {
+                "default": "ethereum",
+                "description": "Chain",
+                "type": "string"
+              },
+              "pairAddresses": {
+                "default": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                "description": "Pair address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "chainId",
+              "pairAddresses"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72022",
+          "slug": "liq-dex-pair-cents",
+          "description": "DexScreener pair liquidity.usd → liquidity_usd_cents (independent of Gecko). Intent LIQUIDITY_DEPTH_VERIFY — Usman truth-spec miner.\n",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-dex-pair-cents.yaml",
+          "inputSchema": {
+            "properties": {
+              "chainId": {
+                "default": "ethereum",
+                "description": "Chain id",
+                "type": "string"
+              },
+              "pairAddresses": {
+                "default": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                "description": "Pair address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "chainId",
+              "pairAddresses"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72002",
+          "slug": "liq-dex-search",
+          "description": "DexScreener pair search for liquidity. Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/1p42I",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "default": "ETH USDC",
+                "description": "Query",
+                "type": "string"
+              }
+            },
+            "required": [
+              "q"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72009",
+          "slug": "liq-dex-weth",
+          "description": "DexScreener WETH token pairs. Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/mwHle",
+          "inputSchema": {
+            "properties": {
+              "tokenAddresses": {
+                "default": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+                "description": "Token",
+                "type": "string"
+              }
+            },
+            "required": [
+              "tokenAddresses"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190021",
+          "slug": "liq-dexscreener-pair",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must convey bid/ask order-book depth or pool liquidity for the pair asked.",
+          "yamlUrl": "https://paste.rs/Z7DXC",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190022",
+          "slug": "liq-dexscreener-search-btc",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must convey bid/ask order-book depth or pool liquidity for the pair asked.",
+          "yamlUrl": "https://paste.rs/knzd2",
+          "inputSchema": {
+            "properties": {
+              "q": {
+                "default": "WBTC USDC",
+                "description": "q",
+                "type": "string"
+              }
+            },
+            "required": [
+              "q"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190023",
+          "slug": "liq-dexscreener-token-weth",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must convey bid/ask order-book depth or pool liquidity for the pair asked.",
+          "yamlUrl": "https://paste.rs/sp5eV",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+                "description": "address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190141",
+          "slug": "liq-gate-book",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-gate-book-d3a79fb6.yaml",
+          "inputSchema": {
+            "properties": {
+              "currency_pair": {
+                "default": "BTC_USDT",
+                "description": "currency_pair",
+                "type": "string"
+              },
+              "limit": {
+                "default": "50",
+                "description": "limit",
+                "type": "string"
+              }
+            },
+            "required": [
+              "currency_pair",
+              "limit"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190024",
+          "slug": "liq-gecko-base-trending",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must convey bid/ask order-book depth or pool liquidity for the pair asked.",
+          "yamlUrl": "https://paste.rs/ie5EZ",
+          "inputSchema": {
+            "properties": {
+              "network": {
+                "default": "base",
+                "description": "network",
+                "type": "string"
+              }
+            },
+            "required": [
+              "network"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72005",
+          "slug": "liq-gecko-eth-pools",
+          "description": "GeckoTerminal Ethereum pools. Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/oSvIC",
+          "inputSchema": {
+            "properties": {
+              "page": {
+                "default": "1",
+                "description": "Page",
+                "type": "string"
+              }
+            },
+            "required": [
+              "page"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190025",
+          "slug": "liq-gecko-eth-usdc-pool",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must convey bid/ask order-book depth or pool liquidity for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-gecko-eth-usdc-pool-b0307a23.yaml",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                "description": "address",
+                "type": "string"
+              },
+              "network": {
+                "default": "eth",
+                "description": "network",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address",
+              "network"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72006",
+          "slug": "liq-gecko-pool",
+          "description": "GeckoTerminal specific pool depth. Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/CQjHB",
+          "inputSchema": {
+            "properties": {
+              "address": {
+                "default": "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640",
+                "description": "Pool address",
+                "type": "string"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190026",
+          "slug": "liq-gecko-search-eth",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must convey bid/ask order-book depth or pool liquidity for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-gecko-search-eth-5d92853b.yaml",
+          "inputSchema": {
+            "properties": {
+              "network": {
+                "default": "eth",
+                "description": "network",
+                "type": "string"
+              },
+              "query": {
+                "default": "WETH USDC",
+                "description": "query",
+                "type": "string"
+              }
+            },
+            "required": [
+              "query",
+              "network"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72004",
+          "slug": "liq-gecko-trending",
+          "description": "GeckoTerminal trending pools. Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/X5Z08",
+          "inputSchema": {
+            "properties": {
+              "page": {
+                "default": "1",
+                "description": "Page",
+                "type": "string"
+              }
+            },
+            "required": [
+              "page"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190142",
+          "slug": "liq-gemini-book",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-gemini-book-cf510411.yaml",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190143",
+          "slug": "liq-htx-depth",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-htx-depth-0ca2029e.yaml",
+          "inputSchema": {
+            "properties": {
+              "symbol": {
+                "default": "btcusdt",
+                "description": "symbol",
+                "type": "string"
+              },
+              "type": {
+                "default": "step0",
+                "description": "type",
+                "type": "string"
+              }
+            },
+            "required": [
+              "symbol",
+              "type"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190144",
+          "slug": "liq-kraken-depth",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-kraken-depth-b0d20509.yaml",
+          "inputSchema": {
+            "properties": {
+              "count": {
+                "default": "50",
+                "description": "count",
+                "type": "string"
+              },
+              "pair": {
+                "default": "XBTUSD",
+                "description": "pair",
+                "type": "string"
+              }
+            },
+            "required": [
+              "pair",
+              "count"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190145",
+          "slug": "liq-kucoin-book",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-kucoin-book-f2a578fd.yaml",
+          "inputSchema": {
+            "properties": {
+              "symbol": {
+                "default": "BTC-USDT",
+                "description": "symbol",
+                "type": "string"
+              }
+            },
+            "required": [
+              "symbol"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72007",
+          "slug": "liq-llama-dexs",
+          "description": "DefiLlama DEX overview liquidity volumes. Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/wv1Oh",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72008",
+          "slug": "liq-llama-fees",
+          "description": "DefiLlama fees overview as liquidity activity. Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/YlTs3",
+          "inputSchema": {
+            "properties": {},
+            "required": [],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "190146",
+          "slug": "liq-mexc-depth",
+          "description": "Semantic V2 miner for LIQUIDITY_DEPTH_VERIFY. Measures bid-ask order book depth, cumulative slippage bands, and market maker liquidity across decentralized pools. Capture pin answers: Must return the live bid/ask order book (depth levels) for the pair asked.",
+          "yamlUrl": "https://omni-chat.13.237.89.59.sslip.io/miner-yamls/liq-mexc-depth-f05e03fc.yaml",
+          "inputSchema": {
+            "properties": {
+              "limit": {
+                "default": "50",
+                "description": "limit",
+                "type": "string"
+              },
+              "symbol": {
+                "default": "BTCUSDT",
+                "description": "symbol",
+                "type": "string"
+              }
+            },
+            "required": [
+              "symbol",
+              "limit"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "72010",
+          "slug": "liq-paraswap-tokens",
+          "description": "ParaSwap tradable tokens (liquidity venues). Intent LIQUIDITY_DEPTH_VERIFY.\n",
+          "yamlUrl": "https://paste.rs/dyW8c",
+          "inputSchema": {
+            "properties": {
+              "network": {
+                "default": "1",
+                "description": "Network",
+                "type": "string"
+              }
+            },
+            "required": [
+              "network"
+            ],
+            "type": "object"
+          },
+          "outputSchema": null
+        },
+        {
+          "id": "7373",
+          "slug": "verifywire-liquidity-depth",
+          "description": "Bid-ask spread, book depth and the slippage a stated trade size would incur for a named market. A crypto pair is walked on the Kraken public order book, so the spread, the depth within two percent of mid and the average fill price are live reads. When a chain is named the WETH/USDC style pool is quoted on the Uniswap v3 QuoterV2 contract over public RPC, so the slippage is the pool's own answer. Answers the LIQUIDITY_DEPTH_VERIFY intent. No API key, nothing cached that can go stale.\n",
+          "yamlUrl": "https://raw.githubusercontent.com/zkasuran/telegraph-catalog-miners/master/verifywire-liquidity-depth.yaml",
+          "inputSchema": {
+            "properties": {
+              "chain": {
+                "description": "Chain for an on-chain pool quote, for example base. Omit for a centralized book.",
+                "type": "string"
+              },
+              "pair": {
+                "description": "Market or pair, for example BTC/USD or WETH/USDC.",
+                "type": "string"
+              },
+              "question": {
+                "description": "The full natural-language question, verbatim, for example \"What is the bid-ask spread and slippage on a 50 ETH sell into the WETH/USDC pool on Base?\". The miner reads the pair, size and any chain from it, so passing the whole question works as well as the structured fields.\n",
+                "type": "string"
+              },
+              "size": {
+                "description": "Trade size in the base asset, for the slippage estimate.",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "outputSchema": {
+            "properties": {
+              "as_of": {
+                "description": "ISO 8601 timestamp of the read.",
+                "type": "string"
+              },
+              "confidence": {
+                "description": "0.96 for a book quote, 0.95 for an on-chain pool quote.",
+                "type": "number"
+              },
+              "market_type": {
+                "description": "central limit order book or on-chain AMM pool.",
+                "type": "string"
+              },
+              "mid_price": {
+                "description": "Mid price for a book quote.",
+                "type": "number"
+              },
+              "pair": {
+                "description": "The market the answer is for.",
+                "type": "string"
+              },
+              "slippage_percent": {
+                "description": "Slippage of the stated size against mid or spot, as a percentage.",
+                "type": "number"
+              },
+              "spread": {
+                "description": "Ask minus bid for a book quote.",
+                "type": "number"
+              },
+              "spread_bps": {
+                "description": "Spread in basis points of the mid.",
+                "type": "number"
+              },
+              "summary": {
+                "description": "One sentence with the spread, the depth and the slippage for the size.",
+                "type": "string"
+              },
+              "trade_size": {
+                "description": "The trade size the slippage is for.",
+                "type": "number"
+              },
+              "venue": {
+                "description": "Kraken for a book, Uniswap v3 for an on-chain pool.",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        }
+      ]
+    }
+  ],
+  "evaluatorPool": {
+    "intent_id": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+    "counts": [
+      {
+        "status": "eligible",
+        "count": 56
+      }
+    ],
+    "by_state": {
+      "eligible": 56
+    },
+    "submitters": 1,
+    "eligible_submitters": 1,
+    "snapshot": {
+      "corpus_version": "dbc273c044fe413ea05409468943d73c7a9b7f1991eed85b36c115d0153dacda",
+      "rows": 56,
+      "submitters": 1,
+      "qualification": 27,
+      "ranking": 29,
+      "ranking_split_bps": 5000,
+      "quality_rules_version": "evalpool-quality-v1",
+      "published_at": "2026-10-30T12:27:22.031624Z",
+      "activation_epoch": 1609
+    },
+    "active_snapshot": {
+      "corpus_version": "dbc273c044fe413ea05409468943d73c7a9b7f1991eed85b36c115d0153dacda",
+      "rows": 56,
+      "submitters": 1,
+      "qualification": 27,
+      "ranking": 29,
+      "ranking_split_bps": 5000,
+      "quality_rules_version": "evalpool-quality-v1",
+      "published_at": "2026-10-30T12:27:22.031624Z",
+      "activation_epoch": 1609
+    },
+    "current_epoch": 1947,
+    "min_submitters": 5
+  },
+  "acceptanceBeforeAnotherReview": [
+    "Confirm Engine routing to providers that answer the exact requested token and chain.",
+    "Resolve the recorded paid liquidity failure and audit routing failure with the upstream operator.",
+    "Confirm a supported Intent/schema for contract state at an explicit block.",
+    "Confirm executable USD depth for the exact token, chain and notional, including route/fee/slippage constraints; reserve value is insufficient.",
+    "Do not treat a catalogue entry, advertised schema or empty leaderboard as proof that a provider succeeds or fails."
+  ]
+}

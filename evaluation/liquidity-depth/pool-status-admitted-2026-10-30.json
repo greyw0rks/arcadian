@@ -1,0 +1,1 @@
+{"intent_id":"LIQUIDITY_DEPTH_VERIFY_GENERAL","counts":[{"status":"admitted","count":56}],"by_state":{"admitted":56},"submitters":1,"eligible_submitters":0,"snapshot":null,"active_snapshot":null,"current_epoch":1608,"min_submitters":5}

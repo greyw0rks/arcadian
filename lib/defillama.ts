@@ -86,5 +86,5 @@ export function findPools(
   }
 
   // Sort by TVL descending — most significant pool first
-  return results.sort((a, b) => (b.tvlUsd ?? 0) - (a.tvlUsd ?? 0)).slice(0, 5);
+  return [...results].sort((a, b) => (b.tvlUsd ?? 0) - (a.tvlUsd ?? 0)).slice(0, 5);
 }

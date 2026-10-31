@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-29T16:45:14.480568+00:00",
+  "intent_id": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+  "dataset_sha256": "febfa4a930d02f68cb98a55a35ab39537d4ce35ec22df5375b21abf1bd002ed7",
+  "source_commit": "5fa5d68bbcf76aaa2093c5d0578f53462bc0e36e",
+  "source_url": "https://github.com/telegraphprotocol/telegraph-wasm-baseline/blob/5fa5d68bbcf76aaa2093c5d0578f53462bc0e36e/wide_runtime/train_adapter.py",
+  "source_sha256": "537174609914de0a23a72c488fc508bad63cf4982949019e57540864c9c3b3c3",
+  "python_version": "3.14.4",
+  "numpy_version": "2.3.3",
+  "gate": {
+    "ok": false,
+    "n": 24,
+    "metrics": {
+      "unique_rejected_frac": 1.0,
+      "top_rejected_share": 0.0417,
+      "length_shortcut_acc": 0.6042,
+      "eval_negative_leak": 0.0,
+      "surface_probe_acc": 0.6667,
+      "mean_len_chosen": 208.7,
+      "mean_len_rejected": 212.7
+    },
+    "failures": [
+      "one 'rejected' answer is reused in 1/24 pairs (4.2% > 2%): 'The buy consumes 100 ALP at 2.00 and 150 at 2.10, costing 515 USDC. VWAP is 2.06 USDC per '",
+      "a bag-of-words probe tells chosen from rejected at 66.7% (> 65%) without seeing the prompt: the negatives share a surface style the model will learn instead of the task"
+    ]
+  },
+  "scope": "Official dataset gate only. No training, semantic validation, hidden test or network eligibility check."
+}

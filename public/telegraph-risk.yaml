@@ -3,201 +3,133 @@ kind: miner
 id: 2847
 slug: arcadian-defi-risk
 protocol: generic
-name: "Arcadian — DeFi Risk Score Miner"
+name: "Arcadian — DeFi TVL and Yield"
 description: >
-  Answers DeFi risk, yield and TVL questions with a verifiable 0-100 risk score (lower = safer) for any protocol, chain and asset. Every answer leads with a number-first sentence and names its sources. Six auditable components, each reproducible against public data: apy_credibility (0-20, DefiLlama sigma + outlier flag + 30d trend + reward ratio), liquidity_depth (0-20, TVL tiers + 30d drawdown), exploit_history (0-20, 1246 real DefiLlama hack records matched to the protocol and weighted by recency and net loss), protocol_maturity (0-20, audit count, listing age, fork status), concentration (0-10, LP vs single-sided, stable vs volatile), reward_token (0-10, CoinGecko market cap rank + 30d volatility). Accepts a plain-language question or explicit parameters; when no protocol is named it discovers every protocol offering the asset on that chain and ranks them safest-first.
+  Supplies deterministic DeFi measurements for TVL_LOOKUP and CRYPTO_YIELD_RATE.
+  TVL is the complete DefiLlama protocol or protocol-chain figure, or an exact
+  pool's TVL. Yield is the observed APY of an exact pool or the disclosed
+  TVL-weighted top-five pool sample for a named protocol. Each answer includes
+  the measured value, units, scope, source URL, retrieval time and cache limit.
+  Pool research is available separately; this miner does not claim to audit
+  bytecode, detect fraud, or measure executable trading depth.
 
 base_url: https://arcadian-gamma.vercel.app
-
 docs:
-  website: https://arcadian-gamma.vercel.app
+  website: https://arcadian-gamma.vercel.app/desk
   repository: https://github.com/greyw0rks/arcadian
 
-limitations: >
-  Scores describe the top 5 pools by TVL per protocol, not every pool; pools_scored and pools_available report the split. Data is only as current as the DefiLlama and CoinGecko free endpoints, cached for up to 60s. Exploit matching is by protocol brand name and DefiLlama id, so an unlinked incident recorded under a different brand can be missed. A low score is a data-derived risk signal, not investment advice.
+limitations:
+  - code: PUBLIC_FEED_FRESHNESS
+    message: "Public-feed observations may be older than their retrieval time. Pool data is cached up to 60 seconds; protocol metadata up to 300 seconds."
+  - code: YIELD_SAMPLE_SCOPE
+    message: "Protocol yield uses at most five pools by TVL. The response identifies every sampled pool and the measured scope. This is not a promised return."
+  - code: TVL_NOT_TRADE_DEPTH
+    message: "TVL is locked value, not executable liquidity or a maximum safe trade size."
 
 auth:
   type: none
-
 rate_limit_per_sec: 10
 cache_ttl_sec: 60
 circuit_threshold: 5
 circuit_cooldown_seconds: 30
+errors:
+  message_path: error
 
 endpoints:
-  - path: /ask
-    external_path: /api/telegraph/risk
+  - path: /measure
+    external_path: /api/telegraph/measure
     method: POST
     description: >
-      Answer a plain-language DeFi risk, yield or TVL question. Chain, asset and protocol are extracted from the question, so no parameters are required.
+      Return a deterministic TVL or yield measurement. Select intent
+      TVL_LOOKUP or CRYPTO_YIELD_RATE and name a protocol, exact pool_id, or a
+      query naming a protocol. Optional chain scopes the protocol measurement.
+      TVL_LOOKUP rejects asset-filtered protocol totals; name a pool_id for
+      pool TVL. CRYPTO_YIELD_RATE accepts an optional asset filter.
     content_type: application/json
-    intents: [FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION]
-  - path: /risk
-    external_path: /api/telegraph/risk
-    method: POST
-    description: Score a DeFi pool or protocol by risk (0-100, lower = safer).
-    content_type: application/json
-    intents: [FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION]
-  - path: /risk/query
-    external_path: /api/telegraph/risk
-    method: GET
-    description: Score via query params, or a free-text question in `query`.
-    intents: [FINANCIAL_DATA, TVL_LOOKUP, FRAUD_DETECTION]
-    param_map:
-      query: query
-      protocol: protocol
-      chain: chain
-      asset: asset
-      pool_id: pool_id
+    intents: [TVL_LOOKUP, CRYPTO_YIELD_RATE]
+    params:
+      body:
+        required:
+          - name: intent
+            type: string
+            intents: ["*"]
+            description: "Choose the measurement matching the requested Intent."
+            accepted_fields:
+              - value: TVL_LOOKUP
+                intents: [TVL_LOOKUP]
+                description: "Complete protocol or protocol-chain TVL in USD, or exact pool TVL."
+              - value: CRYPTO_YIELD_RATE
+                intents: [CRYPTO_YIELD_RATE]
+                description: "Observed APY for an exact pool or a disclosed protocol pool sample."
+        optional:
+          - name: query
+            type: string
+            intents: ["*"]
+            description: "Question naming a protocol, e.g. 'What is the TVL of Aave on Base?'"
+          - name: protocol
+            type: string
+            intents: ["*"]
+            description: "DefiLlama protocol slug or name. Supply protocol, pool_id or a query naming one."
+          - name: chain
+            type: string
+            intents: ["*"]
+            description: "Optional exact DefiLlama chain name, e.g. Base or Ethereum."
+          - name: asset
+            type: string
+            intents: [CRYPTO_YIELD_RATE]
+            description: "Optional asset symbol for yield pool selection, e.g. USDC."
+          - name: pool_id
+            type: string
+            intents: ["*"]
+            description: "Exact DefiLlama pool UUID. Takes precedence over protocol selection."
 
 input_schema:
   type: object
+  required: [intent]
   properties:
+    intent:
+      type: string
+      enum: [TVL_LOOKUP, CRYPTO_YIELD_RATE]
     query:
       type: string
-      description: "Plain-language question, e.g. 'Is Aave on Base safe for USDC?' or 'What is the TVL of Curve on Ethereum?'. Chain, asset and protocol are extracted from it."
     protocol:
       type: string
-      description: "DefiLlama protocol slug, e.g. 'aave-v3', 'compound-v3', 'curve'"
     chain:
       type: string
-      description: "Chain name, e.g. 'Ethereum', 'Arbitrum', 'Base', 'Polygon'"
     asset:
       type: string
-      description: "Token symbol, e.g. 'USDC', 'WETH', 'DAI'"
     pool_id:
       type: string
-      description: "Exact DefiLlama pool UUID for a specific pool"
 
 output_schema:
   type: object
-  required:
-    - signal
-    - risk_score
-    - verdict
-    - apy_bps
-    - tvl_k
-    - confidence
+  required: [intent, signal, value, unit, scope, source_url, retrieved_at]
   properties:
-    signal:
-      type: string
-      description: "Number-first plain-english answer, e.g. 'aave-v3 on Base scores 12/100 (LOW_RISK, lower is safer) for USDC.'"
-    risk_score:
-      type: integer
-      minimum: 0
-      maximum: 100
-      description: "Composite risk score — lower is safer"
-    verdict:
-      type: string
-      enum:
-        - LOW_RISK
-        - MEDIUM_RISK
-        - HIGH_RISK
-        - VERY_HIGH_RISK
-    apy_bps:
-      type: integer
-      description: "APY in basis points (APY% × 100), e.g. 825 = 8.25%"
-    tvl_k:
-      type: integer
-      description: "TVL in thousands USD floored, e.g. 4500 = $4.5M"
-    confidence:
-      type: integer
-      minimum: 0
-      maximum: 100
     intent:
       type: string
-      description: "Which intent the question was classified as"
-    resolved_via:
+    signal:
       type: string
-      description: "'question' when extracted from free text, 'params' when named explicitly"
-    components:
-      type: object
-      properties:
-        apy_credibility:
-          type: integer
-          minimum: 0
-          maximum: 20
-        liquidity_depth:
-          type: integer
-          minimum: 0
-          maximum: 20
-        exploit_history:
-          type: integer
-          minimum: 0
-          maximum: 20
-        protocol_maturity:
-          type: integer
-          minimum: 0
-          maximum: 20
-        concentration:
-          type: integer
-          minimum: 0
-          maximum: 10
-        reward_token:
-          type: integer
-          minimum: 0
-          maximum: 10
-    flags:
-      type: array
-      items:
-        type: string
-    explanation:
+    value:
+      type: number
+    unit:
       type: string
-    protocol:
+    scope:
       type: string
-    chain:
+    source_url:
       type: string
-    symbol:
+    retrieved_at:
       type: string
-    pool_id:
-      type: string
-    data_sources:
-      type: array
-      items:
-        type: string
+    source_updated_at:
+      type: ["string", "null"]
+    maximum_cache_age_seconds:
+      type: integer
+    confidence:
+      type: number
+      minimum: 0
+      maximum: 1
 
 semantics:
   signal_mapping:
     label_field: signal
     confidence_field: confidence
-    reason_field: explanation
-  supported_intents:
-    - FINANCIAL_DATA
-    - TVL_LOOKUP
-    - FRAUD_DETECTION
-
-on_chain:
-  description: "DeFi protocol risk score with APY and TVL as on-chain integers"
-  transform: direct
-  min_price_usdc: 0.01
-  fields:
-    integers:
-      - index: 0
-        name: risk_score
-        description: "Composite risk score 0-100 (lower = safer)"
-        source_path: risk_score
-      - index: 1
-        name: apy_bps
-        description: "APY in basis points (APY% × 100)"
-        source_path: apy_bps
-      - index: 2
-        name: tvl_k
-        description: "TVL in thousands USD"
-        source_path: tvl_k
-      - index: 3
-        name: confidence
-        description: "Scoring confidence 0-100"
-        source_path: confidence
-    strings:
-      - index: 0
-        name: verdict
-        description: "Risk verdict: LOW_RISK | MEDIUM_RISK | HIGH_RISK | VERY_HIGH_RISK"
-      - index: 1
-        name: signal
-        description: "Number-first plain-english answer"
-  request:
-    - endpoint: /ask
-      method: POST
-      body:
-        query:
-          source: strings.0
+  supported_intents: [TVL_LOOKUP, CRYPTO_YIELD_RATE]

@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-30T12:19:14.269Z",
+  "chainId": 11155111,
+  "token": "0xcc194e1a843B658526D0D5C431f670028582Ae17",
+  "receiver": "0x3624EB012B5E998BB57B6bE6C9Cfc9c4bc5eb99b",
+  "payer": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+  "finalizedBlock": "12026556",
+  "finalizedBlockHash": "0xf9fbd97862c3d19a4ad363a1f587ac162275459bf5ee2e9bce83043de5a3b27e",
+  "paymentSigned": false,
+  "paymentSent": false,
+  "tokenName": "USD Coin",
+  "tokenSymbol": "USDC",
+  "tokenDecimals": 6,
+  "payerBalanceAtomic": "0",
+  "domainSeparator": "0xf71b96bf28e312f92956e7aec85346ed0a0e4ecd76f5b5d62293e82187125032",
+  "receiverUsdcToken": "0xcc194e1a843B658526D0D5C431f670028582Ae17",
+  "tokenCode": true,
+  "receiverCode": true,
+  "advertisedDomainMatches": true,
+  "receiverTokenMatches": true,
+  "scope": "Onchain deployment consistency only; token issuer, funding source and successful Telegraph purchases are not established by these reads."
+}

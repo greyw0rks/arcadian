@@ -1,5 +1,10 @@
 .next/
 node_modules/
-.env.local
+.env*
+!.env.local.example
+.impeccable/
+.atlas/
 *.tsbuildinfo
 .vercel
+.data/
+.evidence/

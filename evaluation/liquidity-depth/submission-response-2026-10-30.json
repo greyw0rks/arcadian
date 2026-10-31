@@ -1,0 +1,25 @@
+{
+  "completedAt": "2026-10-30T12:22:37.470Z",
+  "httpStatus": 200,
+  "submitter": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+  "chainId": 11155111,
+  "bodySha256": "f0b0a0e97b21d92aafab718a5641b00d1b21ab7aa302f9ee4a252a94f847bad5",
+  "bytes": 48124,
+  "submittedRows": 56,
+  "result": {
+    "intent_id": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+    "submitter": "0x2c051ed5452b3630b2151203d5003b759ecbfdf1",
+    "signed": true,
+    "received": 56,
+    "accepted": 56,
+    "duplicate": 0,
+    "rejected": 0,
+    "curated": 56,
+    "state_counts": {
+      "admitted": 56
+    }
+  },
+  "submissionSignatureCreated": true,
+  "paymentSigned": false,
+  "paymentSent": false
+}

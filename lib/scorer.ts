@@ -349,6 +349,8 @@ export async function scoreMany(pools: LlamaPool[]): Promise<RiskResult> {
   return {
     ...rep,
     risk_score: rounded,
+    tvl_usd: Math.round(totalTvl),
+    apy: results.reduce((s, r) => s + r.apy * weightOf(r), 0),
     verdict: verdictFromScore(rounded),
     flags: allFlags,
     sources: allSources,

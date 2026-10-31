@@ -1,0 +1,1695 @@
+{
+  "ok": true,
+  "state": "incomplete",
+  "review": {
+    "id": "9706dc68-b433-4283-bd6f-07ba7fcf42ca",
+    "state": "complete",
+    "createdAt": "2026-10-30T12:38:01.528Z",
+    "updatedAt": "2026-10-30T12:43:55.269Z",
+    "reconciliationRequired": false,
+    "checks": [
+      {
+        "intent": "LIQUIDITY_DEPTH_VERIFY",
+        "minerSlug": "unresolved",
+        "minerName": "Unresolved provider",
+        "minerId": null,
+        "rank": null,
+        "finding": "",
+        "riskScore": null,
+        "verdict": null,
+        "observation": null,
+        "paid": true,
+        "paymentSubmitted": true,
+        "amountAtomic": "10000",
+        "txHash": "0xb7c4c2c39b9cb57f48149e41517ac1a185fa8492f4c1106847a0666e2ea47690",
+        "authorizationNonce": "0x154a2fac6e9559ceec9ac7ed263bc646d1f42bb35f42f23b190a1cca569f69cc",
+        "settlementBlock": "12026724",
+        "receipt": null,
+        "receiptVerified": false,
+        "signalHash": null,
+        "signalVerified": false,
+        "signalLink": null,
+        "query": "Perform LIQUIDITY_DEPTH_VERIFY_GENERAL for token contract 0x4200000000000000000000000000000000000006 on Base (chain ID 8453), proposed trade USD 1000. Report executable depth in USD as metric executable_depth_usd and numeric value. TVL is not executable depth. Return subject.token_address, subject.chain_id, observed_at as an ISO timestamp, confidence from 0 to 1, risk_score from 0 to 100, status as pass/block/unknown, signal, and flags. Unknown evidence must remain unknown.",
+        "requestedIntent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+        "authorization": {
+          "from": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+          "to": "0x3624EB012B5E998BB57B6bE6C9Cfc9c4bc5eb99b",
+          "value": "10000",
+          "validAfter": "0",
+          "validBefore": "1793363947",
+          "nonce": "0x154a2fac6e9559ceec9ac7ed263bc646d1f42bb35f42f23b190a1cca569f69cc"
+        },
+        "engineError": {
+          "code": "upstream call failed: status 502: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>\r\n",
+          "message": null
+        },
+        "error": "Engine returned 500; retain payment evidence before retrying",
+        "responseError": "Engine returned 500; retain payment evidence before retrying"
+      },
+      {
+        "intent": "ONCHAIN_METRIC_VERIFY",
+        "minerSlug": "ocm-blockchain-stats",
+        "minerName": "Blockchain.info Metrics",
+        "minerId": "71008",
+        "rank": null,
+        "finding": "Provider returned no structured finding for this trade",
+        "riskScore": null,
+        "verdict": "unknown",
+        "observation": {
+          "subjectBound": false,
+          "observedAt": null,
+          "status": "unknown",
+          "riskScore": null,
+          "confidence": null,
+          "flags": [],
+          "liquidityUsd": null,
+          "summary": "Provider returned no structured finding for this trade"
+        },
+        "paid": true,
+        "paymentSubmitted": true,
+        "amountAtomic": "10000",
+        "txHash": "0x5cb979951a41dccfa44d2ceb28ba88849c7f0b29419b47946ff1efed3de48d46",
+        "authorizationNonce": "0x07b419ca11623fb3d9fb0d5ebefc340d6678568ae172d885729304480c22e3a9",
+        "settlementBlock": "12026724",
+        "receipt": {
+          "receipt_hash": "0xe51c55e3456d666320310df7a2102ab5c3fe9636818be50e08996305cfed6ba6",
+          "rail": "x402",
+          "payer": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+          "miner": "3626",
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 1611,
+          "settlement": "onchain",
+          "chain": "eip155:11155111",
+          "tx_hash": "0x5cb979951a41dccfa44d2ceb28ba88849c7f0b29419b47946ff1efed3de48d46",
+          "timestamp": 1793363900
+        },
+        "receiptVerified": true,
+        "signalHash": "0xc3f4f3665a778c5c7a11cf220df0943c2d71a3ce8b0691cb257cd8adab87a8d9",
+        "signalVerified": true,
+        "signalLink": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xc3f4f3665a778c5c7a11cf220df0943c2d71a3ce8b0691cb257cd8adab87a8d9",
+        "query": "Perform ONCHAIN_METRIC_VERIFY_GENERAL for token contract 0x4200000000000000000000000000000000000006 on Base (chain ID 8453): read totalSupply() with calldata 0x18160ddd, return the numeric block height, raw return and decoded unsigned value. Do not use the literal 'latest' as the block anchor. Return subject.token_address, subject.chain_id, observed_at as an ISO timestamp, confidence from 0 to 1, risk_score from 0 to 100, status as pass/block/unknown, signal, and flags. Unknown evidence must remain unknown.",
+        "requestedIntent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+        "authorization": {
+          "from": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+          "to": "0x3624EB012B5E998BB57B6bE6C9Cfc9c4bc5eb99b",
+          "value": "10000",
+          "validAfter": "0",
+          "validBefore": "1793363947",
+          "nonce": "0x07b419ca11623fb3d9fb0d5ebefc340d6678568ae172d885729304480c22e3a9"
+        },
+        "receivedAt": "2026-10-30T12:38:19.742Z",
+        "reportedIntent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+        "rawResult": "<!DOCTYPE html>\n<html>\n<head>\n    \n    <title>Bitcoin Stats</title>\n    \n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n    <link rel=\"stylesheet\" href=\"https://blockchain.info/Resources/overrides.min.css?1793201916\">\n    <link rel=\"stylesheet\" href=\"https://blockchain.info/Resources/css/blockchain.css?1793201916\">\n\n    <script src=\"https://blockchain.info/Resources/js/jquery.min.js?1793201916\" type=\"text/javascript\"></script>\n    <script type=\"text/javascript\" src=\"https://blockchain.info/Resources/js/bootstrap.min.js?1793201916\"></script>\n    <script type=\"text/javascript\" src=\"https://blockchain.info/Resources/js/shared.min.js?1793201916\"></script>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\">\n    <script src=\"https://blockchain.info/Resources/analytics.js?1793201916\"></script>\n\n    <script type=\"text/javascript\" src=\"https://blockchain.info/charts/assets/language.js?1793201916\"></script>\n    <link rel=\"stylesheet\" href=\"https://blockchain.info/charts/assets/charts.css?1793201916\">\n\n    <link rel=\"alternate\" hreflang=\"x-default\" href=\"https://blockchain.info/stats\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/id/stats\" hreflang=\"id\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ms/stats\" hreflang=\"ms\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/da/stats\" hreflang=\"da\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/de/stats\" hreflang=\"de\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/en/stats\" hreflang=\"en\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/es/stats\" hreflang=\"es\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/fr/stats\" hreflang=\"fr\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/it/stats\" hreflang=\"it\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/hu/stats\" hreflang=\"hu\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/nl/stats\" hreflang=\"nl\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/no/stats\" hreflang=\"no\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/pl/stats\" hreflang=\"pl\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/pt/stats\" hreflang=\"pt\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ro/stats\" hreflang=\"ro\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/sl/stats\" hreflang=\"sl\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/fi/stats\" hreflang=\"fi\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/sv/stats\" hreflang=\"sv\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/vi/stats\" hreflang=\"vi\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/tr/stats\" hreflang=\"tr\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/el/stats\" hreflang=\"el\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ru/stats\" hreflang=\"ru\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/bg/stats\" hreflang=\"bg\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/hi/stats\" hreflang=\"hi\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/th/stats\" hreflang=\"th\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/zh-cn/stats\" hreflang=\"zh-cn\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/zh-tw/stats\" hreflang=\"zh-tw\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ja/stats\" hreflang=\"ja\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ko/stats\" hreflang=\"ko\">\n    \n\n    \n    <script type=\"text/javascript\" src=\"/charts/assets/charts-common.js?1793201916\"></script>\n    <script type=\"text/javascript\" src=\"/charts/assets/stats.js?1793201916\"></script>\n\n    <link href=\"https://www.blockchain.com/stats\" rel=\"canonical\" />\n    <link rel=\"stylesheet\" href=\"/charts/assets/stats.css?1793201916\">\n\n    <meta name=\"twitter:card\" content=\"summary\" />\n    <meta name=\"twitter:creator\" content=\"@Blockchain\" />\n    <meta name=\"twitter:site\" content=\"@Blockchain\" />\n\n    <meta property=\"og:site_name\" content=\"Blockchain.com\" />\n    <meta property=\"og:rich_attachment\" content=\"true\" />\n    <meta property=\"og:type\" content=\"website\" />\n    <meta property=\"og:image:type\" content=\"image/png\" />\n    <meta property=\"fb:profile_id\" content=\"360193500679903\" />\n\n    <meta property=\"og:description\" content=\"Find live Bitcoin stats, including market price, mining revenue, number of Bitcoin transactions and more. Explore detailed Bitcoin data today.\" />\n    <meta property=\"og:title\" content=\"Bitcoin currency statistics\" />\n    <meta property=\"og:url\" content=\"https://www.blockchain.com/stats\" />\n\n\n    \n    <meta name=\"description\" content=\"Find live Bitcoin stats, including market price, mining revenue, number of Bitcoin transactions and more. Explore detailed Bitcoin data today. - Blockchain\">\n    \n\n</head>\n<body class=\"charts opaque-nav\" data-explorer=\"https://www.blockchain.com\" data-endpoint=\"https://api.blockchain.info/\" data-lang=\"en\" style=\"padding-bottom: 0px\">\n  <nav role=\"navigation\">\n    <ul class=\"igation\">\n      <li>\n        <a class=\"bc-logo\" href=\"https://www.blockchain.com\">\n          <img src=\"https://blockchain.info/Resources/white-blockchain.svg\" alt=\"Blockchain\" />\n        </a>\n        <button class=\"menu-button\">\n          <span></span>\n        </button>\n        <button class=\"search-button\" type=\"button\"></button>\n      </li>\n      <li class=\"with-children\">\n        <a href=\"https://blockchain.info/wallet\" id=\"wallet-link\">Wallet</a>\n        <ul>\n          <li><a href=\"https://blockchain.info/wallet/#/login\">Login</a></li>\n        </ul>\n      </li>\n      <li class=\"with-children\">\n        <a href=\"https://blockchain.info\">Data</a>\n        <ul>\n          <li><a href=\"https://blockchain.info/charts\">Charts</a></li>\n          <li><a href=\"https://blockchain.info/stats\">Stats</a></li>\n          <li><a href=\"https://blockchain.info/markets\">Markets</a></li>\n        </ul>\n      </li>\n      <li class=\"with-children\">\n        <a href=\"https://blockchain.info/api\">API</a>\n        <ul>\n          <li><a href=\"https://www.blockchain.com/enterprise\">Business</a></li>\n        </ul>\n      </li>\n      <li class=\"with-children\">\n        <a href=\"https://www.blockchain.com/about\">About</a>\n        <ul>\n          <li><a href=\"https://www.blockchain.com/team\">Team</a></li>\n          <li><a href=\"https://www.blockchain.com/careers\">Careers</a></li>\n          <li><a href=\"https://www.blockchain.com/press\">Press</a></li>\n          <li><a href=\"https://blog.blockchain.com\">Blog</a></li>\n        </ul>\n      </li>\n      <li class=\"flex-space\"></li>\n      <li>\n        <form action=\"https://blockchain.info/search\" class=\"search-form\" method=\"GET\">\n          <input class=\"search-bar\" name=\"search\" placeholder=\"block, hash, transaction, etc...\" type=\"text\" />\n        </form>\n      </li>\n      <li>\n        <a class=\"wallet-button\" href=\"https://blockchain.info/wallet/#/signup\" target=\"_blank\">Get A Free Wallet</a>\n      </li>\n    </ul>\n  </nav>\n\n    \n<div class=\"page-header bg-grey mvn pt-90\" style=\"border-style:none;\">\n  <h1 class=\"pv-50 mvn center\">\n    Bitcoin Stats\n    <br>\n    <!-- Needs Translation --><p class=\"f-18 em-300 mt-10 mbn container\">Summary of bitcoin statistics for the previous 24 hour period.</p><!-- Needs Translation -->\n  </h1>\n</div>\n<div class=\"container container-fake\">\n    <div class=\"alert alert-block alert-error\" style=\"display: none;\" id=\"statserror\">Error loading stats</div>\n\n    <div id=\"statstable\">\n      <div class=\"col-md-6 pln\">\n        <!-- Needs Translation --><h3 class=\"upper mb-25 center-tablet mt-40\">Block Summary</h3><!-- Needs Translation -->\n        <table class=\"table table-striped\">\n          <tr>\n              <td width=\"50%\">Blocks Mined</td>\n              <td colspan=\"2\" id=\"n_blocks_mined\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n          <tr>\n              <td>Time Between Blocks</td>\n              <td colspan=\"2\"><span id=\"minutes_between_blocks\"></span> minutes</td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n          <tr>\n              <td>Bitcoins Mined</td>\n              <td colspan=\"2\" id=\"n_btc_mined\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n        </table>\n      </div>\n      <div class=\"col-md-6 prn\">\n        <h3 class=\"upper mb-25 center-tablet mt-40\">Market Summary</h3>\n        <table class=\"table table-striped\">\n          <tr>\n              <td width=\"50%\">Market Price</td>\n              <td colspan=\"2\" id=\"market_price_usd\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/market-price\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Trade Volume</td>\n              <td colspan=\"2\" id=\"trade_volume_usd\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n          <tr>\n              <td>Trade Volume</td>\n              <td colspan=\"2\" id=\"trade_volume_btc\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n        </table>\n      </div>\n\n      <div class=\"col-md-12 phn\">\n        <!-- Needs Translation --><h3 class=\"upper mb-25 center-tablet mt-40\">Transaction Summary</h3><!-- Needs Translation -->\n        <table class=\"table table-striped\">\n          <tr>\n              <td width=\"45%\">Total Transaction Fees (BTC)</td>\n              <td id=\"total_fees_btc\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/transaction-fees\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Number of Transactions</td>\n              <td id=\"n_tx\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/n-transactions\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Total Output Volume (BTC)</td>\n              <td id=\"total_btc_sent\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/output-volume?daysAverageString=7\">View Chart</a></td>\n\n          </tr>\n          <tr>\n              <td>Estimated Transaction Volume (BTC)</td>\n              <td id=\"estimated_btc_sent\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/estimated-transaction-volume?daysAverageString=7\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Estimated Transaction Volume (USD)</td>\n              <td> <span id=\"estimated_transaction_volume_usd\"></span></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/estimated-transaction-volume-usd?daysAverageString=7\">View Chart</a></td>\n          </tr>\n        </table>\n      </div>\n\n      <div class=\"col-md-12 phn\">\n        <table class=\"table table-striped\">\n          <h3 class=\"upper mb-25 center-tablet mt-40\">Mining Cost</h3>\n          <tr>\n              <td width=\"45%\">Total Miners Revenue (USD)</td>\n              <td id=\"miners_revenue_usd\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/miners-revenue\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td class=\"capitalize\">% earned from transaction fees</td>\n              <td id=\"miners_revenue_percent_fees\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n          <tr>\n              <td class=\"capitalize\">% of transaction volume</td>\n              <td id=\"miners_revenue_percent_volume\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/cost-per-transaction-percent\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Cost per Transaction (USD)</td>\n              <td id=\"miners_cost_per_tx\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/cost-per-transaction\">View Chart</a></td>\n          </tr>\n        </table>\n      </div>\n\n      <div class=\"col-md-12 phn\">\n        <h3 class=\"upper mb-25 center-tablet mt-40\">Hash Rate and Electricity Consumption</h3>\n        <table class=\"table table-striped\">\n          <tr>\n              <td width=\"45%\">Difficulty</td>\n              <td id=\"difficulty\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/difficulty\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Hash Rate</td>\n              <td id=\"hash_rate\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/hash-rate\">View Chart</a></td>\n          </tr>\n        </table>\n      </div>\n\n      <div class=\"col-md-12 phn mb-40 f-14 links\">\n        <h3 class=\"upper mb-25 center-tablet mt-40\">Other Bitcoin Links</h3>\n        <div class=\"col-md-6 pln flex-column\">\n          <span><a href=\"/btc/unconfirmed-transactions\">Unconfirmed Transactions</a> - Transactions waiting to be included in a block</span>\n          <span><a href=\"/pools\">Mining Pool Stats</a> - Pie chart showing the market share of the top bitcoin mining pools</span>\n          <span><a href=\"/wallet\">My Wallet</a> - Manage your money with Bitcoin's most advanced web wallet.</span>\n        </div>\n      </div>\n    </div>\n</div>\n\n\n  <footer>\n    <div class=\"flex-container\">\n      <div class=\"footer-logo\">\n        <img alt=\"Blockchain Logo\" src=\"https://blockchain.info/Resources/bc-name-and-logo-dark-blue.svg\">\n      </div>\n      <div>\n        <h6>Products</h6>\n        <ol>\n          <li><a href=\"https://blockchain.info/wallet\">Wallet</a></li>\n          <li><a href=\"https://blockchain.info/api\">API</a></li>\n          <li><a href=\"https://www.blockchain.com/enterprise\" target=\"_blank\">Business</a></li>\n          <li><a href=\"https://www.blockchain.com/thunder\" target=\"_blank\">Thunder</a></li>\n          <li><a href=\"https://www.blockchain.com/research\" target=\"_blank\">Research</a></li>\n          <li><a href=\"https://blockchain.info\">Explorer</a></li>\n          <li><a href=\"https://blockchain.info/charts\">Charts</a></li>\n          <li><a href=\"https://blockchain.info/markets\">Markets</a></li>\n          <li><a href=\"https://blockchain.info/stats\">Stats</a></li>\n        </ol>\n      </div>\n      <div>\n        <h6>Company</h6>\n        <ol>\n          <li><a href=\"https://www.blockchain.com/about\" target=\"_blank\">About</a></li>\n          <li><a href=\"https://www.blockchain.com/team\" target=\"_blank\">Team</a></li>\n          <li><a href=\"https://www.blockchain.com/careers\" target=\"_blank\">Careers</a></li>\n          <li><a href=\"https://www.blockchain.com/interview\" target=\"_blank\">Interviewing</a></li>\n          <li><a href=\"https://www.blockchain.com/faq\" target=\"_blank\">FAQ</a></li>\n          <li><a href=\"https://www.blockchain.com/press\" target=\"_blank\">Press</a></li>\n          <li><a href=\"https://blog.blockchain.com\" target=\"_blank\">Blog</a></li>\n        </ol>\n      </div>\n      <div>\n        <h6>Support</h6>\n        <ol>\n          <li><a href=\"https://support.blockchain.com\" target=\"_blank\">Help Center</a></li>\n          <li><a href=\"https://blog.blockchain.com/category/tutorials-and-guides/\" target=\"_blank\">Tutorials</a></li>\n          <li><a href=\"https://blockchain.info/wallet/bitcoin-faq\">Learning Portal</a></li>\n          <li><a href=\"https://www.blockchain-status.com\" target=\"_blank\">Status</a></li>\n        </ol>\n      </div>\n      <div>\n        <div class=\"dropup\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <span class=\"upper blue f-12\">English</span>\n            <i class=\"icon-down_arrow blue f-8\"></i>\n          </a>\n          <ul class=\"dropdown-menu dropdown-menu-right languages_select\" id=\"languages_select\" style=\"min-width:20px\">\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/id/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"id\" title=\"Indonesian\"><span>Bahasa Indonesia</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ms/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ms\" title=\"Malay\"><span>Bahasa Melayu</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/da/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"da\" title=\"Danish\"><span>Dansk</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/de/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"de\" title=\"German\"><span>Deutsch</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/en/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"en\" title=\"English\"><span>English</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/es/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"es\" title=\"Spanish\"><span>Español</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/fr/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"fr\" title=\"French\"><span>Français</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/it/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"it\" title=\"Italian\"><span>Italiano</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/hu/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"hu\" title=\"Hungarian\"><span>Magyar</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/nl/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"nl\" title=\"Dutch\"><span>Nederlands</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/no/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"no\" title=\"Norwegian\"><span>Norsk</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/pl/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"pl\" title=\"Polish\"><span>Polski</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/pt/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"pt\" title=\"Portuguese\"><span>Português</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ro/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ro\" title=\"Romanian\"><span>Română</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/sl/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"sl\" title=\"Slovenian\"><span>Slovenščina</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/fi/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"fi\" title=\"Finnish\"><span>Suomi</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/sv/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"sv\" title=\"Swedish\"><span>Svenska</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/vi/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"vi\" title=\"Vietnam\"><span>Tiếng</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/tr/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"tr\" title=\"Turkish\"><span>Türkçe</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/el/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"el\" title=\"Greek\"><span>Ελληνικά</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ru/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ru\" title=\"Russian\"><span>Русский</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/bg/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"bg\" title=\"Bulgarian\"><span>български език</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/hi/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"hi\" title=\"Hindi\"><span>हिन्दी</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/th/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"th\" title=\"Thai\"><span>ภาษาไทย</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/zh-cn/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"zh-cn\" title=\"Chinese\"><span>中文(简体)</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/zh-tw/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"zh-tw\" title=\"Chinese\"><span>中文(繁體)</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ja/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ja\" title=\"Japanese\"><span>日本語</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ko/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ko\" title=\"Korean\"><span>한국어</span></a></li>\n            \n          </ul>\n        </div>\n      </div>\n    </div>\n    <div class=\"flex-container\">\n      <div class=\"copyright\">\n        <span>&copy;&nbsp;2017 Blockchain Luxembourg S.A. All Rights Reserved.</span>\n        <a href=\"https://blockchain.com/privacy\" target=\"_blank\">Privacy</a>\n        <a href=\"https://blockchain.com/terms\" target=\"_blank\">Terms</a>\n        <a href=\"https://blockchain.com/legal\" rel=\"noopener noreferrer\" target=\"_blank\">Law Enforcement Guide</a>\n        <a href=\"https://blockchain.info/advertise\" rel=\"noopener noreferrer\">Advertise</a>\n      </div>\n      <div class=\"social-media\">\n        <a href=\"https://play.google.com/store/apps/details?id=piuk.blockchain.android&hl=en\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/android-footer-logo.svg\" alt=\"Android App Icon\">\n        </a>\n        <a href=\"https://itunes.apple.com/us/app/blockchain-bitcoin-wallet/id493253309?mt=8\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/apple-footer-logo.svg\" alt=\"iOS App Icon\">\n        </a>\n        <a href=\"https://twitter.com/blockchain\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/twitter-footer-logo.svg\" alt=\"Twitter Icon\">\n        </a>\n        <a href=\"https://www.linkedin.com/company/blockchain\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/linkedin-footer-logo.svg\" alt=\"LinkedIn Icon\">\n        </a>\n        <a href=\"https://www.facebook.com/blockchain/\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/facebook-footer-logo.svg\" alt=\"Facebook Icon\">\n        </a>\n      </div>\n    </div>\n  </footer>\n  </body>\n</html>\n",
+        "durationMs": 2612,
+        "providerTimestamp": "2026-10-30T12:38:19.047302698Z",
+        "minerRegistrationId": "3626"
+      },
+      {
+        "intent": "SMART_CONTRACT_AUDIT",
+        "minerSlug": "unresolved",
+        "minerName": "Unresolved provider",
+        "minerId": null,
+        "rank": null,
+        "finding": "",
+        "riskScore": null,
+        "verdict": null,
+        "observation": null,
+        "paid": false,
+        "paymentSubmitted": false,
+        "amountAtomic": null,
+        "txHash": null,
+        "authorizationNonce": null,
+        "settlementBlock": null,
+        "receipt": null,
+        "receiptVerified": false,
+        "signalHash": null,
+        "signalVerified": false,
+        "signalLink": null,
+        "query": "Perform SMART_CONTRACT_AUDIT_GENERAL for token contract 0x4200000000000000000000000000000000000006 on Base (chain ID 8453): check honeypot, blocked sells, owner controls, proxy and drainer risk. Return subject.token_address, subject.chain_id, observed_at as an ISO timestamp, confidence from 0 to 1, risk_score from 0 to 100, status as pass/block/unknown, signal, and flags. Unknown evidence must remain unknown.",
+        "requestedIntent": "SMART_CONTRACT_AUDIT_GENERAL",
+        "engineError": {
+          "code": "could not route this question now, try again later",
+          "message": null
+        },
+        "error": "Engine returned 503",
+        "responseError": "Engine returned 503"
+      },
+      {
+        "intent": "WASH_TRADING_DETECTION",
+        "minerSlug": "wash-dex-boost",
+        "minerName": "DexScreener Token Boosts",
+        "minerId": "80004",
+        "rank": null,
+        "finding": "Provider returned no structured finding for this trade",
+        "riskScore": null,
+        "verdict": "unknown",
+        "observation": {
+          "subjectBound": false,
+          "observedAt": null,
+          "status": "unknown",
+          "riskScore": null,
+          "confidence": null,
+          "flags": [],
+          "liquidityUsd": null,
+          "summary": "Provider returned no structured finding for this trade"
+        },
+        "paid": true,
+        "paymentSubmitted": true,
+        "amountAtomic": "10000",
+        "txHash": "0xc4235f0773ca79212c366efb0b1f78801cc2bba192c31a2e5a66083bd2fcc67f",
+        "authorizationNonce": "0x4ce9e4dfc482a9c11adea0073629bf4a33f57cf0a1f39ce5365fafa89d0d69a5",
+        "settlementBlock": "12026724",
+        "receipt": {
+          "receipt_hash": "0xc4ade9214235044f51ac2956fba2f10d144f91302c7bf96de03b7f6070013fb9",
+          "rail": "x402",
+          "payer": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+          "miner": "4277",
+          "intent": "WASH_TRADING_DETECTION_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 1611,
+          "settlement": "onchain",
+          "chain": "eip155:11155111",
+          "tx_hash": "0xc4235f0773ca79212c366efb0b1f78801cc2bba192c31a2e5a66083bd2fcc67f",
+          "timestamp": 1793363899
+        },
+        "receiptVerified": true,
+        "signalHash": "0x04910c476a2261e173495485164e4f02b93bae8fcfec90534ea16ff5d5148d45",
+        "signalVerified": true,
+        "signalLink": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x04910c476a2261e173495485164e4f02b93bae8fcfec90534ea16ff5d5148d45",
+        "query": "Perform WASH_TRADING_DETECTION_GENERAL for token contract 0x4200000000000000000000000000000000000006 on Base (chain ID 8453): determine whether trading volume is artificial. Return subject.token_address, subject.chain_id, observed_at as an ISO timestamp, confidence from 0 to 1, risk_score from 0 to 100, status as pass/block/unknown, signal, and flags. Unknown evidence must remain unknown.",
+        "requestedIntent": "WASH_TRADING_DETECTION_GENERAL",
+        "authorization": {
+          "from": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+          "to": "0x3624EB012B5E998BB57B6bE6C9Cfc9c4bc5eb99b",
+          "value": "10000",
+          "validAfter": "0",
+          "validBefore": "1793363947",
+          "nonce": "0x4ce9e4dfc482a9c11adea0073629bf4a33f57cf0a1f39ce5365fafa89d0d69a5"
+        },
+        "receivedAt": "2026-10-30T12:38:19.557Z",
+        "reportedIntent": "WASH_TRADING_DETECTION_GENERAL",
+        "rawResult": [
+          {
+            "chainId": "solana",
+            "description": "The Financial Operating System\n\nFrom market discovery to on-chain action in one workspace.",
+            "header": "https://cdn.dexscreener.com/cms/images/xRm8v7mneHd9GPCe?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "XA5DjRJ81X1pCQvr",
+            "links": [
+              {
+                "url": "https://hexncoin.org/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/HexncoinSol"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/ANVLA6eKiAq4nstD2Sg3SZhfVkSEwfnGccn12UQWpump?timestamp=1793363700000",
+            "tokenAddress": "ANVLA6eKiAq4nstD2Sg3SZhfVkSEwfnGccn12UQWpump",
+            "totalAmount": 500,
+            "url": "https://dexscreener.com/solana/anvla6ekiaq4nstd2sg3szhfvksewfngccn12uqwpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "@tetsuo confirmed “AgenC” as the name for Super Intelligent Beauty.",
+            "header": "https://cdn.dexscreener.com/cms/images/CYJrV6ztSNF02opz?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "YmMfW0KkRI2ykWzp",
+            "links": [
+              {
+                "url": "https://agencsol.fun"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/AgenCMeme"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/GJKnJsRiM5ATS4yhwjYRegT3iRsXUvcW1dafJPh8pump?timestamp=1793363700000",
+            "tokenAddress": "GJKnJsRiM5ATS4yhwjYRegT3iRsXUvcW1dafJPh8pump",
+            "totalAmount": 500,
+            "url": "https://dexscreener.com/solana/gjknjsrim5ats4yhwjyregt3irsxuvcw1dafjph8pump"
+          },
+          {
+            "chainId": "robinhood",
+            "description": "New vault from dev of $SEMI which reached 9m mcap.\n\nTETRA is a token on Robinhood Chain backed by a reserve of SPY, GLD, USO and WETH (25% each) plus USDG. Anyone can burn TETRA at any time and receive 95% of their share of everything the reserve holds. The reserve has no owner and no withdraw function.\n\nEvery trade pays a 5% tax in USDG: 4% goes into the reserve, 1% to the team. Stakers are paid only from real growth of the reserve, at most 1% of supply per 6-hour round. Bonds sell TETRA up to 20% below market, never below the backing.\n\n10,000,000 supply. Pool liquidity is protocol-owned and locked. Token and pool hook reviewed by Serialized (Safe).",
+            "header": "https://cdn.dexscreener.com/cms/images/9ep9FLQKrzssZC94?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "PCtgJCkgiR1wFGvW",
+            "links": [
+              {
+                "url": "https://tetravault.xyz"
+              },
+              {
+                "url": "https://tetravault.xyz/whitepaper/"
+              },
+              {
+                "url": "https://www.serializedaudit.io/gc3yb/robinhood/0x7e187fe67ae04c1b1738f01b424656390e45e1c9"
+              },
+              {
+                "url": "https://www.tetravault.xyz/prism/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/tetravaultxyz"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/tetravault"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/robinhood/0x7e187fe67ae04c1b1738f01b424656390e45e1c9?timestamp=1793363700000",
+            "tokenAddress": "0x7E187fE67ae04c1B1738f01B424656390E45E1C9",
+            "totalAmount": 200,
+            "url": "https://dexscreener.com/robinhood/0x7e187fe67ae04c1b1738f01b424656390e45e1c9"
+          },
+          {
+            "chainId": "solana",
+            "description": "With her mint-green hair and bold personality, Hyper-Chan brings fresh energy to Solana.",
+            "header": "https://cdn.dexscreener.com/cms/images/UuRkmAH4r8LYlbUJ?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "I9d7bCQlQ-tVlvT3",
+            "links": [
+              {
+                "url": "http://hyperchan.lol/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/hyperchanonx"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/hyperchan_tg"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/3ApVr1xphYMpi9dn3rpqU4hwvpmCQDVwxET1rdCDpump?timestamp=1793363700000",
+            "tokenAddress": "3ApVr1xphYMpi9dn3rpqU4hwvpmCQDVwxET1rdCDpump",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/3apvr1xphympi9dn3rpqu4hwvpmcqdvwxet1rdcdpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "Foxii Big eyes. Long noodle. Zero thoughts. Just oranges.",
+            "header": "https://cdn.dexscreener.com/cms/images/rs04XnqvZvLWd_6Y?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "yiCa0105CN6OHJRZ",
+            "links": [
+              {
+                "url": "https://foxii.fun/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/foxii_tail"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/J3ReuwckNtcJP1Zhn7wVbfXhTDNTkHxozQWWAwxWpump?timestamp=1793363700000",
+            "tokenAddress": "J3ReuwckNtcJP1Zhn7wVbfXhTDNTkHxozQWWAwxWpump",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/j3reuwckntcjp1zhn7wvbfxhtdntkhxozqwwawxwpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "The most anticipated game in history. One cat. Nine lives. Zero concerns. $GATO",
+            "header": "https://cdn.dexscreener.com/cms/images/aFeHj0Rrb9Nv69F_?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "-8CCNt5h1g4Fnvqj",
+            "links": [
+              {
+                "url": "https://thegta6cat.com/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/TheGTA6cat"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump?timestamp=1793363700000",
+            "tokenAddress": "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/hsprhxbrgivaqdrf3tnknuzztax9juspgmfdakk6pump"
+          },
+          {
+            "chainId": "solana",
+            "description": "Ocean Drive Shiba. $VI · Solana. Welcome to Vice City.",
+            "header": "https://cdn.dexscreener.com/cms/images/7LWnxe26zuZakzRq?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "E0q0L9Is9332hcNU",
+            "links": [
+              {
+                "url": "http://viceinusol.lol/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/ViceInuSol"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/A6PM7bxyWYiUxaEpRMHvuL4tY2jYVf8N46vXZ15Hpump?timestamp=1793363700000",
+            "tokenAddress": "A6PM7bxyWYiUxaEpRMHvuL4tY2jYVf8N46vXZ15Hpump",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/a6pm7bxywyiuxaeprmhvul4ty2jyvf8n46vxz15hpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "Owner of the project",
+            "icon": "0iZN41l4fWTYIq6X",
+            "links": [
+              {
+                "url": "https://sixthsenselabs.xyz/"
+              },
+              {
+                "url": "https://machines.peaq.xyz/machine/72070072199752035588865179268289351973289970295321663729669764070389137395940"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/sextus_sensus?s=11"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/SixthSenseLabs"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/GydpvgKppv8a4gGQqAQsyQJxtQN4S6Ym9gKxjnN3mfun?timestamp=1793363700000",
+            "tokenAddress": "GydpvgKppv8a4gGQqAQsyQJxtQN4S6Ym9gKxjnN3mfun",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/gydpvgkppv8a4ggqqaqsyqjxtqn4s6ym9gkxjnn3mfun"
+          },
+          {
+            "chainId": "solana",
+            "description": "Every pump, a pitbull dumped it. Every rug, a rat pulled it.\n\nI strike when the chart bleeds red.\n\nYour night shift is over. This city belongs to the cat.",
+            "header": "https://cdn.dexscreener.com/cms/images/Tb6G8Z4PKyDA5_jh?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "VGKshZBvmwibQfRU",
+            "links": [
+              {
+                "url": "https://catori.fun/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/blackcatori"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/FDwCosavNvMiFB812ajJp3gG7eZ9c4bpgcnY6fDQpump?timestamp=1793363700000",
+            "tokenAddress": "FDwCosavNvMiFB812ajJp3gG7eZ9c4bpgcnY6fDQpump",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/fdwcosavnvmifb812ajjp3gg7ez9c4bpgcny6fdqpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "stay calm",
+            "header": "https://cdn.dexscreener.com/cms/images/mTw-xP5yiP4ztPb4?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "-M9wyxbhR7qy9rZq",
+            "links": [
+              {
+                "type": "twitter",
+                "url": "https://x.com/calmonsol_"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/staycalmportal"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/4HSHFbFiKuMvZW7yGiDTab17B63MzBkkhadFKxhkpump?timestamp=1793363700000",
+            "tokenAddress": "4HSHFbFiKuMvZW7yGiDTab17B63MzBkkhadFKxhkpump",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/4hshfbfikumvzw7ygidtab17b63mzbkkhadfkxhkpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "that shit stank",
+            "header": "https://cdn.dexscreener.com/cms/images/5fGpQoaR3LnDAjqP?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "xOljTGtIz_HUn9dG",
+            "links": [
+              {
+                "type": "twitter",
+                "url": "https://x.com/stankonsf"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/5wsjHxT5nW5jQuVupXUNnYszF3WoWCfGGk9LMcsCJzY8?timestamp=1793363700000",
+            "tokenAddress": "5wsjHxT5nW5jQuVupXUNnYszF3WoWCfGGk9LMcsCJzY8",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/5wsjhxt5nw5jquvupxunnyszf3wowcfggk9lmcscjzy8"
+          },
+          {
+            "chainId": "solana",
+            "description": "Nothing scary About PEPEween! APE AWAY!",
+            "header": "https://cdn.dexscreener.com/cms/images/7ixNAccf_nt6IgcH?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "sKJjRonccdChMdxd",
+            "links": [
+              {
+                "url": "https://pepeween.fun/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/pepeween___"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/PepeweenSol"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/5C5K1ZetdvGoF5QRcyRbVMiVLhkJzS8RkH8UL2pwpump?timestamp=1793363700000",
+            "tokenAddress": "5C5K1ZetdvGoF5QRcyRbVMiVLhkJzS8RkH8UL2pwpump",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/5c5k1zetdvgof5qrcyrbvmivlhkjzs8rkh8ul2pwpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "A space-born memecoin coming to you\nDaily manga & animations.\n\nSee you, space cowboy. 🌌",
+            "header": "https://cdn.dexscreener.com/cms/images/wKbTNpnDFPHA9IXg?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "GMg-QDNL8KTZpzX4",
+            "links": [
+              {
+                "url": "https://dogboybepop.com/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/dogboibebop"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/dogboybebop"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/7hjmNRSPGoawymsMnrzSwECJu9bxbkPwpmf85P8Upump?timestamp=1793363700000",
+            "tokenAddress": "7hjmNRSPGoawymsMnrzSwECJu9bxbkPwpmf85P8Upump",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/7hjmnrspgoawymsmnrzswecju9bxbkpwpmf85p8upump"
+          },
+          {
+            "chainId": "solana",
+            "icon": "cNwn2DvclNd0Zl8O",
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/25MxGYB464N6PcGj7xjVCzSNQc7ftF9YXih4Kx9Lpump?timestamp=1793363700000",
+            "tokenAddress": "25MxGYB464N6PcGj7xjVCzSNQc7ftF9YXih4Kx9Lpump",
+            "totalAmount": 100,
+            "url": "https://dexscreener.com/solana/25mxgyb464n6pcgj7xjvczsnqc7ftf9yxih4kx9lpump"
+          },
+          {
+            "chainId": "robinhood",
+            "description": "A cat in a potato, quietly judging your tabs. Potatchi is an AI Agent on X.",
+            "header": "https://cdn.dexscreener.com/cms/images/hxFcrzzYMdu1LFLe?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "FzqqhG0d1LoXN2wL",
+            "links": [
+              {
+                "url": "https://potatchi.com/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/heypotatchi"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/potatchicommunity"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/robinhood/0xfad17d7cc41d9c9ca4a459da798a4446dd217974?timestamp=1793363700000",
+            "tokenAddress": "0xFAd17D7cc41D9C9CA4A459Da798a4446dD217974",
+            "totalAmount": 50,
+            "url": "https://dexscreener.com/robinhood/0xfad17d7cc41d9c9ca4a459da798a4446dd217974"
+          },
+          {
+            "chainId": "solana",
+            "description": "Small paws. Big crypto adventures.",
+            "header": "https://cdn.dexscreener.com/cms/images/u_Z7eNN967Q4oUZT?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "I6kZsbRLOACC8LaM",
+            "links": [
+              {
+                "url": "https://bitcatcoin.site"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/thebitcatcoin"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/9hzqsjCkxq3dQkfSkpRM1zk3NmLofHVBcwzKdvj3pump?timestamp=1793363700000",
+            "tokenAddress": "9hzqsjCkxq3dQkfSkpRM1zk3NmLofHVBcwzKdvj3pump",
+            "totalAmount": 30,
+            "url": "https://dexscreener.com/solana/9hzqsjckxq3dqkfskprm1zk3nmlofhvbcwzkdvj3pump"
+          },
+          {
+            "chainId": "solana",
+            "description": "In a world driven by opportunity, who you know can be just as important as what you know. Behind every successful business, every major movement, and every breakthrough is a network of people who made it possible. The right connection can open doors, introduce new possibilities, and create opportunities that would have otherwise never existed. \n\nThat's the idea behind $NETWORK. Every person you meet opens the door to an entirely new network of people, and every conversation has the potential to become something much greater.\n\nBut we're not just talking about networking, we're putting it into action. Every day, we're going LIVE, connecting with creators, reaching new audiences, onboarding the public, and introducing $NETWORK to people who might have never discovered it otherwise. We're creating our own opportunities through real connections and consistent action.\n\nImagine what happens when hundreds or thousands of people begin expanding their networks simultaneously, each bringing new relationships, ideas, and opportunities into the picture.\n\nYour network is your net worth. Let's $NETWORK to multi millions.",
+            "header": "https://cdn.dexscreener.com/cms/images/gDTt-5n2CZ4ypBcQ?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "OrOZtOiOVORsdlR-",
+            "links": [
+              {
+                "url": "https://www.networkcoin.net/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/i/communities/2003989486292578381"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/8THZ69JP2ErZuHVj4G5rcwkFfsQafp5mQsaoQReApump?timestamp=1793363700000",
+            "tokenAddress": "8THZ69JP2ErZuHVj4G5rcwkFfsQafp5mQsaoQReApump",
+            "totalAmount": 30,
+            "url": "https://dexscreener.com/solana/8thz69jp2erzuhvj4g5rcwkffsqafp5mqsaoqreapump"
+          },
+          {
+            "chainId": "solana",
+            "description": "The halloween runner",
+            "header": "https://cdn.dexscreener.com/cms/images/chqe3t7mTr7KOW1j?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "ekeKYX5SRd6h3RvQ",
+            "links": [
+              {
+                "url": "https://www.deadguy.fun/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/i/communities/2011801144150950315"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/deadguy_sol"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/FGGwUpqPHTxwLDdtoY37KBJ6tQxfY5N1JLTXEs2ppump?timestamp=1793363700000",
+            "tokenAddress": "FGGwUpqPHTxwLDdtoY37KBJ6tQxfY5N1JLTXEs2ppump",
+            "totalAmount": 30,
+            "url": "https://dexscreener.com/solana/fggwupqphtxwlddtoy37kbj6tqxfy5n1jltxes2ppump"
+          },
+          {
+            "chainId": "solana",
+            "description": "Wen Lambo\n\nPaired with No Risk No Rari",
+            "header": "https://cdn.dexscreener.com/cms/images/DUAhNV49LrUrHhs7?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "UYGyI_KiAAHmu-A_",
+            "links": [
+              {
+                "type": "twitter",
+                "url": "https://x.com/wenlambo_sol?s=11"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/C6NniJqUMTMhGGgr1RNyDsUgbLQwrLfrxhm8kG3opump?timestamp=1793363700000",
+            "tokenAddress": "C6NniJqUMTMhGGgr1RNyDsUgbLQwrLfrxhm8kG3opump",
+            "totalAmount": 30,
+            "url": "https://dexscreener.com/solana/c6nnijqumtmhgggr1rnydsugblqwrlfrxhm8kg3opump"
+          },
+          {
+            "chainId": "bsc",
+            "description": "Funds are Safu \nSafu Inu $SI",
+            "header": "https://cdn.dexscreener.com/cms/images/tnhp4295Oe8cQFS_?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "mphVgdMlGQxl5_e3",
+            "links": [
+              {
+                "type": "twitter",
+                "url": "https://x.com/Safuinu_BSC"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/safuinu_bsc"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/bsc/0x9e8452c705120488379213bfbb4fc3771e767777?timestamp=1793363700000",
+            "tokenAddress": "0x9E8452c705120488379213bFBb4fc3771e767777",
+            "totalAmount": 30,
+            "url": "https://dexscreener.com/bsc/0x9e8452c705120488379213bfbb4fc3771e767777"
+          },
+          {
+            "chainId": "bsc",
+            "header": "https://cdn.dexscreener.com/cms/images/T0YrjI1WUzEIT6wb?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "HDjoQ6PvJq1e8WJc",
+            "links": [
+              {
+                "url": "https://cocoonflap.com/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/COCOONFLAP"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/bsc/0x069f4a388cbffa0f68d3e6f54a9265ab30ff7777?timestamp=1793363700000",
+            "tokenAddress": "0x069F4A388CBffA0F68D3E6f54A9265AB30FF7777",
+            "totalAmount": 30,
+            "url": "https://dexscreener.com/bsc/0x069f4a388cbffa0f68d3e6f54a9265ab30ff7777"
+          },
+          {
+            "chainId": "bsc",
+            "description": "Bitcoin New ($BTCN) is a community token deployed on the BNB Smart Chain in October 2026. Its design references Bitcoin’s fixed maximum supply: $BTCN has a fixed total supply of 21,000,000 tokens, and the contract contains no minting function, so the supply cannot be increased after deployment.\n\nThe token applies an 8% tax on buy and sell transactions executed through its liquidity pool. The tax rate is capped at 8% in the contract code as a hard-coded maximum fee and cannot be set higher. Collected tax is swapped to BNB and sent to a designated marketing wallet used to fund promotion and operations. Standard wallet-to-wallet transfers are not taxed.\n\nA central element of the project is its deflationary supply policy. The stated objective is to reduce the circulating supply over time, with a target of burning at least 90% of the total supply. A portion of the supply is held in a separate Burn Vault contract, which is restricted so that tokens placed in it can only be sent to the dead address (0x…dEaD); the contract has no function to sell or withdraw those tokens. Burns from the vault are performed manually, at a planned pace of approximately 1% per day. Tokens sent to the dead address are permanently removed from circulation.\n\nLiquidity for $BTCN was provided on PancakeSwap version 2 against WBNB. The liquidity provider (LP) tokens were sent to the dead address, which makes the initial liquidity position non-retrievable.\n\nAt launch, the contract enforces a per-transaction and per-wallet limit of 0.1% of the total supply (21,000 tokens) as an anti-concentration measure. This limit can be removed by the contract owner through a one-way function. Public trading is controlled by a one-way function: once trading is opened, it cannot be closed again.\n\nThe contract is written in Solidity, built on widely used open-source token libraries, and is verified on BscScan. It does not include a blacklist function or a pause function. Ownership of the contract is intended to be renounced after the launch phase, after which parameters such as the tax rate can no longer be changed.\n\nThe project plans to introduce a staking feature that would allow holders to lock $BTCN in exchange for rewards. The staking rewards pool is intended to be funded once the token reaches a market capitalization of 1,000,000 USD.\n\n$BTCN is a meme-oriented token and does not represent a technology platform, security, or claim on assets. Its contract address on BNB Smart Chain is 0x5f0D55D366E0D1F37Ab7e150b989048b24DFc2ad.",
+            "icon": "dZ4CvcEbZ50F7_o7",
+            "links": [
+              {
+                "url": "https://bitcoinnewtoken.com/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/BitcoinNewToken"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/bitcoinnewtoken"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/bsc/0x5f0d55d366e0d1f37ab7e150b989048b24dfc2ad?timestamp=1793363700000",
+            "tokenAddress": "0x5f0D55D366E0D1F37Ab7e150b989048b24DFc2ad",
+            "totalAmount": 30,
+            "url": "https://dexscreener.com/bsc/0x5f0d55d366e0d1f37ab7e150b989048b24dfc2ad"
+          },
+          {
+            "chainId": "solana",
+            "description": "The meme comes from Block’s Dessa announcement: an AI model trained on human speech rather than text. Our parody turns that into a familiar crypto personality—the person who never reads the whitepaper but has the most to say in Spaces.\n\n“Never read the whitepaper. Still took over the Spaces.” captures the joke immediately. The oversized human mouth on a desktop speaker makes the character recognisable, while the disconnected mute button reinforces its personality: professionally unmuted.\n\nThe name, mascot, spoken Yap Archive and personalised yap receipts support one coherent idea. Community members can claim the identity through their own unsolicited opinions, endless voice notes and “so basically…” replies. Every long explanation becomes another opportunity to reuse the meme.\n\nIts strongest contrast is zero reading versus unlimited confidence. That gives it relevance beyond the launch headline and plenty of remix potential.",
+            "header": "https://cdn.dexscreener.com/cms/images/m-GKv4WsFxEfPrdV?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "HmECRYytNn0hGid_",
+            "links": [
+              {
+                "url": "https://www.dessatalks.space/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/DessaOnSOL"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump?timestamp=1793363700000",
+            "tokenAddress": "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump",
+            "totalAmount": 10,
+            "url": "https://dexscreener.com/solana/npz2fhoufq7pkqhgpaipywacrakidyw2ydpvwsvpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "No name. No identity. No explanation. Just a blindfolded ape and a blank sheet of paper. The internet wants to know everything, but this ape reveals nothing. The mystery is the meme. Nothing to see here.",
+            "header": "https://cdn.dexscreener.com/cms/images/8ji1E8Z0tTVlzuLf?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "HZqHa5V-uNTn41jg",
+            "links": [
+              {
+                "url": "https://www.blindapehoe.fun"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/blindapehoe?s=11"
+              },
+              {
+                "type": "discord",
+                "url": "https://discord.gg/YYxvaHcPW"
+              },
+              {
+                "type": "tiktok",
+                "url": "https://www.tiktok.com/@blindapehoe?_r=1&_t=ZT-9Aws40iBM9V"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/EwX2T1p2PmgTsSq2Bi6XtQYxPC5krR4P2fxPfN4Qpump?timestamp=1793363700000",
+            "tokenAddress": "EwX2T1p2PmgTsSq2Bi6XtQYxPC5krR4P2fxPfN4Qpump",
+            "totalAmount": 10,
+            "url": "https://dexscreener.com/solana/ewx2t1p2pmgtssq2bi6xtqyxpc5krr4p2fxpfn4qpump"
+          },
+          {
+            "chainId": "solana",
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/3rfnkLkDS4ierei4PTPR54hg8UtJGxb37R5zRYURpump?timestamp=1793363700000",
+            "tokenAddress": "3rfnkLkDS4ierei4PTPR54hg8UtJGxb37R5zRYURpump",
+            "totalAmount": 10,
+            "url": "https://dexscreener.com/solana/3rfnklkds4ierei4ptpr54hg8utjgxb37r5zryurpump"
+          },
+          {
+            "chainId": "robinhood",
+            "description": "Private AI credit marketplace Buy cheaper, sell unused credits. 22,000+ AI models, Uncensored chat + images.",
+            "header": "https://cdn.dexscreener.com/cms/images/J6zHgaq6fZGrFgJh?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "orVFN2c2ZTlqX44_",
+            "links": [
+              {
+                "url": "https://www.usebeeper.io/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/usebeeper"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/usebeeper"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/robinhood/0x316353b8ab5f1375e59c793d5903dadecf0f817e?timestamp=1793363700000",
+            "tokenAddress": "0x316353b8Ab5f1375e59C793D5903dAdEcF0f817e",
+            "totalAmount": 10,
+            "url": "https://dexscreener.com/robinhood/0x316353b8ab5f1375e59c793d5903dadecf0f817e"
+          },
+          {
+            "chainId": "solana",
+            "description": "Someone asked AI to build a game the entire crypto space would love. So it recreated the crypto world for us to own. 🪙 Built & controlled by Agentic AI.",
+            "header": "https://cdn.dexscreener.com/cms/images/dQ4E_XBvLaPRg67y?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "2bajn2a05AdQGV-4",
+            "links": [
+              {
+                "url": "https://cartoon-money.com/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/cartoonmoney_ai"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump?timestamp=1793363700000",
+            "tokenAddress": "DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
+            "totalAmount": 10,
+            "url": "https://dexscreener.com/solana/dtcicpcktkeah7tdeztym3hxeohaomibdyjhmyxzpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "EGGU is an independent Solana community token paired directly with PENGU.\n🥚 EGGU → 🐧 PENGU\nThrough StonkFun’s built-in reward system, eligible EGGU holders can receive PENGU rewards. The project is focused on building a long-term community around the EGGU/PENGU pairing, transparent on-chain activity, and continued ecosystem growth.\nIndependent community token. Not affiliated with Pudgy Penguins.",
+            "header": "https://cdn.dexscreener.com/cms/images/IcRyrFCiPavw6i5P?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "pRnatNpIuJPJrrFK",
+            "links": [
+              {
+                "url": "https://eggupengu.com/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/EgguPengu"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/EgguPengu"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/49VZNZqvkcsGajJ8k9xrEzDZTLRDV5rZn9YYthg53czn?timestamp=1793363700000",
+            "tokenAddress": "49VZNZqvkcsGajJ8k9xrEzDZTLRDV5rZn9YYthg53czn",
+            "totalAmount": 10,
+            "url": "https://dexscreener.com/solana/49vznzqvkcsgajj8k9xrezdztlrdv5rzn9yythg53czn"
+          },
+          {
+            "chainId": "solana",
+            "description": "Turn photos into cinematic videos up to 15 seconds. Create images, music and writing from a prompt. Pay with SOL, USDC or $POKERFACE. ♠️",
+            "header": "https://cdn.dexscreener.com/cms/images/RZG7XnyVptznjKgV?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "7GoL7RftHKSvFWIW",
+            "links": [
+              {
+                "url": "http://www.poker-face.club/"
+              },
+              {
+                "type": "twitter",
+                "url": "https://x.com/pokerfaceve?s=11"
+              },
+              {
+                "type": "telegram",
+                "url": "https://t.me/PokerfaceAI"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/Hdee3uRCvxm5mWWinrYNCR9S2uVXf54YCGvHSkvpump?timestamp=1793363700000",
+            "tokenAddress": "Hdee3uRCvxm5mWWinrYNCR9S2uVXf54YCGvHSkvpump",
+            "totalAmount": 10,
+            "url": "https://dexscreener.com/solana/hdee3urcvxm5mwwinryncr9s2uvxf54ycgvhskvpump"
+          },
+          {
+            "chainId": "solana",
+            "description": "Cuzzz I’m Tip Toe’n in my Jordans",
+            "header": "https://cdn.dexscreener.com/cms/images/Q0b5w7VeULiUbErQ?width=900&height=300&fit=crop&quality=95&format=auto",
+            "icon": "qR3yUudXuM_hDEqS",
+            "links": [
+              {
+                "type": "twitter",
+                "url": "https://x.com/tiptoe_n"
+              },
+              {
+                "type": "tiktok",
+                "url": "https://www.tiktok.com/@tip.toe.n.my.jordans"
+              }
+            ],
+            "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/gL9Q3xjXM1BdopmHn1R7Kb3Eim5NAQ1eWGNaTj3pump?timestamp=1793363700000",
+            "tokenAddress": "gL9Q3xjXM1BdopmHn1R7Kb3Eim5NAQ1eWGNaTj3pump",
+            "totalAmount": 10,
+            "url": "https://dexscreener.com/solana/gl9q3xjxm1bdopmhn1r7kb3eim5naq1ewgnatj3pump"
+          }
+        ],
+        "durationMs": 145,
+        "providerTimestamp": "2026-10-30T12:38:16.599249695Z",
+        "minerRegistrationId": "4277"
+      }
+    ]
+  },
+  "network": {
+    "name": "telegraph-sepolia",
+    "chainId": 11155111,
+    "testnet": true,
+    "explorer": "https://sepolia.etherscan.io/tx/"
+  },
+  "memo": {
+    "memo": {
+      "subject": {
+        "tokenAddress": "0x4200000000000000000000000000000000000006",
+        "chain": "Base",
+        "chainId": 8453,
+        "notionalUsd": 1000
+      },
+      "createdAt": "2026-10-30T12:43:55.203Z",
+      "network": "telegraph-sepolia",
+      "testnet": true,
+      "verdict": "NO_DATA",
+      "overallRisk": null,
+      "reasons": [
+        "No subject-specific evidence was returned for this token and chain"
+      ],
+      "policy": {
+        "version": "2",
+        "maximumRiskScore": 20,
+        "minimumConfidence": 0.8,
+        "maximumAgeMs": 300000,
+        "maximumNotionalShareOfDepth": 0.01,
+        "minimumWashWindowBlocks": 120,
+        "requiredIntents": [
+          "SMART_CONTRACT_AUDIT",
+          "WASH_TRADING_DETECTION",
+          "ONCHAIN_METRIC_VERIFY",
+          "LIQUIDITY_DEPTH_VERIFY"
+        ]
+      },
+      "checks": [
+        {
+          "intent": "SMART_CONTRACT_AUDIT",
+          "minerSlug": "unresolved",
+          "minerName": "Unresolved provider",
+          "minerId": null,
+          "rank": null,
+          "finding": "",
+          "riskScore": null,
+          "verdict": null,
+          "observation": null,
+          "paid": false,
+          "paymentSubmitted": false,
+          "amountAtomic": null,
+          "txHash": null,
+          "authorizationNonce": null,
+          "settlementBlock": null,
+          "receipt": null,
+          "receiptVerified": false,
+          "signalHash": null,
+          "signalVerified": false,
+          "signalLink": null,
+          "query": "Perform SMART_CONTRACT_AUDIT_GENERAL for token contract 0x4200000000000000000000000000000000000006 on Base (chain ID 8453): check honeypot, blocked sells, owner controls, proxy and drainer risk. Return subject.token_address, subject.chain_id, observed_at as an ISO timestamp, confidence from 0 to 1, risk_score from 0 to 100, status as pass/block/unknown, signal, and flags. Unknown evidence must remain unknown.",
+          "requestedIntent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "engineError": {
+            "code": "could not route this question now, try again later",
+            "message": null
+          },
+          "error": "Engine returned 503",
+          "responseError": "Engine returned 503"
+        },
+        {
+          "intent": "WASH_TRADING_DETECTION",
+          "minerSlug": "wash-dex-boost",
+          "minerName": "DexScreener Token Boosts",
+          "minerId": "80004",
+          "rank": null,
+          "finding": "Provider returned no structured finding for this trade",
+          "riskScore": null,
+          "verdict": "unknown",
+          "observation": {
+            "subjectBound": false,
+            "observedAt": null,
+            "status": "unknown",
+            "riskScore": null,
+            "confidence": null,
+            "flags": [],
+            "liquidityUsd": null,
+            "summary": "Provider returned no structured finding for this trade"
+          },
+          "paid": true,
+          "paymentSubmitted": true,
+          "amountAtomic": "10000",
+          "txHash": "0xc4235f0773ca79212c366efb0b1f78801cc2bba192c31a2e5a66083bd2fcc67f",
+          "authorizationNonce": "0x4ce9e4dfc482a9c11adea0073629bf4a33f57cf0a1f39ce5365fafa89d0d69a5",
+          "settlementBlock": "12026724",
+          "receipt": {
+            "receipt_hash": "0xc4ade9214235044f51ac2956fba2f10d144f91302c7bf96de03b7f6070013fb9",
+            "rail": "x402",
+            "payer": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+            "miner": "4277",
+            "intent": "WASH_TRADING_DETECTION_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 1611,
+            "settlement": "onchain",
+            "chain": "eip155:11155111",
+            "tx_hash": "0xc4235f0773ca79212c366efb0b1f78801cc2bba192c31a2e5a66083bd2fcc67f",
+            "timestamp": 1793363899
+          },
+          "receiptVerified": true,
+          "signalHash": "0x04910c476a2261e173495485164e4f02b93bae8fcfec90534ea16ff5d5148d45",
+          "signalVerified": true,
+          "signalLink": "https://devnode.telegraphprotocol.com/engine/v1/signal/0x04910c476a2261e173495485164e4f02b93bae8fcfec90534ea16ff5d5148d45",
+          "query": "Perform WASH_TRADING_DETECTION_GENERAL for token contract 0x4200000000000000000000000000000000000006 on Base (chain ID 8453): determine whether trading volume is artificial. Return subject.token_address, subject.chain_id, observed_at as an ISO timestamp, confidence from 0 to 1, risk_score from 0 to 100, status as pass/block/unknown, signal, and flags. Unknown evidence must remain unknown.",
+          "requestedIntent": "WASH_TRADING_DETECTION_GENERAL",
+          "authorization": {
+            "from": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+            "to": "0x3624EB012B5E998BB57B6bE6C9Cfc9c4bc5eb99b",
+            "value": "10000",
+            "validAfter": "0",
+            "validBefore": "1793363947",
+            "nonce": "0x4ce9e4dfc482a9c11adea0073629bf4a33f57cf0a1f39ce5365fafa89d0d69a5"
+          },
+          "receivedAt": "2026-10-30T12:38:19.557Z",
+          "reportedIntent": "WASH_TRADING_DETECTION_GENERAL",
+          "rawResult": [
+            {
+              "chainId": "solana",
+              "description": "The Financial Operating System\n\nFrom market discovery to on-chain action in one workspace.",
+              "header": "https://cdn.dexscreener.com/cms/images/xRm8v7mneHd9GPCe?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "XA5DjRJ81X1pCQvr",
+              "links": [
+                {
+                  "url": "https://hexncoin.org/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/HexncoinSol"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/ANVLA6eKiAq4nstD2Sg3SZhfVkSEwfnGccn12UQWpump?timestamp=1793363700000",
+              "tokenAddress": "ANVLA6eKiAq4nstD2Sg3SZhfVkSEwfnGccn12UQWpump",
+              "totalAmount": 500,
+              "url": "https://dexscreener.com/solana/anvla6ekiaq4nstd2sg3szhfvksewfngccn12uqwpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "@tetsuo confirmed “AgenC” as the name for Super Intelligent Beauty.",
+              "header": "https://cdn.dexscreener.com/cms/images/CYJrV6ztSNF02opz?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "YmMfW0KkRI2ykWzp",
+              "links": [
+                {
+                  "url": "https://agencsol.fun"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/AgenCMeme"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/GJKnJsRiM5ATS4yhwjYRegT3iRsXUvcW1dafJPh8pump?timestamp=1793363700000",
+              "tokenAddress": "GJKnJsRiM5ATS4yhwjYRegT3iRsXUvcW1dafJPh8pump",
+              "totalAmount": 500,
+              "url": "https://dexscreener.com/solana/gjknjsrim5ats4yhwjyregt3irsxuvcw1dafjph8pump"
+            },
+            {
+              "chainId": "robinhood",
+              "description": "New vault from dev of $SEMI which reached 9m mcap.\n\nTETRA is a token on Robinhood Chain backed by a reserve of SPY, GLD, USO and WETH (25% each) plus USDG. Anyone can burn TETRA at any time and receive 95% of their share of everything the reserve holds. The reserve has no owner and no withdraw function.\n\nEvery trade pays a 5% tax in USDG: 4% goes into the reserve, 1% to the team. Stakers are paid only from real growth of the reserve, at most 1% of supply per 6-hour round. Bonds sell TETRA up to 20% below market, never below the backing.\n\n10,000,000 supply. Pool liquidity is protocol-owned and locked. Token and pool hook reviewed by Serialized (Safe).",
+              "header": "https://cdn.dexscreener.com/cms/images/9ep9FLQKrzssZC94?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "PCtgJCkgiR1wFGvW",
+              "links": [
+                {
+                  "url": "https://tetravault.xyz"
+                },
+                {
+                  "url": "https://tetravault.xyz/whitepaper/"
+                },
+                {
+                  "url": "https://www.serializedaudit.io/gc3yb/robinhood/0x7e187fe67ae04c1b1738f01b424656390e45e1c9"
+                },
+                {
+                  "url": "https://www.tetravault.xyz/prism/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/tetravaultxyz"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/tetravault"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/robinhood/0x7e187fe67ae04c1b1738f01b424656390e45e1c9?timestamp=1793363700000",
+              "tokenAddress": "0x7E187fE67ae04c1B1738f01B424656390E45E1C9",
+              "totalAmount": 200,
+              "url": "https://dexscreener.com/robinhood/0x7e187fe67ae04c1b1738f01b424656390e45e1c9"
+            },
+            {
+              "chainId": "solana",
+              "description": "With her mint-green hair and bold personality, Hyper-Chan brings fresh energy to Solana.",
+              "header": "https://cdn.dexscreener.com/cms/images/UuRkmAH4r8LYlbUJ?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "I9d7bCQlQ-tVlvT3",
+              "links": [
+                {
+                  "url": "http://hyperchan.lol/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/hyperchanonx"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/hyperchan_tg"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/3ApVr1xphYMpi9dn3rpqU4hwvpmCQDVwxET1rdCDpump?timestamp=1793363700000",
+              "tokenAddress": "3ApVr1xphYMpi9dn3rpqU4hwvpmCQDVwxET1rdCDpump",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/3apvr1xphympi9dn3rpqu4hwvpmcqdvwxet1rdcdpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "Foxii Big eyes. Long noodle. Zero thoughts. Just oranges.",
+              "header": "https://cdn.dexscreener.com/cms/images/rs04XnqvZvLWd_6Y?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "yiCa0105CN6OHJRZ",
+              "links": [
+                {
+                  "url": "https://foxii.fun/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/foxii_tail"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/J3ReuwckNtcJP1Zhn7wVbfXhTDNTkHxozQWWAwxWpump?timestamp=1793363700000",
+              "tokenAddress": "J3ReuwckNtcJP1Zhn7wVbfXhTDNTkHxozQWWAwxWpump",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/j3reuwckntcjp1zhn7wvbfxhtdntkhxozqwwawxwpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "The most anticipated game in history. One cat. Nine lives. Zero concerns. $GATO",
+              "header": "https://cdn.dexscreener.com/cms/images/aFeHj0Rrb9Nv69F_?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "-8CCNt5h1g4Fnvqj",
+              "links": [
+                {
+                  "url": "https://thegta6cat.com/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/TheGTA6cat"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump?timestamp=1793363700000",
+              "tokenAddress": "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/hsprhxbrgivaqdrf3tnknuzztax9juspgmfdakk6pump"
+            },
+            {
+              "chainId": "solana",
+              "description": "Ocean Drive Shiba. $VI · Solana. Welcome to Vice City.",
+              "header": "https://cdn.dexscreener.com/cms/images/7LWnxe26zuZakzRq?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "E0q0L9Is9332hcNU",
+              "links": [
+                {
+                  "url": "http://viceinusol.lol/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/ViceInuSol"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/A6PM7bxyWYiUxaEpRMHvuL4tY2jYVf8N46vXZ15Hpump?timestamp=1793363700000",
+              "tokenAddress": "A6PM7bxyWYiUxaEpRMHvuL4tY2jYVf8N46vXZ15Hpump",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/a6pm7bxywyiuxaeprmhvul4ty2jyvf8n46vxz15hpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "Owner of the project",
+              "icon": "0iZN41l4fWTYIq6X",
+              "links": [
+                {
+                  "url": "https://sixthsenselabs.xyz/"
+                },
+                {
+                  "url": "https://machines.peaq.xyz/machine/72070072199752035588865179268289351973289970295321663729669764070389137395940"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/sextus_sensus?s=11"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/SixthSenseLabs"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/GydpvgKppv8a4gGQqAQsyQJxtQN4S6Ym9gKxjnN3mfun?timestamp=1793363700000",
+              "tokenAddress": "GydpvgKppv8a4gGQqAQsyQJxtQN4S6Ym9gKxjnN3mfun",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/gydpvgkppv8a4ggqqaqsyqjxtqn4s6ym9gkxjnn3mfun"
+            },
+            {
+              "chainId": "solana",
+              "description": "Every pump, a pitbull dumped it. Every rug, a rat pulled it.\n\nI strike when the chart bleeds red.\n\nYour night shift is over. This city belongs to the cat.",
+              "header": "https://cdn.dexscreener.com/cms/images/Tb6G8Z4PKyDA5_jh?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "VGKshZBvmwibQfRU",
+              "links": [
+                {
+                  "url": "https://catori.fun/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/blackcatori"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/FDwCosavNvMiFB812ajJp3gG7eZ9c4bpgcnY6fDQpump?timestamp=1793363700000",
+              "tokenAddress": "FDwCosavNvMiFB812ajJp3gG7eZ9c4bpgcnY6fDQpump",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/fdwcosavnvmifb812ajjp3gg7ez9c4bpgcny6fdqpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "stay calm",
+              "header": "https://cdn.dexscreener.com/cms/images/mTw-xP5yiP4ztPb4?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "-M9wyxbhR7qy9rZq",
+              "links": [
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/calmonsol_"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/staycalmportal"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/4HSHFbFiKuMvZW7yGiDTab17B63MzBkkhadFKxhkpump?timestamp=1793363700000",
+              "tokenAddress": "4HSHFbFiKuMvZW7yGiDTab17B63MzBkkhadFKxhkpump",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/4hshfbfikumvzw7ygidtab17b63mzbkkhadfkxhkpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "that shit stank",
+              "header": "https://cdn.dexscreener.com/cms/images/5fGpQoaR3LnDAjqP?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "xOljTGtIz_HUn9dG",
+              "links": [
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/stankonsf"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/5wsjHxT5nW5jQuVupXUNnYszF3WoWCfGGk9LMcsCJzY8?timestamp=1793363700000",
+              "tokenAddress": "5wsjHxT5nW5jQuVupXUNnYszF3WoWCfGGk9LMcsCJzY8",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/5wsjhxt5nw5jquvupxunnyszf3wowcfggk9lmcscjzy8"
+            },
+            {
+              "chainId": "solana",
+              "description": "Nothing scary About PEPEween! APE AWAY!",
+              "header": "https://cdn.dexscreener.com/cms/images/7ixNAccf_nt6IgcH?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "sKJjRonccdChMdxd",
+              "links": [
+                {
+                  "url": "https://pepeween.fun/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/pepeween___"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/PepeweenSol"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/5C5K1ZetdvGoF5QRcyRbVMiVLhkJzS8RkH8UL2pwpump?timestamp=1793363700000",
+              "tokenAddress": "5C5K1ZetdvGoF5QRcyRbVMiVLhkJzS8RkH8UL2pwpump",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/5c5k1zetdvgof5qrcyrbvmivlhkjzs8rkh8ul2pwpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "A space-born memecoin coming to you\nDaily manga & animations.\n\nSee you, space cowboy. 🌌",
+              "header": "https://cdn.dexscreener.com/cms/images/wKbTNpnDFPHA9IXg?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "GMg-QDNL8KTZpzX4",
+              "links": [
+                {
+                  "url": "https://dogboybepop.com/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/dogboibebop"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/dogboybebop"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/7hjmNRSPGoawymsMnrzSwECJu9bxbkPwpmf85P8Upump?timestamp=1793363700000",
+              "tokenAddress": "7hjmNRSPGoawymsMnrzSwECJu9bxbkPwpmf85P8Upump",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/7hjmnrspgoawymsmnrzswecju9bxbkpwpmf85p8upump"
+            },
+            {
+              "chainId": "solana",
+              "icon": "cNwn2DvclNd0Zl8O",
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/25MxGYB464N6PcGj7xjVCzSNQc7ftF9YXih4Kx9Lpump?timestamp=1793363700000",
+              "tokenAddress": "25MxGYB464N6PcGj7xjVCzSNQc7ftF9YXih4Kx9Lpump",
+              "totalAmount": 100,
+              "url": "https://dexscreener.com/solana/25mxgyb464n6pcgj7xjvczsnqc7ftf9yxih4kx9lpump"
+            },
+            {
+              "chainId": "robinhood",
+              "description": "A cat in a potato, quietly judging your tabs. Potatchi is an AI Agent on X.",
+              "header": "https://cdn.dexscreener.com/cms/images/hxFcrzzYMdu1LFLe?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "FzqqhG0d1LoXN2wL",
+              "links": [
+                {
+                  "url": "https://potatchi.com/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/heypotatchi"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/potatchicommunity"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/robinhood/0xfad17d7cc41d9c9ca4a459da798a4446dd217974?timestamp=1793363700000",
+              "tokenAddress": "0xFAd17D7cc41D9C9CA4A459Da798a4446dD217974",
+              "totalAmount": 50,
+              "url": "https://dexscreener.com/robinhood/0xfad17d7cc41d9c9ca4a459da798a4446dd217974"
+            },
+            {
+              "chainId": "solana",
+              "description": "Small paws. Big crypto adventures.",
+              "header": "https://cdn.dexscreener.com/cms/images/u_Z7eNN967Q4oUZT?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "I6kZsbRLOACC8LaM",
+              "links": [
+                {
+                  "url": "https://bitcatcoin.site"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/thebitcatcoin"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/9hzqsjCkxq3dQkfSkpRM1zk3NmLofHVBcwzKdvj3pump?timestamp=1793363700000",
+              "tokenAddress": "9hzqsjCkxq3dQkfSkpRM1zk3NmLofHVBcwzKdvj3pump",
+              "totalAmount": 30,
+              "url": "https://dexscreener.com/solana/9hzqsjckxq3dqkfskprm1zk3nmlofhvbcwzkdvj3pump"
+            },
+            {
+              "chainId": "solana",
+              "description": "In a world driven by opportunity, who you know can be just as important as what you know. Behind every successful business, every major movement, and every breakthrough is a network of people who made it possible. The right connection can open doors, introduce new possibilities, and create opportunities that would have otherwise never existed. \n\nThat's the idea behind $NETWORK. Every person you meet opens the door to an entirely new network of people, and every conversation has the potential to become something much greater.\n\nBut we're not just talking about networking, we're putting it into action. Every day, we're going LIVE, connecting with creators, reaching new audiences, onboarding the public, and introducing $NETWORK to people who might have never discovered it otherwise. We're creating our own opportunities through real connections and consistent action.\n\nImagine what happens when hundreds or thousands of people begin expanding their networks simultaneously, each bringing new relationships, ideas, and opportunities into the picture.\n\nYour network is your net worth. Let's $NETWORK to multi millions.",
+              "header": "https://cdn.dexscreener.com/cms/images/gDTt-5n2CZ4ypBcQ?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "OrOZtOiOVORsdlR-",
+              "links": [
+                {
+                  "url": "https://www.networkcoin.net/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/i/communities/2003989486292578381"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/8THZ69JP2ErZuHVj4G5rcwkFfsQafp5mQsaoQReApump?timestamp=1793363700000",
+              "tokenAddress": "8THZ69JP2ErZuHVj4G5rcwkFfsQafp5mQsaoQReApump",
+              "totalAmount": 30,
+              "url": "https://dexscreener.com/solana/8thz69jp2erzuhvj4g5rcwkffsqafp5mqsaoqreapump"
+            },
+            {
+              "chainId": "solana",
+              "description": "The halloween runner",
+              "header": "https://cdn.dexscreener.com/cms/images/chqe3t7mTr7KOW1j?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "ekeKYX5SRd6h3RvQ",
+              "links": [
+                {
+                  "url": "https://www.deadguy.fun/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/i/communities/2011801144150950315"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/deadguy_sol"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/FGGwUpqPHTxwLDdtoY37KBJ6tQxfY5N1JLTXEs2ppump?timestamp=1793363700000",
+              "tokenAddress": "FGGwUpqPHTxwLDdtoY37KBJ6tQxfY5N1JLTXEs2ppump",
+              "totalAmount": 30,
+              "url": "https://dexscreener.com/solana/fggwupqphtxwlddtoy37kbj6tqxfy5n1jltxes2ppump"
+            },
+            {
+              "chainId": "solana",
+              "description": "Wen Lambo\n\nPaired with No Risk No Rari",
+              "header": "https://cdn.dexscreener.com/cms/images/DUAhNV49LrUrHhs7?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "UYGyI_KiAAHmu-A_",
+              "links": [
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/wenlambo_sol?s=11"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/C6NniJqUMTMhGGgr1RNyDsUgbLQwrLfrxhm8kG3opump?timestamp=1793363700000",
+              "tokenAddress": "C6NniJqUMTMhGGgr1RNyDsUgbLQwrLfrxhm8kG3opump",
+              "totalAmount": 30,
+              "url": "https://dexscreener.com/solana/c6nnijqumtmhgggr1rnydsugblqwrlfrxhm8kg3opump"
+            },
+            {
+              "chainId": "bsc",
+              "description": "Funds are Safu \nSafu Inu $SI",
+              "header": "https://cdn.dexscreener.com/cms/images/tnhp4295Oe8cQFS_?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "mphVgdMlGQxl5_e3",
+              "links": [
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/Safuinu_BSC"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/safuinu_bsc"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/bsc/0x9e8452c705120488379213bfbb4fc3771e767777?timestamp=1793363700000",
+              "tokenAddress": "0x9E8452c705120488379213bFBb4fc3771e767777",
+              "totalAmount": 30,
+              "url": "https://dexscreener.com/bsc/0x9e8452c705120488379213bfbb4fc3771e767777"
+            },
+            {
+              "chainId": "bsc",
+              "header": "https://cdn.dexscreener.com/cms/images/T0YrjI1WUzEIT6wb?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "HDjoQ6PvJq1e8WJc",
+              "links": [
+                {
+                  "url": "https://cocoonflap.com/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/COCOONFLAP"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/bsc/0x069f4a388cbffa0f68d3e6f54a9265ab30ff7777?timestamp=1793363700000",
+              "tokenAddress": "0x069F4A388CBffA0F68D3E6f54A9265AB30FF7777",
+              "totalAmount": 30,
+              "url": "https://dexscreener.com/bsc/0x069f4a388cbffa0f68d3e6f54a9265ab30ff7777"
+            },
+            {
+              "chainId": "bsc",
+              "description": "Bitcoin New ($BTCN) is a community token deployed on the BNB Smart Chain in October 2026. Its design references Bitcoin’s fixed maximum supply: $BTCN has a fixed total supply of 21,000,000 tokens, and the contract contains no minting function, so the supply cannot be increased after deployment.\n\nThe token applies an 8% tax on buy and sell transactions executed through its liquidity pool. The tax rate is capped at 8% in the contract code as a hard-coded maximum fee and cannot be set higher. Collected tax is swapped to BNB and sent to a designated marketing wallet used to fund promotion and operations. Standard wallet-to-wallet transfers are not taxed.\n\nA central element of the project is its deflationary supply policy. The stated objective is to reduce the circulating supply over time, with a target of burning at least 90% of the total supply. A portion of the supply is held in a separate Burn Vault contract, which is restricted so that tokens placed in it can only be sent to the dead address (0x…dEaD); the contract has no function to sell or withdraw those tokens. Burns from the vault are performed manually, at a planned pace of approximately 1% per day. Tokens sent to the dead address are permanently removed from circulation.\n\nLiquidity for $BTCN was provided on PancakeSwap version 2 against WBNB. The liquidity provider (LP) tokens were sent to the dead address, which makes the initial liquidity position non-retrievable.\n\nAt launch, the contract enforces a per-transaction and per-wallet limit of 0.1% of the total supply (21,000 tokens) as an anti-concentration measure. This limit can be removed by the contract owner through a one-way function. Public trading is controlled by a one-way function: once trading is opened, it cannot be closed again.\n\nThe contract is written in Solidity, built on widely used open-source token libraries, and is verified on BscScan. It does not include a blacklist function or a pause function. Ownership of the contract is intended to be renounced after the launch phase, after which parameters such as the tax rate can no longer be changed.\n\nThe project plans to introduce a staking feature that would allow holders to lock $BTCN in exchange for rewards. The staking rewards pool is intended to be funded once the token reaches a market capitalization of 1,000,000 USD.\n\n$BTCN is a meme-oriented token and does not represent a technology platform, security, or claim on assets. Its contract address on BNB Smart Chain is 0x5f0D55D366E0D1F37Ab7e150b989048b24DFc2ad.",
+              "icon": "dZ4CvcEbZ50F7_o7",
+              "links": [
+                {
+                  "url": "https://bitcoinnewtoken.com/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/BitcoinNewToken"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/bitcoinnewtoken"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/bsc/0x5f0d55d366e0d1f37ab7e150b989048b24dfc2ad?timestamp=1793363700000",
+              "tokenAddress": "0x5f0D55D366E0D1F37Ab7e150b989048b24DFc2ad",
+              "totalAmount": 30,
+              "url": "https://dexscreener.com/bsc/0x5f0d55d366e0d1f37ab7e150b989048b24dfc2ad"
+            },
+            {
+              "chainId": "solana",
+              "description": "The meme comes from Block’s Dessa announcement: an AI model trained on human speech rather than text. Our parody turns that into a familiar crypto personality—the person who never reads the whitepaper but has the most to say in Spaces.\n\n“Never read the whitepaper. Still took over the Spaces.” captures the joke immediately. The oversized human mouth on a desktop speaker makes the character recognisable, while the disconnected mute button reinforces its personality: professionally unmuted.\n\nThe name, mascot, spoken Yap Archive and personalised yap receipts support one coherent idea. Community members can claim the identity through their own unsolicited opinions, endless voice notes and “so basically…” replies. Every long explanation becomes another opportunity to reuse the meme.\n\nIts strongest contrast is zero reading versus unlimited confidence. That gives it relevance beyond the launch headline and plenty of remix potential.",
+              "header": "https://cdn.dexscreener.com/cms/images/m-GKv4WsFxEfPrdV?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "HmECRYytNn0hGid_",
+              "links": [
+                {
+                  "url": "https://www.dessatalks.space/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/DessaOnSOL"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump?timestamp=1793363700000",
+              "tokenAddress": "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump",
+              "totalAmount": 10,
+              "url": "https://dexscreener.com/solana/npz2fhoufq7pkqhgpaipywacrakidyw2ydpvwsvpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "No name. No identity. No explanation. Just a blindfolded ape and a blank sheet of paper. The internet wants to know everything, but this ape reveals nothing. The mystery is the meme. Nothing to see here.",
+              "header": "https://cdn.dexscreener.com/cms/images/8ji1E8Z0tTVlzuLf?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "HZqHa5V-uNTn41jg",
+              "links": [
+                {
+                  "url": "https://www.blindapehoe.fun"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/blindapehoe?s=11"
+                },
+                {
+                  "type": "discord",
+                  "url": "https://discord.gg/YYxvaHcPW"
+                },
+                {
+                  "type": "tiktok",
+                  "url": "https://www.tiktok.com/@blindapehoe?_r=1&_t=ZT-9Aws40iBM9V"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/EwX2T1p2PmgTsSq2Bi6XtQYxPC5krR4P2fxPfN4Qpump?timestamp=1793363700000",
+              "tokenAddress": "EwX2T1p2PmgTsSq2Bi6XtQYxPC5krR4P2fxPfN4Qpump",
+              "totalAmount": 10,
+              "url": "https://dexscreener.com/solana/ewx2t1p2pmgtssq2bi6xtqyxpc5krr4p2fxpfn4qpump"
+            },
+            {
+              "chainId": "solana",
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/3rfnkLkDS4ierei4PTPR54hg8UtJGxb37R5zRYURpump?timestamp=1793363700000",
+              "tokenAddress": "3rfnkLkDS4ierei4PTPR54hg8UtJGxb37R5zRYURpump",
+              "totalAmount": 10,
+              "url": "https://dexscreener.com/solana/3rfnklkds4ierei4ptpr54hg8utjgxb37r5zryurpump"
+            },
+            {
+              "chainId": "robinhood",
+              "description": "Private AI credit marketplace Buy cheaper, sell unused credits. 22,000+ AI models, Uncensored chat + images.",
+              "header": "https://cdn.dexscreener.com/cms/images/J6zHgaq6fZGrFgJh?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "orVFN2c2ZTlqX44_",
+              "links": [
+                {
+                  "url": "https://www.usebeeper.io/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/usebeeper"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/usebeeper"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/robinhood/0x316353b8ab5f1375e59c793d5903dadecf0f817e?timestamp=1793363700000",
+              "tokenAddress": "0x316353b8Ab5f1375e59C793D5903dAdEcF0f817e",
+              "totalAmount": 10,
+              "url": "https://dexscreener.com/robinhood/0x316353b8ab5f1375e59c793d5903dadecf0f817e"
+            },
+            {
+              "chainId": "solana",
+              "description": "Someone asked AI to build a game the entire crypto space would love. So it recreated the crypto world for us to own. 🪙 Built & controlled by Agentic AI.",
+              "header": "https://cdn.dexscreener.com/cms/images/dQ4E_XBvLaPRg67y?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "2bajn2a05AdQGV-4",
+              "links": [
+                {
+                  "url": "https://cartoon-money.com/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/cartoonmoney_ai"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump?timestamp=1793363700000",
+              "tokenAddress": "DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
+              "totalAmount": 10,
+              "url": "https://dexscreener.com/solana/dtcicpcktkeah7tdeztym3hxeohaomibdyjhmyxzpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "EGGU is an independent Solana community token paired directly with PENGU.\n🥚 EGGU → 🐧 PENGU\nThrough StonkFun’s built-in reward system, eligible EGGU holders can receive PENGU rewards. The project is focused on building a long-term community around the EGGU/PENGU pairing, transparent on-chain activity, and continued ecosystem growth.\nIndependent community token. Not affiliated with Pudgy Penguins.",
+              "header": "https://cdn.dexscreener.com/cms/images/IcRyrFCiPavw6i5P?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "pRnatNpIuJPJrrFK",
+              "links": [
+                {
+                  "url": "https://eggupengu.com/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/EgguPengu"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/EgguPengu"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/49VZNZqvkcsGajJ8k9xrEzDZTLRDV5rZn9YYthg53czn?timestamp=1793363700000",
+              "tokenAddress": "49VZNZqvkcsGajJ8k9xrEzDZTLRDV5rZn9YYthg53czn",
+              "totalAmount": 10,
+              "url": "https://dexscreener.com/solana/49vznzqvkcsgajj8k9xrezdztlrdv5rzn9yythg53czn"
+            },
+            {
+              "chainId": "solana",
+              "description": "Turn photos into cinematic videos up to 15 seconds. Create images, music and writing from a prompt. Pay with SOL, USDC or $POKERFACE. ♠️",
+              "header": "https://cdn.dexscreener.com/cms/images/RZG7XnyVptznjKgV?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "7GoL7RftHKSvFWIW",
+              "links": [
+                {
+                  "url": "http://www.poker-face.club/"
+                },
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/pokerfaceve?s=11"
+                },
+                {
+                  "type": "telegram",
+                  "url": "https://t.me/PokerfaceAI"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/Hdee3uRCvxm5mWWinrYNCR9S2uVXf54YCGvHSkvpump?timestamp=1793363700000",
+              "tokenAddress": "Hdee3uRCvxm5mWWinrYNCR9S2uVXf54YCGvHSkvpump",
+              "totalAmount": 10,
+              "url": "https://dexscreener.com/solana/hdee3urcvxm5mwwinryncr9s2uvxf54ycgvhskvpump"
+            },
+            {
+              "chainId": "solana",
+              "description": "Cuzzz I’m Tip Toe’n in my Jordans",
+              "header": "https://cdn.dexscreener.com/cms/images/Q0b5w7VeULiUbErQ?width=900&height=300&fit=crop&quality=95&format=auto",
+              "icon": "qR3yUudXuM_hDEqS",
+              "links": [
+                {
+                  "type": "twitter",
+                  "url": "https://x.com/tiptoe_n"
+                },
+                {
+                  "type": "tiktok",
+                  "url": "https://www.tiktok.com/@tip.toe.n.my.jordans"
+                }
+              ],
+              "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/gL9Q3xjXM1BdopmHn1R7Kb3Eim5NAQ1eWGNaTj3pump?timestamp=1793363700000",
+              "tokenAddress": "gL9Q3xjXM1BdopmHn1R7Kb3Eim5NAQ1eWGNaTj3pump",
+              "totalAmount": 10,
+              "url": "https://dexscreener.com/solana/gl9q3xjxm1bdopmhn1r7kb3eim5naq1ewgnatj3pump"
+            }
+          ],
+          "durationMs": 145,
+          "providerTimestamp": "2026-10-30T12:38:16.599249695Z",
+          "minerRegistrationId": "4277"
+        },
+        {
+          "intent": "ONCHAIN_METRIC_VERIFY",
+          "minerSlug": "ocm-blockchain-stats",
+          "minerName": "Blockchain.info Metrics",
+          "minerId": "71008",
+          "rank": null,
+          "finding": "Provider returned no structured finding for this trade",
+          "riskScore": null,
+          "verdict": "unknown",
+          "observation": {
+            "subjectBound": false,
+            "observedAt": null,
+            "status": "unknown",
+            "riskScore": null,
+            "confidence": null,
+            "flags": [],
+            "liquidityUsd": null,
+            "summary": "Provider returned no structured finding for this trade"
+          },
+          "paid": true,
+          "paymentSubmitted": true,
+          "amountAtomic": "10000",
+          "txHash": "0x5cb979951a41dccfa44d2ceb28ba88849c7f0b29419b47946ff1efed3de48d46",
+          "authorizationNonce": "0x07b419ca11623fb3d9fb0d5ebefc340d6678568ae172d885729304480c22e3a9",
+          "settlementBlock": "12026724",
+          "receipt": {
+            "receipt_hash": "0xe51c55e3456d666320310df7a2102ab5c3fe9636818be50e08996305cfed6ba6",
+            "rail": "x402",
+            "payer": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+            "miner": "3626",
+            "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 1611,
+            "settlement": "onchain",
+            "chain": "eip155:11155111",
+            "tx_hash": "0x5cb979951a41dccfa44d2ceb28ba88849c7f0b29419b47946ff1efed3de48d46",
+            "timestamp": 1793363900
+          },
+          "receiptVerified": true,
+          "signalHash": "0xc3f4f3665a778c5c7a11cf220df0943c2d71a3ce8b0691cb257cd8adab87a8d9",
+          "signalVerified": true,
+          "signalLink": "https://devnode.telegraphprotocol.com/engine/v1/signal/0xc3f4f3665a778c5c7a11cf220df0943c2d71a3ce8b0691cb257cd8adab87a8d9",
+          "query": "Perform ONCHAIN_METRIC_VERIFY_GENERAL for token contract 0x4200000000000000000000000000000000000006 on Base (chain ID 8453): read totalSupply() with calldata 0x18160ddd, return the numeric block height, raw return and decoded unsigned value. Do not use the literal 'latest' as the block anchor. Return subject.token_address, subject.chain_id, observed_at as an ISO timestamp, confidence from 0 to 1, risk_score from 0 to 100, status as pass/block/unknown, signal, and flags. Unknown evidence must remain unknown.",
+          "requestedIntent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "authorization": {
+            "from": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+            "to": "0x3624EB012B5E998BB57B6bE6C9Cfc9c4bc5eb99b",
+            "value": "10000",
+            "validAfter": "0",
+            "validBefore": "1793363947",
+            "nonce": "0x07b419ca11623fb3d9fb0d5ebefc340d6678568ae172d885729304480c22e3a9"
+          },
+          "receivedAt": "2026-10-30T12:38:19.742Z",
+          "reportedIntent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "rawResult": "<!DOCTYPE html>\n<html>\n<head>\n    \n    <title>Bitcoin Stats</title>\n    \n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n    <link rel=\"stylesheet\" href=\"https://blockchain.info/Resources/overrides.min.css?1793201916\">\n    <link rel=\"stylesheet\" href=\"https://blockchain.info/Resources/css/blockchain.css?1793201916\">\n\n    <script src=\"https://blockchain.info/Resources/js/jquery.min.js?1793201916\" type=\"text/javascript\"></script>\n    <script type=\"text/javascript\" src=\"https://blockchain.info/Resources/js/bootstrap.min.js?1793201916\"></script>\n    <script type=\"text/javascript\" src=\"https://blockchain.info/Resources/js/shared.min.js?1793201916\"></script>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\">\n    <script src=\"https://blockchain.info/Resources/analytics.js?1793201916\"></script>\n\n    <script type=\"text/javascript\" src=\"https://blockchain.info/charts/assets/language.js?1793201916\"></script>\n    <link rel=\"stylesheet\" href=\"https://blockchain.info/charts/assets/charts.css?1793201916\">\n\n    <link rel=\"alternate\" hreflang=\"x-default\" href=\"https://blockchain.info/stats\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/id/stats\" hreflang=\"id\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ms/stats\" hreflang=\"ms\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/da/stats\" hreflang=\"da\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/de/stats\" hreflang=\"de\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/en/stats\" hreflang=\"en\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/es/stats\" hreflang=\"es\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/fr/stats\" hreflang=\"fr\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/it/stats\" hreflang=\"it\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/hu/stats\" hreflang=\"hu\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/nl/stats\" hreflang=\"nl\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/no/stats\" hreflang=\"no\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/pl/stats\" hreflang=\"pl\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/pt/stats\" hreflang=\"pt\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ro/stats\" hreflang=\"ro\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/sl/stats\" hreflang=\"sl\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/fi/stats\" hreflang=\"fi\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/sv/stats\" hreflang=\"sv\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/vi/stats\" hreflang=\"vi\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/tr/stats\" hreflang=\"tr\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/el/stats\" hreflang=\"el\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ru/stats\" hreflang=\"ru\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/bg/stats\" hreflang=\"bg\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/hi/stats\" hreflang=\"hi\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/th/stats\" hreflang=\"th\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/zh-cn/stats\" hreflang=\"zh-cn\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/zh-tw/stats\" hreflang=\"zh-tw\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ja/stats\" hreflang=\"ja\">\n    <link rel=\"alternate\" href=\"https://blockchain.info/ko/stats\" hreflang=\"ko\">\n    \n\n    \n    <script type=\"text/javascript\" src=\"/charts/assets/charts-common.js?1793201916\"></script>\n    <script type=\"text/javascript\" src=\"/charts/assets/stats.js?1793201916\"></script>\n\n    <link href=\"https://www.blockchain.com/stats\" rel=\"canonical\" />\n    <link rel=\"stylesheet\" href=\"/charts/assets/stats.css?1793201916\">\n\n    <meta name=\"twitter:card\" content=\"summary\" />\n    <meta name=\"twitter:creator\" content=\"@Blockchain\" />\n    <meta name=\"twitter:site\" content=\"@Blockchain\" />\n\n    <meta property=\"og:site_name\" content=\"Blockchain.com\" />\n    <meta property=\"og:rich_attachment\" content=\"true\" />\n    <meta property=\"og:type\" content=\"website\" />\n    <meta property=\"og:image:type\" content=\"image/png\" />\n    <meta property=\"fb:profile_id\" content=\"360193500679903\" />\n\n    <meta property=\"og:description\" content=\"Find live Bitcoin stats, including market price, mining revenue, number of Bitcoin transactions and more. Explore detailed Bitcoin data today.\" />\n    <meta property=\"og:title\" content=\"Bitcoin currency statistics\" />\n    <meta property=\"og:url\" content=\"https://www.blockchain.com/stats\" />\n\n\n    \n    <meta name=\"description\" content=\"Find live Bitcoin stats, including market price, mining revenue, number of Bitcoin transactions and more. Explore detailed Bitcoin data today. - Blockchain\">\n    \n\n</head>\n<body class=\"charts opaque-nav\" data-explorer=\"https://www.blockchain.com\" data-endpoint=\"https://api.blockchain.info/\" data-lang=\"en\" style=\"padding-bottom: 0px\">\n  <nav role=\"navigation\">\n    <ul class=\"igation\">\n      <li>\n        <a class=\"bc-logo\" href=\"https://www.blockchain.com\">\n          <img src=\"https://blockchain.info/Resources/white-blockchain.svg\" alt=\"Blockchain\" />\n        </a>\n        <button class=\"menu-button\">\n          <span></span>\n        </button>\n        <button class=\"search-button\" type=\"button\"></button>\n      </li>\n      <li class=\"with-children\">\n        <a href=\"https://blockchain.info/wallet\" id=\"wallet-link\">Wallet</a>\n        <ul>\n          <li><a href=\"https://blockchain.info/wallet/#/login\">Login</a></li>\n        </ul>\n      </li>\n      <li class=\"with-children\">\n        <a href=\"https://blockchain.info\">Data</a>\n        <ul>\n          <li><a href=\"https://blockchain.info/charts\">Charts</a></li>\n          <li><a href=\"https://blockchain.info/stats\">Stats</a></li>\n          <li><a href=\"https://blockchain.info/markets\">Markets</a></li>\n        </ul>\n      </li>\n      <li class=\"with-children\">\n        <a href=\"https://blockchain.info/api\">API</a>\n        <ul>\n          <li><a href=\"https://www.blockchain.com/enterprise\">Business</a></li>\n        </ul>\n      </li>\n      <li class=\"with-children\">\n        <a href=\"https://www.blockchain.com/about\">About</a>\n        <ul>\n          <li><a href=\"https://www.blockchain.com/team\">Team</a></li>\n          <li><a href=\"https://www.blockchain.com/careers\">Careers</a></li>\n          <li><a href=\"https://www.blockchain.com/press\">Press</a></li>\n          <li><a href=\"https://blog.blockchain.com\">Blog</a></li>\n        </ul>\n      </li>\n      <li class=\"flex-space\"></li>\n      <li>\n        <form action=\"https://blockchain.info/search\" class=\"search-form\" method=\"GET\">\n          <input class=\"search-bar\" name=\"search\" placeholder=\"block, hash, transaction, etc...\" type=\"text\" />\n        </form>\n      </li>\n      <li>\n        <a class=\"wallet-button\" href=\"https://blockchain.info/wallet/#/signup\" target=\"_blank\">Get A Free Wallet</a>\n      </li>\n    </ul>\n  </nav>\n\n    \n<div class=\"page-header bg-grey mvn pt-90\" style=\"border-style:none;\">\n  <h1 class=\"pv-50 mvn center\">\n    Bitcoin Stats\n    <br>\n    <!-- Needs Translation --><p class=\"f-18 em-300 mt-10 mbn container\">Summary of bitcoin statistics for the previous 24 hour period.</p><!-- Needs Translation -->\n  </h1>\n</div>\n<div class=\"container container-fake\">\n    <div class=\"alert alert-block alert-error\" style=\"display: none;\" id=\"statserror\">Error loading stats</div>\n\n    <div id=\"statstable\">\n      <div class=\"col-md-6 pln\">\n        <!-- Needs Translation --><h3 class=\"upper mb-25 center-tablet mt-40\">Block Summary</h3><!-- Needs Translation -->\n        <table class=\"table table-striped\">\n          <tr>\n              <td width=\"50%\">Blocks Mined</td>\n              <td colspan=\"2\" id=\"n_blocks_mined\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n          <tr>\n              <td>Time Between Blocks</td>\n              <td colspan=\"2\"><span id=\"minutes_between_blocks\"></span> minutes</td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n          <tr>\n              <td>Bitcoins Mined</td>\n              <td colspan=\"2\" id=\"n_btc_mined\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n        </table>\n      </div>\n      <div class=\"col-md-6 prn\">\n        <h3 class=\"upper mb-25 center-tablet mt-40\">Market Summary</h3>\n        <table class=\"table table-striped\">\n          <tr>\n              <td width=\"50%\">Market Price</td>\n              <td colspan=\"2\" id=\"market_price_usd\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/market-price\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Trade Volume</td>\n              <td colspan=\"2\" id=\"trade_volume_usd\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n          <tr>\n              <td>Trade Volume</td>\n              <td colspan=\"2\" id=\"trade_volume_btc\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n        </table>\n      </div>\n\n      <div class=\"col-md-12 phn\">\n        <!-- Needs Translation --><h3 class=\"upper mb-25 center-tablet mt-40\">Transaction Summary</h3><!-- Needs Translation -->\n        <table class=\"table table-striped\">\n          <tr>\n              <td width=\"45%\">Total Transaction Fees (BTC)</td>\n              <td id=\"total_fees_btc\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/transaction-fees\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Number of Transactions</td>\n              <td id=\"n_tx\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/n-transactions\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Total Output Volume (BTC)</td>\n              <td id=\"total_btc_sent\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/output-volume?daysAverageString=7\">View Chart</a></td>\n\n          </tr>\n          <tr>\n              <td>Estimated Transaction Volume (BTC)</td>\n              <td id=\"estimated_btc_sent\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/estimated-transaction-volume?daysAverageString=7\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Estimated Transaction Volume (USD)</td>\n              <td> <span id=\"estimated_transaction_volume_usd\"></span></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/estimated-transaction-volume-usd?daysAverageString=7\">View Chart</a></td>\n          </tr>\n        </table>\n      </div>\n\n      <div class=\"col-md-12 phn\">\n        <table class=\"table table-striped\">\n          <h3 class=\"upper mb-25 center-tablet mt-40\">Mining Cost</h3>\n          <tr>\n              <td width=\"45%\">Total Miners Revenue (USD)</td>\n              <td id=\"miners_revenue_usd\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/miners-revenue\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td class=\"capitalize\">% earned from transaction fees</td>\n              <td id=\"miners_revenue_percent_fees\"></td>\n              <td class=\"hidden-xs\"></td>\n          </tr>\n          <tr>\n              <td class=\"capitalize\">% of transaction volume</td>\n              <td id=\"miners_revenue_percent_volume\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/cost-per-transaction-percent\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Cost per Transaction (USD)</td>\n              <td id=\"miners_cost_per_tx\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/cost-per-transaction\">View Chart</a></td>\n          </tr>\n        </table>\n      </div>\n\n      <div class=\"col-md-12 phn\">\n        <h3 class=\"upper mb-25 center-tablet mt-40\">Hash Rate and Electricity Consumption</h3>\n        <table class=\"table table-striped\">\n          <tr>\n              <td width=\"45%\">Difficulty</td>\n              <td id=\"difficulty\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/difficulty\">View Chart</a></td>\n          </tr>\n          <tr>\n              <td>Hash Rate</td>\n              <td id=\"hash_rate\"></td>\n              <td class=\"hidden-xs\"><a href=\"/charts/hash-rate\">View Chart</a></td>\n          </tr>\n        </table>\n      </div>\n\n      <div class=\"col-md-12 phn mb-40 f-14 links\">\n        <h3 class=\"upper mb-25 center-tablet mt-40\">Other Bitcoin Links</h3>\n        <div class=\"col-md-6 pln flex-column\">\n          <span><a href=\"/btc/unconfirmed-transactions\">Unconfirmed Transactions</a> - Transactions waiting to be included in a block</span>\n          <span><a href=\"/pools\">Mining Pool Stats</a> - Pie chart showing the market share of the top bitcoin mining pools</span>\n          <span><a href=\"/wallet\">My Wallet</a> - Manage your money with Bitcoin's most advanced web wallet.</span>\n        </div>\n      </div>\n    </div>\n</div>\n\n\n  <footer>\n    <div class=\"flex-container\">\n      <div class=\"footer-logo\">\n        <img alt=\"Blockchain Logo\" src=\"https://blockchain.info/Resources/bc-name-and-logo-dark-blue.svg\">\n      </div>\n      <div>\n        <h6>Products</h6>\n        <ol>\n          <li><a href=\"https://blockchain.info/wallet\">Wallet</a></li>\n          <li><a href=\"https://blockchain.info/api\">API</a></li>\n          <li><a href=\"https://www.blockchain.com/enterprise\" target=\"_blank\">Business</a></li>\n          <li><a href=\"https://www.blockchain.com/thunder\" target=\"_blank\">Thunder</a></li>\n          <li><a href=\"https://www.blockchain.com/research\" target=\"_blank\">Research</a></li>\n          <li><a href=\"https://blockchain.info\">Explorer</a></li>\n          <li><a href=\"https://blockchain.info/charts\">Charts</a></li>\n          <li><a href=\"https://blockchain.info/markets\">Markets</a></li>\n          <li><a href=\"https://blockchain.info/stats\">Stats</a></li>\n        </ol>\n      </div>\n      <div>\n        <h6>Company</h6>\n        <ol>\n          <li><a href=\"https://www.blockchain.com/about\" target=\"_blank\">About</a></li>\n          <li><a href=\"https://www.blockchain.com/team\" target=\"_blank\">Team</a></li>\n          <li><a href=\"https://www.blockchain.com/careers\" target=\"_blank\">Careers</a></li>\n          <li><a href=\"https://www.blockchain.com/interview\" target=\"_blank\">Interviewing</a></li>\n          <li><a href=\"https://www.blockchain.com/faq\" target=\"_blank\">FAQ</a></li>\n          <li><a href=\"https://www.blockchain.com/press\" target=\"_blank\">Press</a></li>\n          <li><a href=\"https://blog.blockchain.com\" target=\"_blank\">Blog</a></li>\n        </ol>\n      </div>\n      <div>\n        <h6>Support</h6>\n        <ol>\n          <li><a href=\"https://support.blockchain.com\" target=\"_blank\">Help Center</a></li>\n          <li><a href=\"https://blog.blockchain.com/category/tutorials-and-guides/\" target=\"_blank\">Tutorials</a></li>\n          <li><a href=\"https://blockchain.info/wallet/bitcoin-faq\">Learning Portal</a></li>\n          <li><a href=\"https://www.blockchain-status.com\" target=\"_blank\">Status</a></li>\n        </ol>\n      </div>\n      <div>\n        <div class=\"dropup\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n            <span class=\"upper blue f-12\">English</span>\n            <i class=\"icon-down_arrow blue f-8\"></i>\n          </a>\n          <ul class=\"dropdown-menu dropdown-menu-right languages_select\" id=\"languages_select\" style=\"min-width:20px\">\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/id/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"id\" title=\"Indonesian\"><span>Bahasa Indonesia</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ms/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ms\" title=\"Malay\"><span>Bahasa Melayu</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/da/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"da\" title=\"Danish\"><span>Dansk</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/de/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"de\" title=\"German\"><span>Deutsch</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/en/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"en\" title=\"English\"><span>English</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/es/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"es\" title=\"Spanish\"><span>Español</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/fr/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"fr\" title=\"French\"><span>Français</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/it/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"it\" title=\"Italian\"><span>Italiano</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/hu/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"hu\" title=\"Hungarian\"><span>Magyar</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/nl/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"nl\" title=\"Dutch\"><span>Nederlands</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/no/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"no\" title=\"Norwegian\"><span>Norsk</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/pl/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"pl\" title=\"Polish\"><span>Polski</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/pt/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"pt\" title=\"Portuguese\"><span>Português</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ro/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ro\" title=\"Romanian\"><span>Română</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/sl/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"sl\" title=\"Slovenian\"><span>Slovenščina</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/fi/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"fi\" title=\"Finnish\"><span>Suomi</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/sv/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"sv\" title=\"Swedish\"><span>Svenska</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/vi/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"vi\" title=\"Vietnam\"><span>Tiếng</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/tr/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"tr\" title=\"Turkish\"><span>Türkçe</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/el/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"el\" title=\"Greek\"><span>Ελληνικά</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ru/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ru\" title=\"Russian\"><span>Русский</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/bg/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"bg\" title=\"Bulgarian\"><span>български език</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/hi/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"hi\" title=\"Hindi\"><span>हिन्दी</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/th/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"th\" title=\"Thai\"><span>ภาษาไทย</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/zh-cn/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"zh-cn\" title=\"Chinese\"><span>中文(简体)</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/zh-tw/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"zh-tw\" title=\"Chinese\"><span>中文(繁體)</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ja/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ja\" title=\"Japanese\"><span>日本語</span></a></li>\n            <li><a tabindex=\"-1\" href=\"https://blockchain.info/ko/stats?address=0x4200000000000000000000000000000000000006\" data-code=\"ko\" title=\"Korean\"><span>한국어</span></a></li>\n            \n          </ul>\n        </div>\n      </div>\n    </div>\n    <div class=\"flex-container\">\n      <div class=\"copyright\">\n        <span>&copy;&nbsp;2017 Blockchain Luxembourg S.A. All Rights Reserved.</span>\n        <a href=\"https://blockchain.com/privacy\" target=\"_blank\">Privacy</a>\n        <a href=\"https://blockchain.com/terms\" target=\"_blank\">Terms</a>\n        <a href=\"https://blockchain.com/legal\" rel=\"noopener noreferrer\" target=\"_blank\">Law Enforcement Guide</a>\n        <a href=\"https://blockchain.info/advertise\" rel=\"noopener noreferrer\">Advertise</a>\n      </div>\n      <div class=\"social-media\">\n        <a href=\"https://play.google.com/store/apps/details?id=piuk.blockchain.android&hl=en\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/android-footer-logo.svg\" alt=\"Android App Icon\">\n        </a>\n        <a href=\"https://itunes.apple.com/us/app/blockchain-bitcoin-wallet/id493253309?mt=8\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/apple-footer-logo.svg\" alt=\"iOS App Icon\">\n        </a>\n        <a href=\"https://twitter.com/blockchain\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/twitter-footer-logo.svg\" alt=\"Twitter Icon\">\n        </a>\n        <a href=\"https://www.linkedin.com/company/blockchain\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/linkedin-footer-logo.svg\" alt=\"LinkedIn Icon\">\n        </a>\n        <a href=\"https://www.facebook.com/blockchain/\" target=\"_blank\" rel=\"noreferrer nofollow\">\n          <img src=\"https://blockchain.info/Resources/facebook-footer-logo.svg\" alt=\"Facebook Icon\">\n        </a>\n      </div>\n    </div>\n  </footer>\n  </body>\n</html>\n",
+          "durationMs": 2612,
+          "providerTimestamp": "2026-10-30T12:38:19.047302698Z",
+          "minerRegistrationId": "3626"
+        },
+        {
+          "intent": "LIQUIDITY_DEPTH_VERIFY",
+          "minerSlug": "unresolved",
+          "minerName": "Unresolved provider",
+          "minerId": null,
+          "rank": null,
+          "finding": "",
+          "riskScore": null,
+          "verdict": null,
+          "observation": null,
+          "paid": true,
+          "paymentSubmitted": true,
+          "amountAtomic": "10000",
+          "txHash": "0xb7c4c2c39b9cb57f48149e41517ac1a185fa8492f4c1106847a0666e2ea47690",
+          "authorizationNonce": "0x154a2fac6e9559ceec9ac7ed263bc646d1f42bb35f42f23b190a1cca569f69cc",
+          "settlementBlock": "12026724",
+          "receipt": null,
+          "receiptVerified": false,
+          "signalHash": null,
+          "signalVerified": false,
+          "signalLink": null,
+          "query": "Perform LIQUIDITY_DEPTH_VERIFY_GENERAL for token contract 0x4200000000000000000000000000000000000006 on Base (chain ID 8453), proposed trade USD 1000. Report executable depth in USD as metric executable_depth_usd and numeric value. TVL is not executable depth. Return subject.token_address, subject.chain_id, observed_at as an ISO timestamp, confidence from 0 to 1, risk_score from 0 to 100, status as pass/block/unknown, signal, and flags. Unknown evidence must remain unknown.",
+          "requestedIntent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+          "authorization": {
+            "from": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+            "to": "0x3624EB012B5E998BB57B6bE6C9Cfc9c4bc5eb99b",
+            "value": "10000",
+            "validAfter": "0",
+            "validBefore": "1793363947",
+            "nonce": "0x154a2fac6e9559ceec9ac7ed263bc646d1f42bb35f42f23b190a1cca569f69cc"
+          },
+          "engineError": {
+            "code": "upstream call failed: status 502: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.18.0 (Ubuntu)</center>\r\n</body>\r\n</html>\r\n",
+            "message": null
+          },
+          "error": "Engine returned 500; retain payment evidence before retrying",
+          "responseError": "Engine returned 500; retain payment evidence before retrying"
+        }
+      ],
+      "cost": {
+        "totalUsdc": "0.03",
+        "authorizedUsdc": "0.03",
+        "unsettledUsdc": "0",
+        "expiredUsdc": "0",
+        "settledTxCount": 3,
+        "verifiedReceiptCount": 2,
+        "lineItems": [
+          {
+            "intent": "SMART_CONTRACT_AUDIT",
+            "miner": "unresolved",
+            "amountUsdc": "0",
+            "txHash": null,
+            "txLink": null,
+            "receiptHash": null,
+            "paymentStatus": "not_sent"
+          },
+          {
+            "intent": "WASH_TRADING_DETECTION",
+            "miner": "wash-dex-boost",
+            "amountUsdc": "0.01",
+            "txHash": "0xc4235f0773ca79212c366efb0b1f78801cc2bba192c31a2e5a66083bd2fcc67f",
+            "txLink": "https://sepolia.etherscan.io/tx/0xc4235f0773ca79212c366efb0b1f78801cc2bba192c31a2e5a66083bd2fcc67f",
+            "receiptHash": "0xc4ade9214235044f51ac2956fba2f10d144f91302c7bf96de03b7f6070013fb9",
+            "paymentStatus": "confirmed"
+          },
+          {
+            "intent": "ONCHAIN_METRIC_VERIFY",
+            "miner": "ocm-blockchain-stats",
+            "amountUsdc": "0.01",
+            "txHash": "0x5cb979951a41dccfa44d2ceb28ba88849c7f0b29419b47946ff1efed3de48d46",
+            "txLink": "https://sepolia.etherscan.io/tx/0x5cb979951a41dccfa44d2ceb28ba88849c7f0b29419b47946ff1efed3de48d46",
+            "receiptHash": "0xe51c55e3456d666320310df7a2102ab5c3fe9636818be50e08996305cfed6ba6",
+            "paymentStatus": "confirmed"
+          },
+          {
+            "intent": "LIQUIDITY_DEPTH_VERIFY",
+            "miner": "unresolved",
+            "amountUsdc": "0.01",
+            "txHash": "0xb7c4c2c39b9cb57f48149e41517ac1a185fa8492f4c1106847a0666e2ea47690",
+            "txLink": "https://sepolia.etherscan.io/tx/0xb7c4c2c39b9cb57f48149e41517ac1a185fa8492f4c1106847a0666e2ea47690",
+            "receiptHash": null,
+            "paymentStatus": "confirmed"
+          }
+        ]
+      }
+    },
+    "memoHash": "0x9dac4013ef4077d2e5d471e8ff56d2ee028a4beceda7e600787c64f6daccbed4",
+    "signer": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+    "signature": "0xb697568b8020831efa3f54f74cc3fc6ec801332573007dd480a4d1c7bfc0c100469111773da31dc0ee805e7c787c4fde33582956de9017efc7bd111df27e46061b",
+    "domain": {
+      "name": "Arcadian Trade Gate",
+      "version": "2",
+      "chainId": 11155111
+    }
+  },
+  "rendered": "PRE-TRADE DECISION — 0x4200000000000000000000000000000000000006 on Base / USD 1000\nDecision: NO_DATA\nPayment network: telegraph-sepolia [TESTNET USDC]\nIssued: 2026-10-30T12:43:55.203Z\nNo subject-specific evidence was returned for this token and chain\n\nSMART_CONTRACT_AUDIT via Unresolved provider: Engine returned 503\nWASH_TRADING_DETECTION via DexScreener Token Boosts: Provider returned no structured finding for this trade\nONCHAIN_METRIC_VERIFY via Blockchain.info Metrics: Provider returned no structured finding for this trade\nLIQUIDITY_DEPTH_VERIFY via Unresolved provider: Engine returned 500; retain payment evidence before retrying\n\nConfirmed cost — 0.03 USDC / 2 consumption receipts / 3 unique settlement transactions\nAuthorized but unconfirmed — 0 USDC\nSMART_CONTRACT_AUDIT: 0 USDC [not_sent] \nWASH_TRADING_DETECTION: 0.01 USDC [confirmed] https://sepolia.etherscan.io/tx/0xc4235f0773ca79212c366efb0b1f78801cc2bba192c31a2e5a66083bd2fcc67f\nONCHAIN_METRIC_VERIFY: 0.01 USDC [confirmed] https://sepolia.etherscan.io/tx/0x5cb979951a41dccfa44d2ceb28ba88849c7f0b29419b47946ff1efed3de48d46\nLIQUIDITY_DEPTH_VERIFY: 0.01 USDC [confirmed] https://sepolia.etherscan.io/tx/0xb7c4c2c39b9cb57f48149e41517ac1a185fa8492f4c1106847a0666e2ea47690\n\nAgent signer 0x2c051eD5452B3630B2151203d5003b759ECBFDF1\nMemo hash 0x9dac4013ef4077d2e5d471e8ff56d2ee028a4beceda7e600787c64f6daccbed4\nAgent signature establishes authorship; it is not a Telegraph validator proof or a guarantee of safety.",
+  "reason": "The evidence is incomplete. Inspect the checks and payment ledger before making another request.",
+  "paymentSigned": false,
+  "paymentSent": false
+}
