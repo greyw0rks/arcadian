@@ -6,6 +6,8 @@ The `submission/season-ii` review branch packages the restored application, paym
 
 The [independent review ZIP](docs/reviewer-packet/arcadian-liquidity-review.zip) contains only unlabeled questions, an empty response template and instructions. `npm run check:coverage` refreshes public metadata without keys or payments; October 31 results preserve the provider coverage gap and 56 eligible evaluator rows. No useful paid workflow, independent human review or final H2 submission is claimed. Vercel CLI needs login; the preview branch may be built through the existing GitHub integration. Current `/desk` and `/verify` can be reproduced locally; hosted paid reviews still need shared remote storage. The report is ready for the builder to send. No messaging or purchase occurred in this pass.
 
+Published as [draft PR #1](https://github.com/greyw0rks/arcadian/pull/1). No automated deployment status appeared; a new hosted preview remains unverified. Fresh [October 31 memo verification](docs/evidence/verification-oct31.json), run without a payer key, independently confirms the signature, 0.03 test USDC, three settlements and two receipts/signals. Exit 2 is expected for `NO_DATA` and an old memo; no fresh trade is authorized by archived evidence. [Validation record](docs/evidence/delivery-validation-oct31.json).
+
 The October 30 evidence and restoration details below remain historical. References there to unpublished source describe the state before this review branch.
 
 Updated October 30, 2026. Scope: Apps & Agents / Mission 14 and liquidity evaluation material. H2 runs November 1–December 1; the deadline is **December 1, 2026, 23:59 UTC** (December 2, 00:59 Lagos). October transactions are preparation.

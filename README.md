@@ -11,14 +11,15 @@ The repository also includes the original DeFi pool research UI and a miner prov
 Requires Node.js 22 and npm.
 
 ```bash
-npm install
-npm run setup:operator
+git clone --branch submission/season-ii https://github.com/greyw0rks/arcadian.git
+cd arcadian
+npm ci
 npm run dev
 ```
 
 Open `http://localhost:3000/desk` and select **Preview request plan**. Preview validates the input without calling providers or authorizing payment.
 
-Setup creates `.env.local` with a dedicated testnet payer, random operator access token and durable local SQLite file. It preserves any existing environment file. Keys and tokens stay on the server; the operator token is entered into the desk's access field for a paid review.
+No wallet or payment credentials are needed to preview the request plan. If you later configure a paid local review, `npm run setup:operator` creates `.env.local` with a dedicated testnet payer, random operator access token and durable local SQLite file. It preserves any existing environment file. Keys and tokens stay on the server; the operator token is entered into the desk's access field for a paid review. Resolve the documented provider coverage gaps before another purchase.
 
 ```bash
 npm run check:operator   # reads configuration, storage, USDC balance and a v2 challenge

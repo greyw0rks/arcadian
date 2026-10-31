@@ -2,6 +2,8 @@
 
 The app, recovery/verifier code and evaluator contribution are prepared for review. October's paid proof remains a correctly held `NO_DATA` review, not a successful useful trade review. The evaluator's 56 submitted rows are eligible; this is separate from competition submission.
 
+Public review source: https://github.com/greyw0rks/arcadian/tree/submission/season-ii. Clone that branch, run `npm ci` and `npm run dev`, then open `/desk` to preview a request without payment credentials. Review [draft PR #1](https://github.com/greyw0rks/arcadian/pull/1) before merging into production `main`.
+
 ## 1. Resolve coverage with Telegraph
 
 Send the prepared [provider report](UPSTREAM_REPORT.md) to Telegraph support or the appropriate developer channel. It contains the actual requests, transaction links and the schema questions; no new purchase is needed to reproduce them. Ask for:
@@ -20,7 +22,7 @@ A listed provider or payment challenge is not proof of useful coverage. Do not r
 
 ## 2. Restore hosting access
 
-Vercel CLI currently requires a fresh login. The project is already linked to **arcadian** in **greyw0rks-projects**. Complete `vercel login`, then inspect the preview branch deployment. If GitHub did not create it, run `vercel deploy --scope greyw0rks-projects --yes --no-wait` from this repo. Use a preview while reviewing changes.
+Vercel CLI currently requires a fresh login. The project is already linked to **arcadian** in **greyw0rks-projects**. No automated deployment status appeared after publishing PR #1, so a current hosted preview is unverified. Complete `vercel login`, then run `vercel deploy --scope greyw0rks-projects --yes --no-wait` from this branch if no preview exists in the dashboard. Use a preview while reviewing changes.
 
 Paid hosted reviews additionally need a shared remote libSQL/Turso database (`REVIEW_DB_URL` and `REVIEW_DB_AUTH_TOKEN`), dedicated payer and operator token. The local recovered SQLite journal remains authoritative; do not discard it or replace it with the historical `.data/reviews.db`. Follow [OPERATIONS.md](OPERATIONS.md) before migrating. Preview/request planning can be demonstrated without payment credentials.
 

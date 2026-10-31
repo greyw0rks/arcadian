@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-31",
+  "branch": "submission/season-ii",
+  "pullRequest": "https://github.com/greyw0rks/arcadian/pull/1",
+  "checks": {
+    "applicationTests": { "passed": 87, "failed": 0 },
+    "productionBuildAndTypecheck": "passed",
+    "evaluatorSubmissionTests": { "passed": 2, "failed": 0 },
+    "evaluatorArtifactChecks": { "rows": 56, "arithmeticReferences": 43, "passed": true },
+    "syntheticImpactChecks": { "passed": 7, "total": 7 },
+    "datasetSha256": "f0b0a0e97b21d92aafab718a5641b00d1b21ab7aa302f9ee4a252a94f847bad5",
+    "submittedBytesUnchanged": true,
+    "publicProviderCoverage": "provider-coverage-oct31.json",
+    "existingMemoVerification": {
+      "file": "verification-oct31.json",
+      "signatureVerified": true,
+      "settledUsdc": "0.03",
+      "settledTransactions": 3,
+      "verifiedReceipts": 2,
+      "decision": "NO_DATA",
+      "canProceed": false,
+      "exitCode": 2,
+      "exitExplanation": "Expected held result: incomplete subject evidence and an archived memo."
+    }
+  },
+  "newPaymentsSent": false,
+  "providerResultsRetested": false,
+  "independentHumanReviewCompleted": false,
+  "upstreamReportSent": false,
+  "competitionEntrySubmitted": false,
+  "hostedPreviewVerified": false,
+  "hostingBlocker": "Vercel CLI requires login; no GitHub deployment check appeared. Paid hosting also needs shared remote libSQL storage.",
+  "publicationReview": "Public files exclude private environments, credentials, databases, signed transaction journals, workspace memory and browser caches."
+}
