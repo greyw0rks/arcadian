@@ -1,6 +1,18 @@
-# Draft: settled liquidity request failed; other routes returned unrelated evidence
+# Provider report: settled liquidity request failed; other routes returned unrelated evidence
 
-**Unsent report, October 30, 2026.** No issue, email or chat message has been posted. This records observed behavior; it does not assert a refund entitlement or identify a cause beyond the returned errors.
+Posted on November 2 with the user's approval: [Telegraph liquidity bounty #85](https://github.com/telegraphprotocol/bounties/issues/85#issuecomment-6587112597).
+
+## November 2 follow-up
+
+Read-only catalogue and direct-provider probes were refreshed on November 2. No new payment was signed or submitted. The public audit leaderboard now has 13 ranked providers. Arcadian's 56 evaluator rows remain eligible; the liquidity pool now has 136 rows from two contributors, below the five-contributor minimum.
+
+VerifyWire's direct endpoints return subject-specific contract-call and wash-log data, and a WETH/USDC quote on Base. The raw probes are preserved in `docs/evidence/provider-probes-nov02.json`; these are direct reads, not successful paid Engine routing. The contract call's default block is the literal `latest`; the 120-block wash request returned only eight scanned blocks; the quote returns a symbol pair and base-asset size, not contract-bound executable USD depth. The quote's `fee_tier_bps: 3000` is also inconsistent with its prose describing a 0.30% tier (30 basis points).
+
+The live Engine response schemas still describe `ONCHAIN_METRIC_VERIFY_GENERAL` as pinned native wallet balance and `LIQUIDITY_DEPTH_VERIFY_GENERAL` as pool reserve value. Please identify the supported Engine path for block-anchored token-contract reads and size-bound execution evidence, and clarify recovery/accounting for the settled liquidity failure below. Newly advertised coverage is not evidence that the previous paid-routing failure has been resolved.
+
+The app is now available at https://arcadian-gamma.vercel.app/desk with shared remote review storage. The original transactions, signed memo and independent verifier remain sufficient to reproduce the October failure without another purchase.
+
+**Original observations: October 30, 2026.** This records observed behavior; it does not assert a refund entitlement or identify a cause beyond the returned errors.
 
 **October 31 metadata refresh:** [public catalogue evidence](../evidence/provider-coverage-oct31.json) lists 12 audit, 12 wash, 35 onchain-metric and 32 liquidity providers as active. The fetched leaderboard has no rows for these four child Intents. The previously selected Bitcoin-metrics and token-boost providers remain listed. VerifyWire advertises contract view calls and wash heuristics; its liquidity schema advertises a named exchange pair rather than token-contract-bound executable USD depth. These declarations do not demonstrate successful Engine routing or results. No provider endpoint or paid Engine replay was called during this refresh. Please identify a supported route/schema before another paid review.
 

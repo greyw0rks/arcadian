@@ -1,14 +1,16 @@
 version: "1"
 kind: miner
-id: 2847
-slug: arcadian-defi-risk
+id: 20261102
+slug: arcadian-defi-measurements
 protocol: generic
 name: "Arcadian — DeFi TVL and Yield"
 description: >
-  Supplies deterministic DeFi measurements for TVL_LOOKUP and CRYPTO_YIELD_RATE.
+  Supplies deterministic DeFi measurements for TVL_LOOKUP_GENERAL and
+  CRYPTO_YIELD_RATE_GENERAL.
   TVL is the complete DefiLlama protocol or protocol-chain figure, or an exact
-  pool's TVL. Yield is the observed APY of an exact pool or the disclosed
-  TVL-weighted top-five pool sample for a named protocol. Each answer includes
+  pool's TVL. Yield is the observed supply APY, excluding reward incentives,
+  of an exact single-asset pool or a disclosed TVL-weighted top-five sample
+  matching a named protocol, asset and chain. Each answer includes
   the measured value, units, scope, source URL, retrieval time and cache limit.
   Pool research is available separately; this miner does not claim to audit
   bytecode, detect fraud, or measure executable trading depth.
@@ -22,7 +24,11 @@ limitations:
   - code: PUBLIC_FEED_FRESHNESS
     message: "Public-feed observations may be older than their retrieval time. Pool data is cached up to 60 seconds; protocol metadata up to 300 seconds."
   - code: YIELD_SAMPLE_SCOPE
-    message: "Protocol yield uses at most five pools by TVL. The response identifies every sampled pool and the measured scope. This is not a promised return."
+    message: "Supply yield excludes reward incentives and uses at most five single-asset pools by TVL matching the protocol, symbol and chain. Every sampled pool is identified. This is not a promised return."
+  - code: MAX_BODY_SIZE
+    message: "The measurement endpoint accepts a JSON body of at most 8192 bytes."
+    property: size_bytes
+    value_bytes: 8192
   - code: TVL_NOT_TRADE_DEPTH
     message: "TVL is locked value, not executable liquidity or a maximum safe trade size."
 
@@ -36,31 +42,33 @@ errors:
   message_path: error
 
 endpoints:
-  - path: /measure
+  - path: /api/telegraph/measure
     external_path: /api/telegraph/measure
     method: POST
     description: >
       Return a deterministic TVL or yield measurement. Select intent
-      TVL_LOOKUP or CRYPTO_YIELD_RATE and name a protocol, exact pool_id, or a
+      TVL_LOOKUP_GENERAL or CRYPTO_YIELD_RATE_GENERAL and name a protocol, exact pool_id, or a
       query naming a protocol. Optional chain scopes the protocol measurement.
-      TVL_LOOKUP rejects asset-filtered protocol totals; name a pool_id for
-      pool TVL. CRYPTO_YIELD_RATE accepts an optional asset filter.
+      TVL_LOOKUP_GENERAL rejects asset-filtered protocol totals; name a pool_id for
+      pool TVL. CRYPTO_YIELD_RATE_GENERAL requires chain and asset, returns supply
+      APY excluding rewards, and rejects mixed-asset pools and missing base APY.
     content_type: application/json
-    intents: [TVL_LOOKUP, CRYPTO_YIELD_RATE]
+    intents: [TVL_LOOKUP_GENERAL, CRYPTO_YIELD_RATE_GENERAL]
     params:
       body:
         required:
           - name: intent
             type: string
             intents: ["*"]
-            description: "Choose the measurement matching the requested Intent."
-            accepted_fields:
-              - value: TVL_LOOKUP
-                intents: [TVL_LOOKUP]
-                description: "Complete protocol or protocol-chain TVL in USD, or exact pool TVL."
-              - value: CRYPTO_YIELD_RATE
-                intents: [CRYPTO_YIELD_RATE]
-                description: "Observed APY for an exact pool or a disclosed protocol pool sample."
+            description: "Choose TVL_LOOKUP_GENERAL for USD TVL or CRYPTO_YIELD_RATE_GENERAL for supply APY excluding rewards. The intent mapping supplies this constant."
+          - name: chain
+            type: string
+            intents: [CRYPTO_YIELD_RATE_GENERAL]
+            description: "Exact DefiLlama chain name, e.g. Base or Ethereum."
+          - name: asset
+            type: string
+            intents: [CRYPTO_YIELD_RATE_GENERAL]
+            description: "Exact single-asset symbol whose supply APY is requested, e.g. USDC."
         optional:
           - name: query
             type: string
@@ -72,12 +80,8 @@ endpoints:
             description: "DefiLlama protocol slug or name. Supply protocol, pool_id or a query naming one."
           - name: chain
             type: string
-            intents: ["*"]
+            intents: [TVL_LOOKUP_GENERAL]
             description: "Optional exact DefiLlama chain name, e.g. Base or Ethereum."
-          - name: asset
-            type: string
-            intents: [CRYPTO_YIELD_RATE]
-            description: "Optional asset symbol for yield pool selection, e.g. USDC."
           - name: pool_id
             type: string
             intents: ["*"]
@@ -89,7 +93,7 @@ input_schema:
   properties:
     intent:
       type: string
-      enum: [TVL_LOOKUP, CRYPTO_YIELD_RATE]
+      enum: [TVL_LOOKUP_GENERAL, CRYPTO_YIELD_RATE_GENERAL]
     query:
       type: string
     protocol:
@@ -127,9 +131,50 @@ output_schema:
       type: number
       minimum: 0
       maximum: 1
+    tvl_usd:
+      type: number
+      minimum: 0
+    chain_tvl_usd:
+      type: number
+      minimum: 0
+    protocol_or_chain:
+      type: string
+    supply_apy:
+      type: number
+      description: "Supply APY in basis points; 1 percent APY equals 100 basis points. Excludes reward incentives."
+    reward_incentives_included:
+      type: boolean
+
+intent_mapping:
+  TVL_LOOKUP_GENERAL:
+    endpoint: /api/telegraph/measure
+    input:
+      intent: { from: const, value: TVL_LOOKUP_GENERAL }
+      protocol:
+        from: protocol
+        how: "Extract the DefiLlama protocol name or slug, e.g. aave-v3. Do not substitute a token address or a market-cap value."
+      chain:
+        from: protocol
+        how: "Only include when an explicit chain is named in the question; use the DefiLlama chain name, e.g. Base."
+    output:
+      tvl_usd: { path: tvl_usd, unit: USD }
+      chain_tvl_usd: { path: chain_tvl_usd, unit: USD }
+      protocol_or_chain: { path: protocol_or_chain }
+      as_of:
+        path: retrieved_at
+        how: "Public-feed retrieval time; source observation time is unavailable and is not claimed."
+  CRYPTO_YIELD_RATE_GENERAL:
+    endpoint: /api/telegraph/measure
+    input:
+      intent: { from: const, value: CRYPTO_YIELD_RATE_GENERAL }
+      protocol: { from: project, how: "Exact DefiLlama protocol slug, e.g. aave-v3." }
+      asset: { from: symbol, how: "Exact single-asset symbol, e.g. USDC." }
+      chain: { from: chain, how: "Exact DefiLlama chain name, e.g. Base." }
+    output:
+      supply_apy: { path: supply_apy, unit: basis points }
 
 semantics:
   signal_mapping:
     label_field: signal
     confidence_field: confidence
-  supported_intents: [TVL_LOOKUP, CRYPTO_YIELD_RATE]
+  supported_intents: [TVL_LOOKUP_GENERAL, CRYPTO_YIELD_RATE_GENERAL]

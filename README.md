@@ -4,7 +4,7 @@
 
 Arcadian is a **DeFi pre-trade evidence gate** for Telegraph Season II, Mission 14. It takes a token contract, trading chain and USD notional, purchases four kinds of intelligence through Telegraph, and returns a signed policy decision with evidence and measured spend.
 
-The repository also includes the original DeFi pool research UI and a miner providing deterministic TVL and yield measurements. The current hosted Season I site is [arcadian-gamma.vercel.app](https://arcadian-gamma.vercel.app); the new desk is under development.
+The repository also includes the original DeFi pool research UI and a miner providing deterministic TVL and supply-yield measurements. Try the hosted [desk](https://arcadian-gamma.vercel.app/desk) and [memo verifier](https://arcadian-gamma.vercel.app/verify). November 2 hosting checks confirm configured payment protection, shared storage, request preview and access to the migrated archived review; no fresh paid review is claimed.
 
 ## Run locally
 
@@ -75,22 +75,23 @@ The token being researched is on Base **mainnet** in this example; intelligence 
 
 ## Evaluation material
 
-[56 synthetic liquidity preference pairs](evaluation/liquidity-depth/README.md) were submitted under `LIQUIDITY_DEPTH_VERIFY_GENERAL` and all are **eligible** as of the saved October 30 snapshot. The pool has one of five required contributors for question use. The pinned official data gate passes; 43 cases have arithmetic references and seven synthetic Mission 14 integration checks pass. Independent human review, unseen accuracy and live ranking improvement remain unverified. Run `npm run check:evaluation` to reproduce the artifact checks.
+[56 synthetic liquidity preference pairs](evaluation/liquidity-depth/README.md) were submitted under `LIQUIDITY_DEPTH_VERIFY_GENERAL` and all remain **eligible** in the [November 2 check](docs/evidence/evaluator-rows-nov02.json). The pool has two of five required contributors for question use. The pinned official data gate passes; 43 cases have arithmetic references and seven synthetic Mission 14 integration checks pass. Independent human review, unseen accuracy and live ranking improvement remain unverified. Run `npm run check:evaluation` to reproduce the artifact checks.
 
 ## Miner registration
 
-The manifest advertises **`TVL_LOOKUP` and `CRYPTO_YIELD_RATE`**. TVL uses complete DefiLlama protocol or protocol-chain totals, or exact pool TVL. Yield uses exact pool APY or a disclosed TVL-weighted sample of at most five pools. Pool TVL is not executable trade depth.
+The manifest advertises **`TVL_LOOKUP_GENERAL` and `CRYPTO_YIELD_RATE_GENERAL`**. TVL uses complete DefiLlama protocol or protocol-chain totals, or exact pool TVL. Supply yield excludes reward incentives and uses an exact single-asset pool or a disclosed TVL-weighted sample of at most five matching pools. Canonical `supply_apy` is in basis points. Pool TVL is not executable trade depth.
 
-Registration 401 was rejected for a string `limitations` field. Activation is event-driven; waiting for an epoch will not repair it. The local manifest fixes the shape, but the stable hosted file still needs updating. See [the postmortem](docs/season-ii/POSTMORTEM.md).
+The new `arcadian-defi-measurements` identity (YAML ID 20261102) belongs to the chosen signed-in account. [Anjoman accepted the exact hosted YAML](docs/evidence/anjoman-validation-nov02.json); its empty sandbox probe returns the expected HTTP 400, and real TVL/supply-yield requests return 200. Sponsored registration currently returns HTTP 500; there is no confirmed new registration ID. The address-only simulation reports insufficient MACHINA allowance. Historical registrations 173 and 401 belong to a different wallet and are not being changed. See [the current handoff](HANDOFF.md).
 
 ```bash
-npm run check:telegraph
-# After publishing and configuring owner-wallet/console credentials:
-REGISTER_ID=401 npm run register                 # validate, compare bytes, simulate
-REGISTER_ID=401 npm run register -- --broadcast  # send the reviewed update
+npm run check:yaml -- --anjoman-report docs/evidence/anjoman-validation-nov02.json
+# Address-only simulation; use the selected owner and fee address from .env.local.example:
+npm run register -- --validation-report docs/evidence/anjoman-validation-nov02.json
+# Only after registration has a confirmed ID:
+REGISTER_ID=<confirmed-id> npm run check:telegraph
 ```
 
-The script requires official validation, hosted bytes matching the local manifest, a successful real measurement request and canonical Intents. It reads the confirmed new registration ID from `MinerRegistered`. `check:telegraph` requires active node status, matching hash, URL and exact Intents.
+The script requires hash-bound Anjoman validation, hosted bytes matching the local manifest, successful real TVL and supply-yield requests, and canonical Intents. Its default is simulation; CLI broadcast requires the owner's key and `--broadcast`. Signed-in email accounts use Anjoman's sponsored UI instead. `check:telegraph` requires a confirmed registration ID, active node status, matching hash, URL and exact Intents.
 
 ## Deploy and reproduce
 

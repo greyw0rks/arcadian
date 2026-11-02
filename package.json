@@ -9,6 +9,7 @@
   },
   "scripts": {
     "check:coverage": "node scripts/check-provider-coverage.mjs",
+    "check:yaml": "node --import tsx scripts/check-yaml.ts",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -52,6 +52,6 @@ The authoritative journal is `.data/delivery-2026-10-30/reviews.db`; the old `.d
 
 Retain exact input, policy, UUID, raw answers, requested/reported Intents, provider YAML/registration IDs, nonces, receipts, signals, settlements, confirmed/unsettled cost and timestamps. Download the signed memo; an operator signature is not validator proof.
 
-October 30 demonstrated payment/recovery and refusal: audit routing returned 503; liquidity settled then failed with 500/upstream 502; onchain and wash answers were unrelated. See the [unsent reproduction report](UPSTREAM_REPORT.md). Current general schemas also fail to establish token contract state and executable depth. Resolve useful coverage before seeking fresh H2 purchase proof.
+October 30 demonstrated payment/recovery and refusal: audit routing returned 503; liquidity settled then failed with 500/upstream 502; onchain and wash answers were unrelated. See the [reproduction report](UPSTREAM_REPORT.md), [posted on bounty #85](https://github.com/telegraphprotocol/bounties/issues/85#issuecomment-6587112597) with the user's approval. Current general schemas also fail to establish token contract state and executable depth. Resolve useful coverage before seeking fresh H2 purchase proof.
 
 Independent use, verified threats and final H2 evidence must reflect actual behavior. Synthetic checks and October activity are labeled separately. Separate miner registration still needs owner credentials, official validation and hosted matching bytes; see [the postmortem](POSTMORTEM.md).

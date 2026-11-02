@@ -1,0 +1,23 @@
+{
+  "source": "anjoman",
+  "checkedAt": "2026-11-02T19:52:23.124Z",
+  "yamlSha256": "9ab0542ca0c7adc3dbc4e2c8454f43c98e383d9fb30ff2384e403e6c2b5a4e07",
+  "localYamlSha256": "9ab0542ca0c7adc3dbc4e2c8454f43c98e383d9fb30ff2384e403e6c2b5a4e07",
+  "hostedMatchesLocal": true,
+  "url": "https://anjoman.ai/api/registrations/validate",
+  "status": 200,
+  "validation": {
+    "valid": true,
+    "slug": "arcadian-defi-measurements",
+    "name": "Arcadian — DeFi TVL and Yield",
+    "results": [
+      {
+        "path": "/api/telegraph/measure",
+        "method": "POST",
+        "status": 405,
+        "success": true,
+        "latency_ms": 667
+      }
+    ]
+  }
+}

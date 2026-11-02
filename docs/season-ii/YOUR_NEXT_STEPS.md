@@ -1,12 +1,12 @@
 # Arcadian — your remaining steps
 
-The app, recovery/verifier code and evaluator contribution are prepared for review. October's paid proof remains a correctly held `NO_DATA` review, not a successful useful trade review. The evaluator's 56 submitted rows are eligible; this is separate from competition submission.
+The app is deployed with verified shared storage, and Anjoman has accepted the exact hosted measurement YAML. October's paid proof remains a correctly held `NO_DATA` review; a useful H2 paid trade result is still missing. The evaluator's 56 submitted rows remain eligible; this is separate from competition submission.
 
-Public review source: https://github.com/greyw0rks/arcadian/tree/submission/season-ii. Clone that branch, run `npm ci` and `npm run dev`, then open `/desk` to preview a request without payment credentials. Review [draft PR #1](https://github.com/greyw0rks/arcadian/pull/1) before merging into production `main`.
+Try the hosted [desk](https://arcadian-gamma.vercel.app/desk) and [verifier](https://arcadian-gamma.vercel.app/verify). Public review source: https://github.com/greyw0rks/arcadian/tree/submission/season-ii. Clone that branch, run `npm ci` and `npm run dev`, then open `/desk` to preview a request without payment credentials. Review [PR #1](https://github.com/greyw0rks/arcadian/pull/1) before merging into `main`.
 
 ## 1. Resolve coverage with Telegraph
 
-Send the prepared [provider report](UPSTREAM_REPORT.md) to Telegraph support or the appropriate developer channel. It contains the actual requests, transaction links and the schema questions; no new purchase is needed to reproduce them. Ask for:
+The [provider report](UPSTREAM_REPORT.md) has been [posted on bounty #85](https://github.com/telegraphprotocol/bounties/issues/85#issuecomment-6587112597) with your approval. It contains the actual requests, transaction links and schema questions; no new purchase is needed to reproduce them. We still need answers on:
 
 - The supported Engine Intent/schema for block-anchored token contract reads.
 - A route returning executable depth for a token contract, chain and USD notional, rather than pool reserves or a generic exchange pair.
@@ -20,11 +20,17 @@ npm run check:coverage -- --out .evidence/provider-coverage.json
 
 A listed provider or payment challenge is not proof of useful coverage. Do not repeat the previous four purchases solely to see whether the same failures recur.
 
-## 2. Restore hosting access
+## 2. Finish the new measurement miner registration
 
-Vercel CLI currently requires a fresh login. The project is already linked to **arcadian** in **greyw0rks-projects**. No automated deployment status appeared after publishing PR #1, so a current hosted preview is unverified. Complete `vercel login`, then run `vercel deploy --scope greyw0rks-projects --yes --no-wait` from this branch if no preview exists in the dashboard. Use a preview while reviewing changes.
+Vercel login, server configuration, deployment and journal migration are complete. [Hosted smoke checks](../evidence/hosted-smoke-nov02.json) confirm both measurements, request preview and access to the archived review. The original local journal remains intact; [migration fingerprints](../evidence/journal-migration-nov02.json) match.
 
-Paid hosted reviews additionally need a shared remote libSQL/Turso database (`REVIEW_DB_URL` and `REVIEW_DB_AUTH_TOKEN`), dedicated payer and operator token. The local recovered SQLite journal remains authoritative; do not discard it or replace it with the historical `.data/reviews.db`. Follow [OPERATIONS.md](OPERATIONS.md) before migrating. Preview/request planning can be demonstrated without payment credentials.
+The chosen Anjoman account owns the new `arcadian-defi-measurements` identity (YAML ID 20261102). [Anjoman validation](../evidence/anjoman-validation-nov02.json) passes for the exact hosted hash. The account has 5 test MACHINA, but sponsored registration returns HTTP 500 and the address-only simulation reports insufficient MACHINA allowance. Finish bond approval through Anjoman's supported email-account flow, then confirm the returned transaction, registration ID and node activation. No new registration is claimed; leave the old owner's registrations 173/401 alone.
+
+```bash
+npm run check:yaml -- --anjoman-report docs/evidence/anjoman-validation-nov02.json
+# After a confirmed new registration:
+REGISTER_ID=<confirmed-id> npm run check:telegraph
+```
 
 ## 3. Obtain independent evaluator review
 
@@ -36,12 +42,12 @@ Validate their returned JSON with:
 node evaluation/liquidity-depth/review.mjs --review /path/to/completed-review.json
 ```
 
-Keep the submitted dataset frozen. Resolve disagreements in a new version. This review is not a hidden benchmark or a measured network ranking improvement. Five contributors are needed for question use; you currently supply one. H2 material qualification can precede network activation.
+Keep the submitted dataset frozen. Resolve disagreements in a new version. This review is not a hidden benchmark or a measured network ranking improvement. Five contributors are needed for question use; the November 2 pool has two, including Arcadian. H2 material qualification can precede network activation.
 
 ## 4. Capture the H2 workflow and submit
 
 Once coverage is confirmed, run one deliberately capped useful review during **November 1–December 1**, using [OPERATIONS.md](OPERATIONS.md). Preserve the exact subject, result, raw provider evidence, actual cost/elapsed time, settlement transactions and receipts. Have an independent operator reproduce a new input and a failure case. Record actual use and repeat use if making adoption claims.
 
-Record the 2–5 minute demonstration using [the prepared sequence](SUBMISSION.md). The app and evaluator can be distinct entries: [app draft](SUBMISSION.md), [evaluator draft](EVALUATOR_SUBMISSION.md), [score/evidence plan](SCORE_PLAN.md). Confirm registration and complete the official form at https://hackathon.telegraphprotocol.com with your team/contact details and selected permissions. The material upload is not the final entry.
+Record the 2–5 minute demonstration using [the prepared sequence](SUBMISSION.md). Automated demo preparation currently cannot install its HyperFrames workflow because the GitHub skill manifest is unreachable; retry the download before creating the composition. The app and evaluator can be distinct entries: [app draft](SUBMISSION.md), [evaluator draft](EVALUATOR_SUBMISSION.md), [score/evidence plan](SCORE_PLAN.md). Confirm competition registration and complete the official form at https://hackathon.telegraphprotocol.com with your team/contact details and selected permissions. The material upload is not the final entry.
 
-Deadline: **December 1, 2026, 23:59 UTC / December 2, 00:59 Lagos**. November 14 is an integration progress check, not the final deadline. No upstream message or final competition form has been sent by this work.
+Deadline: **December 1, 2026, 23:59 UTC / December 2, 00:59 Lagos**. November 14 is an integration progress check. The approved upstream report was posted; the final competition forms remain unsubmitted.

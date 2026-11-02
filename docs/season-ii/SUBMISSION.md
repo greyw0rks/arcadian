@@ -10,9 +10,9 @@
 
 **What does it do today?** The desk supports a bounded testnet review, recovery and signed PROCEED/BLOCK/REVIEW/NO_DATA outcomes. `/verify` and the CLI independently recheck signatures, payments, receipts and raw answers. The October 30 run spent 0.03 Telegraph test USDC across three settlements, with two verified receipts/signals and no unresolved authorizations. Provider failure and unrelated answers correctly produced NO_DATA. See [live evidence](../evidence/verified-memo-oct30.json); a useful complete review remains unproven. October preparation is separate from H2-period evidence.
 
-**Why would someone adopt it?** A trading bot can consume one inspectable decision and ledger for the exact exposure it proposes. Users still need suitable intelligence coverage, configured hosted storage, production permissions and their own execution integration. Interest, willingness to pay and repeat independent use remain unverified.
+**Why would someone adopt it?** A trading bot can consume one inspectable decision and ledger for the exact exposure it proposes. Shared hosted storage is configured and verified. Users still need suitable intelligence coverage, production permissions and their own execution integration. Interest, willingness to pay and repeat independent use remain unverified.
 
-**How can someone try it?** Run the current source locally from `/home/greyw0rks/arcadian`, preview a trade at `/desk`, and inspect a saved memo at `/verify`. The previously published preview predates October 30 fixes. Follow [OPERATIONS.md](OPERATIONS.md) for the exact Telegraph Ethereum Sepolia test token and storage configuration before any capped purchase. The restored operator uses the recovered journal at `.data/delivery-2026-10-30/reviews.db`.
+**How can someone try it?** Open the hosted [desk](https://arcadian-gamma.vercel.app/desk) to preview a trade and [verifier](https://arcadian-gamma.vercel.app/verify) to inspect a saved memo. November 2 checks confirm the updated deployment and migrated shared journal; they made no paid requests. Follow [OPERATIONS.md](OPERATIONS.md) before any capped purchase. The operator now uses the verified Turso copy; `.data/delivery-2026-10-30/reviews.db` remains intact as the migration source.
 
 ## Suggested 2–5 minute demonstration
 

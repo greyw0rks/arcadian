@@ -44,7 +44,7 @@ Do not assign optimistic self-scores to missing evidence. The purchase requireme
 
 ## Separate miner work
 
-Registration 401's terminal YAML rejection still needs a deployed byte-matching manifest, official console validation and an owner-authorized update. Fixing it is valuable, but it does not prove the Mission 14 app completed a paid task. The current miner exposes only implemented TVL and yield measurements; register it as a separate real contribution if entering that track.
+The new `arcadian-defi-measurements` identity has a deployed byte-matching manifest and official Anjoman validation. Sponsored registration currently returns HTTP 500; the address-only simulation finds insufficient MACHINA allowance. No new registration is claimed. Historical registration 401 belongs to a different owner and is not being updated. Completing this separate measurement contribution will not establish a useful Mission 14 paid trade result.
 
 ## Independent tester record
 

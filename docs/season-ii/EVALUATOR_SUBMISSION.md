@@ -10,7 +10,7 @@ The [material directory](../../evaluation/liquidity-depth/README.md) contains 11
 
 [Seven synthetic impact checks](../../evaluation/liquidity-depth/mission-impact.json) exercise Arcadian's production parser and policy: TVL substitution, wrong chain, stale data, insufficient shared depth, metadata instructions and unspecified units hold the trade; a supported-depth control proceeds. Other check/payment inputs are fixtures. These checks demonstrate application boundaries, not live routing improvement or an independently measured baseline gain.
 
-The [saved network snapshot](../../evaluation/liquidity-depth/pool-status-2026-10-30.json) contains 56 rows, one contributor, 27 qualification / 29 ranking rows, activation epoch 1609 and corpus version `dbc273c044fe413ea05409468943d73c7a9b7f1991eed85b36c115d0153dacda`. Question use requires five contributors. Snapshot existence does not prove actual use in rankings.
+The [October 30 network snapshot](../../evaluation/liquidity-depth/pool-status-2026-10-30.json) contains 56 rows, one contributor, 27 qualification / 29 ranking rows, activation epoch 1609 and corpus version `dbc273c044fe413ea05409468943d73c7a9b7f1991eed85b36c115d0153dacda`. The [November 2 metadata check](../evidence/provider-coverage-nov02.json) reports 136 eligible pool rows and two contributors, and [all 56 Arcadian rows remain eligible](../evidence/evaluator-rows-nov02.json). Question use requires five contributors. Snapshot existence does not prove actual use in rankings.
 
 ## Reproduce
 

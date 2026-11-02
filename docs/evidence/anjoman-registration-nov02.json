@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-11-02T20:25:21.475Z",
+  "source": "anjoman",
+  "owner": "0xc464edF8500A1F6E4c21158EF16FadBb4db0f724",
+  "yamlId": 20261102,
+  "slug": "arcadian-defi-measurements",
+  "yamlSha256": "9ab0542ca0c7adc3dbc4e2c8454f43c98e383d9fb30ff2384e403e6c2b5a4e07",
+  "machinaBalanceShown": "5",
+  "attempts": [
+    {
+      "url": "https://anjoman.ai/api/registrations/miner",
+      "status": 500,
+      "message": "Internal server error"
+    },
+    {
+      "url": "https://anjoman.ai/api/registrations/miner",
+      "status": 500,
+      "message": "Internal server error"
+    }
+  ],
+  "registrationId": null,
+  "transactionHash": null,
+  "accountRegistrationsShown": 0,
+  "simulation": {
+    "network": "ethereum-sepolia",
+    "transactionSent": false,
+    "revertSelector": "0xfb8f41b2",
+    "decodedError": "ERC20InsufficientAllowance(address,uint256,uint256)"
+  },
+  "scope": "Official YAML validation passed. Sponsored registration returned a server error twice. No new registration or activation is claimed. The address-only simulation did not approve the bond; it does not establish the cause of the server error."
+}

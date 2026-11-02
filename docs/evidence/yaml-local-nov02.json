@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-11-02T20:24:45.472Z",
+  "yamlSha256": "9ab0542ca0c7adc3dbc4e2c8454f43c98e383d9fb30ff2384e403e6c2b5a4e07",
+  "localContractPassed": true,
+  "anjomanValidated": true,
+  "errors": [],
+  "slug": "arcadian-defi-measurements",
+  "intents": [
+    "TVL_LOOKUP_GENERAL",
+    "CRYPTO_YIELD_RATE_GENERAL"
+  ],
+  "reference": "https://anjoman.ai/docs/miners/yaml-config",
+  "referenceUpdated": "2026-11-01",
+  "scope": "Local contract checks are not official node validation. Anjoman validation is reported only when a matching saved response is supplied."
+}

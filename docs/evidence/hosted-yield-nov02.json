@@ -1,0 +1,25 @@
+{
+  "intent": "CRYPTO_YIELD_RATE_GENERAL",
+  "signal": "aave-v3 on Base yields 5.6063% APY (top_pools_tvl_weighted).",
+  "value": 5.60631,
+  "unit": "percent APY",
+  "protocol": "aave-v3",
+  "chain": "Base",
+  "scope": "top_pools_tvl_weighted",
+  "pools_scored": 1,
+  "sampled_tvl_usd": 15126893,
+  "pool_ids": [
+    "7e0661bf-8cf3-45e6-9424-31916d4c7b84"
+  ],
+  "source_url": "https://yields.llama.fi/pools",
+  "supply_apy": 560.631,
+  "supply_apy_unit": "basis points",
+  "reward_incentives_included": false,
+  "confidence": 1,
+  "retrieved_at": "2026-11-02T20:11:03.897Z",
+  "maximum_cache_age_seconds": 60,
+  "source_updated_at": null,
+  "limitations": [
+    "Source freshness follows the public feed; retrieval time is not a source observation time."
+  ]
+}

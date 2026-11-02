@@ -1,0 +1,85 @@
+{
+  "checkedAt": "2026-11-02T19:57:58.265Z",
+  "paymentSigned": false,
+  "paymentSent": false,
+  "scope": "Direct keyless provider reads; not Engine routing or paid inference proof",
+  "probes": [
+    {
+      "key": "metric",
+      "url": "https://telegraph-verify.margyn.workers.dev/metric?chain=base&to=0x4200000000000000000000000000000000000006&data=0x18160ddd&block=latest",
+      "sha256": "0a78e57d3c7ba02b6fb3d4390a72c0e5e2d391214ec52465c630d4b06d46b291",
+      "response": {
+        "intent": "ONCHAIN_METRIC_VERIFY",
+        "chain": "base",
+        "chain_id": 8453,
+        "metric": "view_call",
+        "block": "latest",
+        "contract_address": "0x4200000000000000000000000000000000000006",
+        "calldata": "0x18160ddd",
+        "value": "0x000000000000000000000000000000000000000000003ab5b8acafead82f19a3",
+        "value_uint": "277249423888203008383395",
+        "summary": "At the latest block on Base, calling 0x4200000000000000000000000000000000000006 with 0x18160ddd returned 0x000000000000000000000000000000000000000000003ab5b8acafead82f19a3 (as an integer, 277,249,423,888,203,008,383,395).",
+        "confidence": 0.97,
+        "source": "eth_call at a block over public RPC",
+        "readings": "contract 0x4200000000000000000000000000000000000006, calldata 0x18160ddd, chain Base, block latest, return 0x000000000000000000000000000000000000000000003ab5b8acafead82f19a3, read 2026-11-02T19:48:40.964Z.",
+        "attribution": "On-chain values read from public EVM nodes. Currency mid rates from European Central Bank reference rates via Frankfurter. Crypto quotes and order book depth from the Kraken, Bitstamp and Gemini public markets.",
+        "as_of": "2026-11-02T19:48:40.964Z"
+      }
+    },
+    {
+      "key": "depth",
+      "url": "https://telegraph-verify.margyn.workers.dev/depth?pair=WETH%2FUSDC&chain=base&size=0.25",
+      "sha256": "93eaeac98bf0a58f00b2e834dbb348c4c1ff4c4ab5d4c0594ef365f8567f554a",
+      "response": {
+        "intent": "LIQUIDITY_DEPTH_VERIFY",
+        "venue": "Uniswap v3",
+        "pair": "WETH/USDC",
+        "market_type": "on-chain AMM pool",
+        "chain": "base",
+        "chain_id": 8453,
+        "fee_tier_bps": 3000,
+        "spot_price": 2234.661,
+        "effective_price": 2234.53354,
+        "trade_size": 0.25,
+        "amount_out": 558.633385,
+        "slippage_percent": 0.0057,
+        "summary": "Selling 0.25 WETH into the WETH/USDC Uniswap v3 pool on Base (the 0.30% fee tier) returns about 558.63 USDC at an effective price of $2,234.53, against a spot of $2,234.66, a slippage of about 0.01% (0.0%).",
+        "confidence": 0.95,
+        "source": "Uniswap v3 QuoterV2, read on-chain",
+        "readings": "Uniswap v3 WETH/USDC on Base, fee tier 3000 bps, spot 2234.661, sell 0.25 WETH returns 558.633385 USDC, effective 2234.53354, slippage 0.0057%, read 2026-11-02T19:48:41.141Z.",
+        "attribution": "On-chain values read from public EVM nodes. Currency mid rates from European Central Bank reference rates via Frankfurter. Crypto quotes and order book depth from the Kraken, Bitstamp and Gemini public markets.",
+        "as_of": "2026-11-02T19:48:41.141Z"
+      }
+    },
+    {
+      "key": "wash",
+      "url": "https://telegraph-verify.margyn.workers.dev/washtrade?chain=base&token=0x4200000000000000000000000000000000000006&blocks=120",
+      "sha256": "70fba857a12112ef6ab74980b6795b5d935f5cd8757ba412b82f2e378086ea06",
+      "response": {
+        "intent": "WASH_TRADING_DETECTION",
+        "chain": "base",
+        "chain_id": 8453,
+        "contract_address": "0x4200000000000000000000000000000000000006",
+        "symbol": "WETH",
+        "window_blocks": 8,
+        "from_block": 53429779,
+        "head_block": 53429786,
+        "transfers": 539,
+        "unique_addresses": 236,
+        "reciprocal_pairs": 28,
+        "self_transfers": 0,
+        "round_trip_volume_share_percent": 43.81,
+        "top_sender_concentration_percent": 23.05,
+        "risk_score": 0.5864,
+        "risk_label": "ELEVATED",
+        "verified": false,
+        "confidence": 0.9,
+        "source": "eth_getLogs Transfer events over public RPC",
+        "readings": "token WETH 0x4200000000000000000000000000000000000006 on Base, blocks 53429779-53429786 (8), transfers 539, addresses 236, reciprocal pairs 28, round-trip share 43.81%, concentration 23.05%, self 0, risk 0.5864 (ELEVATED), read 2026-11-02T19:48:41.414Z.",
+        "summary": "Over the last 8 blocks on Base, WETH shows a ELEVATED wash-trading risk (score 0.59): 539 transfers among 236 addresses, with 28 reciprocal address pairs carrying about 43.81% (43.8%) of volume in round trips. The busiest sender moved 23.05% (23.1%) of volume. This is a heuristic over Transfer logs, not a proof of intent.",
+        "attribution": "On-chain values read from public EVM nodes. Currency mid rates from European Central Bank reference rates via Frankfurter. Crypto quotes and order book depth from the Kraken, Bitstamp and Gemini public markets.",
+        "as_of": "2026-11-02T19:48:41.414Z"
+      }
+    }
+  ]
+}

@@ -41,6 +41,6 @@ The current kit at commit `5fa5d68bbcf76aaa2093c5d0578f53462bc0e36e` uses `wide_
 4. Use actual eligibility evidence in the bounty submission. Record network use separately if it becomes available; do not equate eligibility with observed ranking use.
 5. Expand to onchain metrics or a trained adapter after this first contribution establishes a working submission and review loop.
 
-The October 29 pool was empty. The [October 30 saved status](../../evaluation/liquidity-depth/pool-status-2026-10-30.json) now shows 56 eligible rows, one eligible contributor and an active snapshot from epoch 1609. The minimum remains five contributors for question use. This snapshot does not prove actual ranking use; four more independent contributors are needed to reach that minimum.
+The October 29 pool was empty. The [October 30 saved status](../../evaluation/liquidity-depth/pool-status-2026-10-30.json) recorded 56 eligible rows, one eligible contributor and an active snapshot from epoch 1609. The [November 2 metadata](../evidence/provider-coverage-nov02.json) reports 136 eligible pool rows and two contributors; all 56 Arcadian rows remain eligible. The minimum remains five contributors for question use, so three additional contributors are required. These records do not prove actual ranking use.
 
 The listed issues explicitly pay no money or tokens. Protocol evaluator rewards are separate, as are H2 prizes; no reward or eligibility is guaranteed by preparing this seed.

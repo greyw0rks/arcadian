@@ -1,0 +1,20 @@
+{
+  "intent": "TVL_LOOKUP_GENERAL",
+  "signal": "aave-v3 on Base has 507795103.78 USD TVL (protocol_chain).",
+  "value": 507795103.77856517,
+  "unit": "USD",
+  "protocol": "aave-v3",
+  "chain": "Base",
+  "scope": "protocol_chain",
+  "source_url": "https://api.llama.fi/protocols",
+  "tvl_usd": 507795103.77856517,
+  "protocol_or_chain": "aave-v3 on Base",
+  "chain_tvl_usd": 507795103.77856517,
+  "confidence": 1,
+  "retrieved_at": "2026-11-02T20:11:03.551Z",
+  "maximum_cache_age_seconds": 300,
+  "source_updated_at": null,
+  "limitations": [
+    "Source freshness follows the public feed; retrieval time is not a source observation time."
+  ]
+}

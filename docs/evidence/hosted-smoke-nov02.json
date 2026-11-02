@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-11-02T20:11:04.330Z",
+  "base": "https://arcadian-gamma.vercel.app",
+  "paidRequests": 0,
+  "checks": [
+    {
+      "name": "readiness",
+      "status": 200,
+      "passed": true,
+      "data": {
+        "ok": true,
+        "state": "configured",
+        "network": {
+          "name": "telegraph-sepolia",
+          "chainId": 11155111,
+          "testnet": true,
+          "explorer": "https://sepolia.etherscan.io/tx/"
+        },
+        "config": {
+          "gatewayConfigured": true,
+          "payerConfigured": true,
+          "spendingProtected": true,
+          "storageConfigured": true,
+          "payer": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+          "defaultIntents": [
+            "SMART_CONTRACT_AUDIT",
+            "WASH_TRADING_DETECTION",
+            "ONCHAIN_METRIC_VERIFY",
+            "LIQUIDITY_DEPTH_VERIFY"
+          ],
+          "maximumSpendUsdc": "0.25"
+        },
+        "reason": "Payment configuration is present. A paid result is verified after each run."
+      }
+    },
+    {
+      "name": "TVL_LOOKUP_GENERAL",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "CRYPTO_YIELD_RATE_GENERAL",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "preview",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "shared archived journal",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "passed": true
+}
