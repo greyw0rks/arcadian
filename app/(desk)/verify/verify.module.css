@@ -1,0 +1,6 @@
+.fields { border: 0; min-width: 0; padding: 0; margin: 0; }
+.fields:disabled { opacity: .8; }
+.json { display: block; min-height: 160px; width: 100%; padding: 12px; border: 1px solid #bfbfb1; border-radius: 4px; color: #22261c; background: #fff; font-family: 'Roboto Mono', monospace; font-size: 13px; line-height: 1.5; resize: vertical; }
+.json:focus-visible { outline: 2px solid #923c0c; outline-offset: 3px; }
+.intent { font-size: 14px; text-transform: lowercase; overflow-wrap: anywhere; }
+@media (max-width: 650px) { .json { font-size: 16px; } }

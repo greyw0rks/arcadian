@@ -1,0 +1,66 @@
+{
+  "verifiedAt": "2026-11-02T20:13:27.300Z",
+  "signatureVerified": true,
+  "evidenceVerified": false,
+  "canProceed": false,
+  "recordedDecision": "NO_DATA",
+  "decision": "NO_DATA",
+  "reasons": [
+    "No subject-specific evidence was returned for this token and chain",
+    "The signed spend ledger does not match the independently verified payments",
+    "The memo is older than five minutes; obtain a fresh decision before proceeding"
+  ],
+  "memoHash": "0x9dac4013ef4077d2e5d471e8ff56d2ee028a4beceda7e600787c64f6daccbed4",
+  "signer": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+  "cost": {
+    "totalUsdc": "0",
+    "verifiedReceiptCount": 0,
+    "settledTxCount": 0
+  },
+  "checks": [
+    {
+      "intent": "SMART_CONTRACT_AUDIT",
+      "paymentVerified": false,
+      "receiptVerified": false,
+      "signalVerified": false,
+      "issues": [
+        "Missing or mismatched payment authorization",
+        "The memo does not record a submitted payment for this answer",
+        "Missing settlement transaction",
+        "Missing transaction, recorded signal or serving provider",
+        "The provider response does not resolve this exact request and Intent",
+        "The raw provider response is missing"
+      ]
+    },
+    {
+      "intent": "WASH_TRADING_DETECTION",
+      "paymentVerified": false,
+      "receiptVerified": true,
+      "signalVerified": true,
+      "issues": [
+        "Settlement could not be confirmed before the deadline; reconcile the reported transaction"
+      ]
+    },
+    {
+      "intent": "ONCHAIN_METRIC_VERIFY",
+      "paymentVerified": false,
+      "receiptVerified": true,
+      "signalVerified": true,
+      "issues": [
+        "Settlement could not be confirmed before the deadline; reconcile the reported transaction"
+      ]
+    },
+    {
+      "intent": "LIQUIDITY_DEPTH_VERIFY",
+      "paymentVerified": false,
+      "receiptVerified": false,
+      "signalVerified": false,
+      "issues": [
+        "Missing transaction, recorded signal or serving provider",
+        "The provider response does not resolve this exact request and Intent",
+        "The raw provider response is missing",
+        "Settlement could not be confirmed before the deadline; reconcile the reported transaction"
+      ]
+    }
+  ]
+}

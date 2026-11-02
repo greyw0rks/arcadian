@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-11-02T20:25:21.477Z",
+  "appTests": {
+    "passed": 91,
+    "total": 91
+  },
+  "productionBuild": "passed",
+  "typecheck": "passed",
+  "yamlContract": "passed",
+  "anjomanYaml": "passed, exact hosted hash",
+  "hostedChecks": {
+    "passed": 5,
+    "total": 5,
+    "paidRequests": 0
+  },
+  "journalMigration": "verified, source preserved",
+  "evaluatorRows": {
+    "eligible": 56,
+    "datasetUnchanged": true
+  },
+  "syntheticImpact": {
+    "passed": 7,
+    "total": 7
+  },
+  "minerRegistration": "unconfirmed; sponsored server error",
+  "demo": "unfinished; HyperFrames workflow manifest unreachable",
+  "newUsefulPaidH2Review": false,
+  "independentHumanReview": false,
+  "officialCompetitionFormsSubmitted": false,
+  "upstreamComment": "https://github.com/telegraphprotocol/bounties/issues/85#issuecomment-6587112597"
+}

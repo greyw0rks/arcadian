@@ -1,0 +1,177 @@
+{
+  "SMART_CONTRACT_AUDIT": {
+    "intent_id": "SMART_CONTRACT_AUDIT_GENERAL",
+    "miner_count": 12,
+    "request": null,
+    "response": null
+  },
+  "WASH_TRADING_DETECTION": {
+    "intent_id": "WASH_TRADING_DETECTION_GENERAL",
+    "miner_count": 12,
+    "request": {
+      "params": [
+        {
+          "name": "subject",
+          "type": "string",
+          "required": true,
+          "description": "Token, pair, pool or address"
+        }
+      ],
+      "schema_version": 3,
+      "served_by": "WASH_TRADING_DETECTION"
+    },
+    "response": {
+      "fields": [
+        {
+          "name": "subject",
+          "description": "The token, pair, pool or address analysed",
+          "type": "string",
+          "off_chain": true
+        },
+        {
+          "name": "verdict",
+          "description": "Wash-trading verdict",
+          "type": "enum",
+          "allowed": [
+            "wash_trading",
+            "likely_wash_trading",
+            "inconclusive",
+            "organic"
+          ],
+          "processed": true
+        },
+        {
+          "name": "wash_volume_pct",
+          "description": "Share of the volume judged to be wash trading, percent",
+          "type": "number",
+          "unit": "percent",
+          "range": [
+            0,
+            100
+          ],
+          "scored": true,
+          "decimals": 6
+        },
+        {
+          "name": "signals",
+          "description": "Patterns behind the verdict (circular flow, self-trades, counterparty concentration)",
+          "type": "list",
+          "off_chain": true
+        },
+        {
+          "name": "summary",
+          "description": "One- or two-sentence summary of the analysis",
+          "type": "string",
+          "off_chain": true
+        }
+      ],
+      "format_version": 3,
+      "served_by": "WASH_TRADING_DETECTION"
+    }
+  },
+  "ONCHAIN_METRIC_VERIFY": {
+    "intent_id": "ONCHAIN_METRIC_VERIFY_GENERAL",
+    "miner_count": 35,
+    "request": {
+      "params": [
+        {
+          "name": "address",
+          "type": "string",
+          "required": true,
+          "description": "Wallet address"
+        },
+        {
+          "name": "block",
+          "type": "integer",
+          "required": true,
+          "description": "Block number to read the balance at",
+          "min": 0,
+          "max": 1000000000000
+        }
+      ],
+      "schema_version": 3,
+      "served_by": "ONCHAIN_METRIC_VERIFY"
+    },
+    "response": {
+      "fields": [
+        {
+          "name": "balance_gwei",
+          "description": "ETH balance of the wallet {key} at its pinned block, in Gwei (1 ETH = 1000000000 Gwei)",
+          "type": "number",
+          "unit": "Gwei",
+          "unit_aliases": {
+            "ETH": 1000000000,
+            "wei": 1e-09
+          },
+          "range": [
+            0,
+            100000000000000000000
+          ],
+          "user_description": "Coin balance that answers this request, in Gwei: {query}",
+          "scored": true,
+          "decimals": 6
+        },
+        {
+          "name": "address",
+          "description": "The address whose balance is reported",
+          "type": "string",
+          "off_chain": true
+        },
+        {
+          "name": "block",
+          "description": "The block the balance was read at",
+          "type": "string",
+          "off_chain": true
+        },
+        {
+          "name": "chain",
+          "description": "The chain the balance is on",
+          "type": "string",
+          "off_chain": true
+        }
+      ],
+      "format_version": 3,
+      "served_by": "ONCHAIN_METRIC_VERIFY"
+    }
+  },
+  "LIQUIDITY_DEPTH_VERIFY": {
+    "intent_id": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+    "miner_count": 32,
+    "request": {
+      "params": [
+        {
+          "name": "pool",
+          "type": "string",
+          "required": true,
+          "description": "DEX pool address or name"
+        },
+        {
+          "name": "chain",
+          "type": "string",
+          "required": true,
+          "description": "Chain of the pool"
+        }
+      ],
+      "schema_version": 3,
+      "served_by": "LIQUIDITY_DEPTH_VERIFY"
+    },
+    "response": {
+      "fields": [
+        {
+          "name": "liquidity_usd",
+          "description": "Total liquidity (reserve) in US dollars of the DEX pool {pool_name} on {chain}, pool address {address}",
+          "type": "number",
+          "unit": "USD",
+          "range": [
+            1,
+            1000000000000
+          ],
+          "scored": true,
+          "decimals": 6
+        }
+      ],
+      "format_version": 3,
+      "served_by": "LIQUIDITY_DEPTH_VERIFY"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "configuredAt": "2026-11-02T19:55:31.295Z",
+  "environments": [
+    "production",
+    "preview"
+  ],
+  "sharedStorage": true,
+  "journalSha256": "5a035219cef30f9128b9f8f9b27381a138813c391be8a3289d2c7861b35b220b",
+  "credentialValuesPublished": false,
+  "payerNetwork": "telegraph-sepolia"
+}

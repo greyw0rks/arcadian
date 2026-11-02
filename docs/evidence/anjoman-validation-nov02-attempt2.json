@@ -1,0 +1,29 @@
+{
+  "source": "anjoman",
+  "checkedAt": "2026-11-02T19:45:29.732Z",
+  "yamlSha256": "eb1231ac931d49b110d856145ccc509c020f7fb31e2496f4d443bf2c63cac3d5",
+  "localYamlSha256": "eb1231ac931d49b110d856145ccc509c020f7fb31e2496f4d443bf2c63cac3d5",
+  "hostedMatchesLocal": true,
+  "url": "https://anjoman.ai/api/registrations/validate",
+  "status": 400,
+  "validation": {
+    "valid": false,
+    "slug": "arcadian-defi-risk",
+    "name": "Arcadian — DeFi TVL and Yield",
+    "results": [
+      {
+        "path": "/measure",
+        "method": "POST",
+        "status": 405,
+        "success": true,
+        "latency_ms": 670
+      }
+    ],
+    "errors": [
+      "slug \"arcadian-defi-risk\" is already served by an active registration owned by a different wallet (0x634e8e643fb9a9919671824b48402d7ad93f321f, registrationId=173). A slug is a miner's identity and only its owner may register it. This will NOT be retried: choose a different slug and re-submit, or have the current owner call deregisterMiner() first."
+    ],
+    "conflicts": [
+      "slug \"arcadian-defi-risk\" is already served by an active registration owned by a different wallet (0x634e8e643fb9a9919671824b48402d7ad93f321f, registrationId=173). A slug is a miner's identity and only its owner may register it. This will NOT be retried: choose a different slug and re-submit, or have the current owner call deregisterMiner() first."
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "dataset_sha256": "febfa4a930d02f68cb98a55a35ab39537d4ce35ec22df5375b21abf1bd002ed7",
+  "packet_sha256": "a212165bd7aee50a91468c25dccac1003de9be4e88b10deba3a752d155170362",
+  "reviewer": null,
+  "reviewed_at": null,
+  "relationship_to_project": null,
+  "reviewed_without_source_labels": null,
+  "answers": [
+    {
+      "id": "buy-vwap",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "sell-side",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "spread-midpoint",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "insufficient-book",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "tvl-substitution",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "constant-product",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "base-units",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "quote-freshness",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "chain-binding",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "shared-route-depth",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "fee-accounting",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "inclusive-band",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "constant-product-fee",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "minimum-output-tolerance",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "recipient-transfer-tax",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "quote-currency-usd",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "inactive-concentrated-capital",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "reorganized-snapshot",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "multihop-final-output",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "mixed-state-reserves",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "unknown-output-decimals",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "realized-versus-minimum",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "quote-budget-fill",
+      "preferred": null,
+      "rationale": ""
+    },
+    {
+      "id": "untrusted-pool-metadata",
+      "preferred": null,
+      "rationale": ""
+    }
+  ]
+}

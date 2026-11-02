@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-30",
+  "workingCopy": "/tmp/arcadian-finish-oct30",
+  "node": "22.23.2",
+  "checks": [
+    { "command": "npm test", "exitCode": 0, "tests": 87, "passed": 87 },
+    { "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false", "exitCode": 0 },
+    { "command": "npm run build", "exitCode": 0, "next": "15.5.28" },
+    { "command": "npm run check:evaluation", "exitCode": 0, "pairs": 56, "arithmeticCases": 43 },
+    { "command": "npm run test:evaluation", "exitCode": 0 },
+    { "command": "npm run check:liquidity-impact", "exitCode": 0, "syntheticChecks": 7, "passed": 7 },
+    { "artifact": "production-smoke-oct30.json", "httpChecks": 7, "passed": 7, "scope": "Local production server without payer credentials; no browser interaction" },
+    { "artifact": "verified-memo-oct30.json", "exitCode": 2, "expectedDecision": "NO_DATA", "signatureVerified": true, "totalUsdc": "0.03", "verifiedReceiptCount": 2, "settledTxCount": 3 },
+    { "artifact": "final-operator.json", "exitCode": 0, "walletUnlocked": true, "testUsdcBalance": "0.17", "paymentSent": false }
+  ],
+  "limitations": [
+    "Provider failure and unrelated answers prevent a useful complete live review.",
+    "October activity is outside the H2 period.",
+    "Evaluator audit is the pinned, hash-bound saved result; no independent human review or ranking gain is implied.",
+    "Original checkout is read-only; changes are not pushed or deployed."
+  ]
+}

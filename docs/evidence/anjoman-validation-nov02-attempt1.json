@@ -1,0 +1,14 @@
+{
+  "source": "anjoman",
+  "checkedAt": "2026-11-02T19:36:14.236Z",
+  "yamlSha256": "821cac1b72242e792f6e63c976bc654afdbc0d3e9e7e8c51635e3271074f74b9",
+  "localYamlSha256": "821cac1b72242e792f6e63c976bc654afdbc0d3e9e7e8c51635e3271074f74b9",
+  "url": "https://anjoman.ai/api/registrations/validate",
+  "status": 400,
+  "validation": {
+    "valid": false,
+    "errors": [
+      "endpoints.0.params.body.required.0.accepted_fields: Invalid type. Expected: object, given: array"
+    ]
+  }
+}

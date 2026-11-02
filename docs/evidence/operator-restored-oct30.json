@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-10-30T14:13:55.081Z",
+  "ok": true,
+  "state": "ready",
+  "network": {
+    "name": "telegraph-sepolia",
+    "chainId": 11155111,
+    "testnet": true,
+    "explorer": "https://sepolia.etherscan.io/tx/"
+  },
+  "config": {
+    "gatewayConfigured": true,
+    "payerConfigured": true,
+    "spendingProtected": true,
+    "storageConfigured": true,
+    "payer": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+    "defaultIntents": [
+      "SMART_CONTRACT_AUDIT",
+      "WASH_TRADING_DETECTION",
+      "ONCHAIN_METRIC_VERIFY",
+      "LIQUIDITY_DEPTH_VERIFY"
+    ],
+    "maximumSpendUsdc": "0.25"
+  },
+  "reason": "Storage, wallet, funding and the unsigned Engine challenge passed; no purchase has been made.",
+  "paymentSigned": false,
+  "paymentSent": false,
+  "storage": {
+    "available": true,
+    "walletUnlocked": true,
+    "recoverRequestId": null
+  },
+  "balance": {
+    "usdc": "0.17",
+    "coversDefaultCeiling": true
+  },
+  "engine": {
+    "available": true,
+    "expected": {
+      "network": "eip155:11155111",
+      "asset": "0xcc194e1a843B658526D0D5C431f670028582Ae17",
+      "domain": {
+        "name": "USD Coin",
+        "version": "2"
+      }
+    },
+    "offered": [
+      {
+        "scheme": "exact",
+        "network": "eip155:11155111",
+        "asset": "0xcc194e1a843B658526D0D5C431f670028582Ae17",
+        "amount": "10000",
+        "recipient": "0x3624EB012B5E998BB57B6bE6C9Cfc9c4bc5eb99b"
+      }
+    ],
+    "challengeVersion": 2,
+    "quotedUsdc": "0.01",
+    "recipient": "0x3624EB012B5E998BB57B6bE6C9Cfc9c4bc5eb99b"
+  },
+  "readyForDefaultReview": true
+}

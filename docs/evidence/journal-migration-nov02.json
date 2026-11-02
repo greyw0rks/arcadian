@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-11-02T19:52:16.026Z",
+  "applied": true,
+  "sourceSha256": "5a035219cef30f9128b9f8f9b27381a138813c391be8a3289d2c7861b35b220b",
+  "targetSha256": "5a035219cef30f9128b9f8f9b27381a138813c391be8a3289d2c7861b35b220b",
+  "sourceUnchanged": true,
+  "matches": true,
+  "tables": [
+    {
+      "name": "arcadian_checks",
+      "rows": 16
+    },
+    {
+      "name": "arcadian_review_writers",
+      "rows": 0
+    },
+    {
+      "name": "arcadian_reviews",
+      "rows": 4
+    },
+    {
+      "name": "arcadian_wallet_locks",
+      "rows": 0
+    }
+  ],
+  "sourceModified": false,
+  "scope": "Exact logical journal copy. No payment, authorization or recovery was submitted."
+}

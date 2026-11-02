@@ -1,0 +1,22 @@
+{
+  "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+  "submitter": "0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+  "chainId": 11155111,
+  "nonce": "56e807048c9366ad1a693e112a600946",
+  "bodySha256": "f0b0a0e97b21d92aafab718a5641b00d1b21ab7aa302f9ee4a252a94f847bad5",
+  "bytes": 48124,
+  "rows": 56,
+  "method": "POST",
+  "url": "https://devnode.telegraphprotocol.com/api/evalpool/submissions?intent_id=LIQUIDITY_DEPTH_VERIFY_GENERAL&submitter=0x2c051eD5452B3630B2151203d5003b759ECBFDF1",
+  "headers": {
+    "Content-Type": "application/x-ndjson",
+    "X-Evalpool-Nonce": "56e807048c9366ad1a693e112a600946"
+  },
+  "signatureHeader": "X-Evalpool-Signature",
+  "message": "Telegraph eval-pool submission v1\nintent_id: LIQUIDITY_DEPTH_VERIFY_GENERAL\nbody_sha256: f0b0a0e97b21d92aafab718a5641b00d1b21ab7aa302f9ee4a252a94f847bad5\nnonce: 56e807048c9366ad1a693e112a600946\nchain_id: 11155111",
+  "signed": false,
+  "submitted": false,
+  "instructions": "Confirm contributor, node chain, and reviewed content. Sign message.txt with EIP-191, then send body.jsonl unchanged with that signature header. HTTP success is not eligibility; retain the response and query contributor row states.",
+  "officialDataGatePassed": true,
+  "independentReview": "Confirm the separate review record; this tool does not verify reviewer identity."
+}

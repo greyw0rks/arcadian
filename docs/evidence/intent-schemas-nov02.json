@@ -1,0 +1,225 @@
+{
+  "checkedAt": "2026-11-02T19:26:52.732Z",
+  "schemas": [
+    {
+      "url": "https://devnode.telegraphprotocol.com/engine/v1/intents/TVL_LOOKUP_GENERAL",
+      "sha256": "f0b1fd9e842aaf141fde1344701201a7b16328782f73e683787e59a81e8f4688",
+      "intent": "TVL_LOOKUP_GENERAL",
+      "class": "deterministic",
+      "request": {
+        "params": [
+          {
+            "name": "protocol",
+            "type": "string",
+            "required": true,
+            "description": "DeFi protocol, pool or chain"
+          }
+        ],
+        "schema_version": 1,
+        "served_by": "TVL_LOOKUP_GENERAL"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "protocol_or_chain",
+            "description": "The DeFi protocol, pool or chain the value locked is for",
+            "type": "string",
+            "off_chain": true
+          },
+          {
+            "name": "tvl_usd",
+            "description": "Total value locked in US dollars",
+            "type": "number",
+            "unit": "USD",
+            "range": [
+              0,
+              10000000000000
+            ],
+            "scored": true,
+            "decimals": 6
+          },
+          {
+            "name": "chain_tvl_usd",
+            "description": "The protocol's value locked on the named chain only, in US dollars, when the answer gives it",
+            "type": "number",
+            "unit": "USD",
+            "range": [
+              0,
+              10000000000000
+            ],
+            "decimals": 6,
+            "off_chain": true
+          },
+          {
+            "name": "as_of",
+            "description": "Timestamp of the reading",
+            "type": "string",
+            "off_chain": true
+          }
+        ],
+        "format_version": 1,
+        "served_by": "TVL_LOOKUP_GENERAL"
+      }
+    },
+    {
+      "url": "https://devnode.telegraphprotocol.com/engine/v1/intents/CRYPTO_YIELD_RATE_GENERAL",
+      "sha256": "141bcc5dae83af2f5773ed7c8cf7d2817ae2c853f01c404e6db47f667f8ff6ad",
+      "intent": "CRYPTO_YIELD_RATE_GENERAL",
+      "class": "deterministic",
+      "request": {
+        "params": [
+          {
+            "name": "project",
+            "type": "string",
+            "required": true,
+            "description": "Lending protocol, e.g. aave-v3"
+          },
+          {
+            "name": "symbol",
+            "type": "string",
+            "required": true,
+            "description": "Asset of the pool, e.g. USDC"
+          },
+          {
+            "name": "chain",
+            "type": "string",
+            "required": true,
+            "description": "Chain of the pool, e.g. Ethereum"
+          }
+        ],
+        "schema_version": 1,
+        "served_by": "CRYPTO_YIELD_RATE_GENERAL"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "supply_apy",
+            "description": "Current supply APY of the {project} {symbol} pool on {chain}, in basis points (1% = 100 bps)",
+            "type": "number",
+            "unit": "basis points",
+            "unit_aliases": {
+              "percent (1% = 100 bps; multiply by 100 for basis points)": 100
+            },
+            "range": [
+              0,
+              100000
+            ],
+            "scored": true,
+            "decimals": 6
+          }
+        ],
+        "format_version": 1,
+        "served_by": "CRYPTO_YIELD_RATE_GENERAL"
+      }
+    },
+    {
+      "url": "https://devnode.telegraphprotocol.com/engine/v1/intents/ONCHAIN_METRIC_VERIFY_GENERAL",
+      "sha256": "d8e349714a499f8e97e452724a7b3c890d0401681491e1c0a30a57414d9f8453",
+      "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "class": "deterministic",
+      "request": {
+        "params": [
+          {
+            "name": "address",
+            "type": "string",
+            "required": true,
+            "description": "Wallet address"
+          },
+          {
+            "name": "block",
+            "type": "integer",
+            "required": true,
+            "description": "Block number to read the balance at",
+            "min": 0,
+            "max": 1000000000000
+          }
+        ],
+        "schema_version": 1,
+        "served_by": "ONCHAIN_METRIC_VERIFY_GENERAL"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "balance_gwei",
+            "description": "ETH balance of the wallet {key} at its pinned block, in Gwei (1 ETH = 1000000000 Gwei)",
+            "type": "number",
+            "unit": "Gwei",
+            "unit_aliases": {
+              "ETH": 1000000000,
+              "wei": 1e-9
+            },
+            "range": [
+              0,
+              100000000000000000000
+            ],
+            "user_description": "Coin balance that answers this request, in Gwei: {query}",
+            "scored": true,
+            "decimals": 6
+          },
+          {
+            "name": "address",
+            "description": "The address whose balance is reported",
+            "type": "string",
+            "off_chain": true
+          },
+          {
+            "name": "block",
+            "description": "The block the balance was read at",
+            "type": "string",
+            "off_chain": true
+          },
+          {
+            "name": "chain",
+            "description": "The chain the balance is on",
+            "type": "string",
+            "off_chain": true
+          }
+        ],
+        "format_version": 1,
+        "served_by": "ONCHAIN_METRIC_VERIFY_GENERAL"
+      }
+    },
+    {
+      "url": "https://devnode.telegraphprotocol.com/engine/v1/intents/LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "sha256": "56c7406c429cf1757f42957174d57e92e70a2a6aa56ebe716eb2a4c4cb199d8c",
+      "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "class": "deterministic",
+      "request": {
+        "params": [
+          {
+            "name": "pool",
+            "type": "string",
+            "required": true,
+            "description": "DEX pool address or name"
+          },
+          {
+            "name": "chain",
+            "type": "string",
+            "required": true,
+            "description": "Chain of the pool"
+          }
+        ],
+        "schema_version": 1,
+        "served_by": "LIQUIDITY_DEPTH_VERIFY_GENERAL"
+      },
+      "response": {
+        "fields": [
+          {
+            "name": "liquidity_usd",
+            "description": "Total liquidity (reserve) in US dollars of the DEX pool {pool_name} on {chain}, pool address {address}",
+            "type": "number",
+            "unit": "USD",
+            "range": [
+              1,
+              1000000000000
+            ],
+            "scored": true,
+            "decimals": 6
+          }
+        ],
+        "format_version": 1,
+        "served_by": "LIQUIDITY_DEPTH_VERIFY_GENERAL"
+      }
+    }
+  ]
+}

@@ -79,6 +79,7 @@ export interface ProtocolMeta {
   category: string;
   gecko_id: string | null;
   tvl: number;
+  chainTvls?: Record<string, number>;
 }
 
 let protosCache: { at: number; protos: ProtocolMeta[] } | null = null;
